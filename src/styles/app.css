@@ -1,0 +1,34 @@
+body{
+    margin: 0;
+    font-family: "Open Sans";
+}
+
+.app {
+    width: 100%;
+}
+
+.app-titleBar {
+    width: 100%;
+    height: 40px;
+    border: 1px solid black;
+}
+.app-titleBar-title{
+    float: left;
+    padding: 5px;
+}
+.app-titleBar-userName{
+    float: right;
+    padding: 5px;
+}
+
+.app-editBar {
+    float: left;
+    width: 25%;
+    border: 1px solid black;
+}
+
+.app-viewBar {
+    float: left;
+    width: 74%;
+    border: 1px solid black;
+}
