@@ -1,25 +1,25 @@
-import React, { Component } from "react"
-import { connect } from "react-redux"
-import { bindActionCreators } from "redux"
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
-import * as actions from "../../actions/LoanActions"
+import * as actions from '../actions/actions'
 
 class Text extends Component {
     render() {
         return <div>
-                Text
+                Text {this.props.user.loanSum}
             </div>
     }
 }
 
 function mapStateToProps(state) {
     return {
-        state: state
+        user: state
     };
 }
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(Actions, dispatch)
+        actions: bindActionCreators(actions, dispatch)
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Text);
