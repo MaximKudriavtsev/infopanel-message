@@ -6,3 +6,10 @@ export function changeRate(value, number, chart) {
         chart: chart
     }
 }
+
+export function changeText(value) {
+    return {
+        type: 'CHANGE_TEXT',
+        value: value
+    }
+}
