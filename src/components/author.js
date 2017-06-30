@@ -13,12 +13,13 @@ class Author extends Component {
         this.props.actions.changeAuthor(e);
     }
     render() {
-        var that = this;
+        var that = this,
+            user = that.props.user;
 
         return <div>
-                <label htmlFor='input-author'>Author</label> {that.props.user.author}
+                <label>Author</label> {user.author}
                 <DropdownList 
-                    data={that.props.user.authorList}
+                    data={user.authorList}
                     //defaultValue='User15'
                     filter='contains'
                     onChange={::that.changeAuthor}

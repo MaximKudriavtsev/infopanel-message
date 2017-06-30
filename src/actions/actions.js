@@ -27,3 +27,17 @@ export function changeLocation(value) {
         value: value
     }
 }
+
+export function changeEventDate(value) {
+    return {
+        type: 'CHANGE_EVENTDATE',
+        value: value
+    }
+}
+
+export function changeStartDate(value) {
+    return {
+        type: 'CHANGE_STARTDATE',
+        value: value
+    }
+}

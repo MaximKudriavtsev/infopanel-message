@@ -12,21 +12,19 @@ var globalizeLocalizer = require('react-widgets/lib/localizers/globalize')
 Globalize('ru');
 globalizeLocalizer(Globalize);
 
-class StartDate extends Component {
+class EventDate extends Component {
     
-    changeStartDate(e) {
-        this.props.actions.changeStartDate(e);
+    changeEventDate(e) {
+        this.props.actions.changeEventDate(e);
     }
     render() {
-        var that = this,
-            user=that.props.user;
-
+        var that = this;
+            
         return <div>
-                <label>StartDate</label> 
+                <label>eventDate</label> 
                 <DateTimePicker 
-                    defaultValue={user.startDate}
-                    value={user.startDate}
-                    onChange={::that.changeStartDate}
+                    defaultValue={new Date()}
+                    onChange={::that.changeEventDate}
                 />
             </div>
     }
@@ -42,4 +40,4 @@ function mapDispatchToProps(dispatch) {
         actions: bindActionCreators(actions, dispatch)
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(StartDate);
+export default connect(mapStateToProps, mapDispatchToProps)(EventDate);
