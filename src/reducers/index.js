@@ -5,13 +5,21 @@ const initialState = {
     date: '',
     startData:'',
     messageAuthor:'',
-    messageDate:''
+    messageDate:'',
+    authorList:example()
 };
+
+function example(){
+    return ['Кошкин','Кудрявцев', 'Туголуков', 'user15'];
+}
 
 export default function user(state = initialState, action) {
     switch(action.type) {
         case 'CHANGE_TEXT': {
             return { ...state, text: action.value }
+        }
+        case 'CHANGE_AUTHOR': {
+            return { ...state, author: action.value }
         }
     }
     return state;

@@ -13,3 +13,10 @@ export function changeText(value) {
         value: value
     }
 }
+
+export function changeAuthor(value) {
+    return {
+        type: 'CHANGE_AUTHOR',
+        value: value
+    }
+}
