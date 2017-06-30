@@ -41,3 +41,9 @@ export function changeStartDate(value) {
         value: value
     }
 }
+
+export function buttonSave() {
+    return {
+        type: 'BUTTON_SAVE'
+    }
+}

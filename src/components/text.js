@@ -17,6 +17,7 @@ class Text extends Component {
                 className='input-text' 
                 placeholder='Введите текс'
                 onBlur={:: that.changeText}
+                maxLength='25'
                 /> 
             </div>
     }

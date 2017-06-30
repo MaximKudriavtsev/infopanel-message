@@ -4,7 +4,7 @@ const initialState = {
     location: '',
     eventDate: '',
     startData:'',
-    messageAuthor:'',
+    messageAuthor:'user',
     messageDate:'',
     authorList:example()
 };
@@ -32,6 +32,18 @@ export default function user(state = initialState, action) {
         }
         case 'CHANGE_STARTDATE':{
             return { ...state, startDate: action.value }
+        }
+        case 'BUTTON_SAVE':{
+            var lenght = localStorage.length;
+            localStorage.setItem( lenght+1, JSON.stringify({
+                                text : state.text,
+                                author: state.author,
+                                location: state.location,
+                                eventDate: state.eventDate,
+                                startData: state.startData,
+                                messageAuthor: state.messageAuthor,
+                                messageDate: new Date()
+                             }));
         }
     }
     return state;
