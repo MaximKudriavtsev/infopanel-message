@@ -21,6 +21,9 @@ export default function user(state = initialState, action) {
         case 'CHANGE_AUTHOR': {
             return { ...state, author: action.value }
         }
+        case 'CHANGE_LOCATION': {
+            return { ...state, location: action.value }
+        }
     }
     return state;
 }

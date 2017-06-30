@@ -20,3 +20,10 @@ export function changeAuthor(value) {
         value: value
     }
 }
+
+export function changeLocation(value) {
+    return {
+        type: 'CHANGE_LOCATION',
+        value: value
+    }
+}
