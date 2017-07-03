@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import Text     from '../components/Text'
-import Author   from '../components/Author'
-import Location from '../components/Location'
-import EventDate from '../components/EventDate'
-import StartDate from '../components/StartDate'
+import Text     from '../components/Text';
+import Author   from '../components/Author';
+import Location from '../components/Location';
+import EventDate from '../components/EventDate';
+import StartDate from '../components/StartDate';
+import Buttons   from '../components/Buttons';
 
 export default class EditBar extends Component {
     render() {
@@ -15,6 +16,7 @@ export default class EditBar extends Component {
             <Location />
             <EventDate />
             <StartDate />
+            <Buttons />
         </div>
     }
 }

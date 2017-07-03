@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import * as actions from '../actions/actions'
+import * as actions from '../actions/actions';
 
 class Text extends Component {
     changeText(e) {
         this.props.actions.changeText(e.target.value);
     }
     render() {
-        var that = this;
+        let that = this;
 
         return <div>
                 <label htmlFor='input-text'>Text</label> {that.props.user.text}
@@ -17,6 +17,7 @@ class Text extends Component {
                 className='input-text' 
                 placeholder='Введите текс'
                 onBlur={:: that.changeText}
+                maxLength='25'
                 /> 
             </div>
     }
