@@ -10,7 +10,6 @@ import Buttons   from '../components/Buttons';
 export default class EditBar extends Component {
     render() {
         return <div className='app-editBar'>
-            <p>editBar</p>
             <Text />
             <Author />
             <Location />

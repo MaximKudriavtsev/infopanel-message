@@ -16,11 +16,10 @@ class Author extends Component {
         let that = this,
             user = that.props.user;
 
-        return <div>
-                <label>Author</label> {user.author}
+        return <div className='author'>
+                <label className='author-label'>Author</label>
                 <DropdownList 
                     data={user.authorList}
-                    //defaultValue='User15'
                     filter='contains'
                     onChange={::that.changeAuthor}
                 />

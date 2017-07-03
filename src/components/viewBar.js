@@ -24,13 +24,12 @@ class ViewBar extends Component {
         );
 
         return <div className='app-viewBar'>
-            <p>View Bar</p>
             <Griddle data={eventList}
-            plugins={[plugins.LocalPlugin]}
-            styleConfig={styleConfig} 
-            components={{
-              Layout:NewLayout  
-            }}>        
+                plugins={[plugins.LocalPlugin]}
+                styleConfig={styleConfig} 
+                components={{
+                    Layout:NewLayout  
+                }}>        
                 <RowDefinition hidden>
                     <ColumnDefinition id="text" title="Text"/>
                     <ColumnDefinition id="author" title="Author"/>

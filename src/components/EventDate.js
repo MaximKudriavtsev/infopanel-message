@@ -20,8 +20,8 @@ class EventDate extends Component {
     render() {
         let that = this;
             
-        return <div>
-                <label>eventDate</label> 
+        return <div className='eventDate'>
+                <label className='eventDate-label'>eventDate</label> 
                 <DateTimePicker 
                     min={new Date()}
                     defaultValue={new Date()}
