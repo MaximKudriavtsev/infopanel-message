@@ -1,4 +1,6 @@
 # infopanel-message
 infopanel-message
 
-new readme
+- test readme
+- test 2 readme
+- new readme
