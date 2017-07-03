@@ -2,9 +2,9 @@ const initialState = {
     text: '',
     author: '',
     location: '',
-    eventDate: '',
-    startDate:null,
-    messageAuthor:'user',
+    eventDate: new Date(),
+    startDate: new Date(),
+    messageAuthor:'User',
     messageDate:'',
     authorList:example(),
     eventList:getEventList()
@@ -46,6 +46,9 @@ export default function user(state = initialState, action) {
         case 'CHANGE_EVENTDATE':{
             var date = new Date(action.value);
             date.setDate(date.getDate() - 5);
+            if(date < new Date()) {
+                date = new Date();
+            }
             
             return { ...state, eventDate: action.value, startDate: date }
         }
@@ -55,9 +58,9 @@ export default function user(state = initialState, action) {
         case 'BUTTON_SAVE':{
             var lenght = localStorage.length;
             localStorage.setItem( lenght+1, JSON.stringify({
-                                text : state.text,
+                                text : state.text.trim(),
                                 author: state.author,
-                                location: state.location,
+                                location: state.location.trim(),
                                 eventDate: state.eventDate,
                                 startDate: state.startDate,
                                 messageAuthor: state.messageAuthor,

@@ -24,6 +24,8 @@ class StartDate extends Component {
         return <div>
                 <label>StartDate</label> 
                 <DateTimePicker 
+                    min={new Date()}
+                    max={user.eventDate}
                     defaultValue={user.startDate}
                     value={user.startDate}
                     onChange={::that.changeStartDate}
