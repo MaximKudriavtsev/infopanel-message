@@ -66,6 +66,7 @@ export default function user(state = initialState, action) {
                                 messageAuthor: state.messageAuthor,
                                 messageDate: new Date()
                              }));
+            return { ...state, eventList:getEventList() }
         }
     }
     return state;
