@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import * as actions from '../actions/actions'
+import * as actions from '../actions/actions';
 
 import 'react-widgets/lib/less/react-widgets.less';
-import {DateTimePicker} from 'react-widgets'
+import {DateTimePicker} from 'react-widgets';
 
-var Globalize = require('globalize')
-var globalizeLocalizer = require('react-widgets/lib/localizers/globalize')
+const Globalize = require('globalize');
+const globalizeLocalizer = require('react-widgets/lib/localizers/globalize');
 Globalize('ru');
 globalizeLocalizer(Globalize);
 
@@ -18,7 +18,7 @@ class StartDate extends Component {
         this.props.actions.changeStartDate(e);
     }
     render() {
-        var that = this,
+        let that = this,
             user=that.props.user;
 
         return <div>

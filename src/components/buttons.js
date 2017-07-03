@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import * as actions from '../actions/actions'
+import * as actions from '../actions/actions';
 
 class Buttons extends Component {
     onButtonSave() {
-        var user = this.props.user;
+        let user = this.props.user;
         if(user.text && user.author && user.eventDate && user.startDate)
             this.props.actions.buttonSave();
         else alert('Не все поля заполнены');           
@@ -16,7 +16,7 @@ class Buttons extends Component {
 
         return <div>
                 <button className='edit-buttonSave' onClick={:: that.onButtonSave}> 
-                  Save  
+                    Save
                 </button>
             </div>
     }

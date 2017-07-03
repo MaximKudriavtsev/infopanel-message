@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import * as actions from '../actions/actions'
+import * as actions from '../actions/actions';
 
 import 'react-widgets/lib/less/react-widgets.less';
-import {DropdownList} from 'react-widgets'
+import {DropdownList} from 'react-widgets';
 
 class Author extends Component {
     
@@ -13,7 +13,7 @@ class Author extends Component {
         this.props.actions.changeAuthor(e);
     }
     render() {
-        var that = this,
+        let that = this,
             user = that.props.user;
 
         return <div>
