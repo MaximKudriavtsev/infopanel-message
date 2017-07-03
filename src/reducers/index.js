@@ -3,14 +3,33 @@ const initialState = {
     author: '',
     location: '',
     eventDate: '',
-    startData:'',
+    startDate:null,
     messageAuthor:'user',
     messageDate:'',
-    authorList:example()
+    authorList:example(),
+    eventList:getEventList()
 };
 
 function example(){
     return ['Кошкин','Кудрявцев', 'Туголуков', 'user15'];
+}
+
+function getEventList(){
+    var list = [];
+
+    for(var i=0, len=localStorage.length; i<len; i++) {
+        var key = localStorage.key(i),
+            date;
+            
+        list.push(JSON.parse(localStorage[key]));
+
+        date = new Date(list[i].eventDate);
+        list[i].correctEventDate = date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes();
+        date = new Date(list[i].startDate);
+        list[i].correctStartDate = date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes();
+    }
+    
+    return list;
 }
 
 export default function user(state = initialState, action) {
@@ -40,7 +59,7 @@ export default function user(state = initialState, action) {
                                 author: state.author,
                                 location: state.location,
                                 eventDate: state.eventDate,
-                                startData: state.startData,
+                                startDate: state.startDate,
                                 messageAuthor: state.messageAuthor,
                                 messageDate: new Date()
                              }));
