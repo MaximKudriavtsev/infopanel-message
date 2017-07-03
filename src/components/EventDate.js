@@ -23,6 +23,7 @@ class EventDate extends Component {
         return <div>
                 <label>eventDate</label> 
                 <DateTimePicker 
+                    min={new Date()}
                     defaultValue={new Date()}
                     onChange={::that.changeEventDate}
                 />
