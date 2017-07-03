@@ -16,8 +16,8 @@ class Buttons extends Component {
     render() {
         let that = this;
 
-        return <div>
-                <button className='edit-buttonSave' onClick={:: that.onButtonSave}> 
+        return <div className='buttons'>
+                <button className='buttons-buttonSave' onClick={:: that.onButtonSave}> 
                     Save
                 </button>
             </div>

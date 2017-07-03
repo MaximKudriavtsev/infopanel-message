@@ -11,13 +11,13 @@ class Text extends Component {
     render() {
         let that = this;
 
-        return <div>
-                <label htmlFor='input-text'>Text</label> {that.props.user.text}
+        return <div className='text'>
+                <label className='text-label' htmlFor='input-text'>Text</label>
                 <input id='input-text'
-                className='input-text' 
-                placeholder='Введите текс'
-                onBlur={:: that.changeText}
-                maxLength='25'
+                    className='text-input' 
+                    placeholder='Введите текс'
+                    onBlur={:: that.changeText}
+                    maxLength='25'
                 /> 
             </div>
     }

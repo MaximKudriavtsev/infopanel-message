@@ -7,28 +7,59 @@ body{
     width: 100%;
 }
 
+/*TitleBar START*/
 .app-titleBar {
+    font-size: 20px;
     width: 100%;
     height: 40px;
     border: 1px solid black;
+    background: #ddd;
 }
 .app-titleBar-title{
     float: left;
     padding: 5px;
+    padding-left: 20px;
 }
 .app-titleBar-userName{
     float: right;
     padding: 5px;
+    padding-right: 20px;
 }
+/*tittle bar end*/
 
+/*editBar START*/
 .app-editBar {
     float: left;
     width: 25%;
+    height: 100%;
     border: 1px solid black;
 }
-
 .app-viewBar {
     float: left;
     width: 74%;
+    height: 100%;
     border: 1px solid black;
 }
+
+/*text start*/
+.text, .author, .location, .eventDate, .startDate, .buttons {
+    padding-top: 10px;
+}
+.text-label, .author-label, .location-label, .eventDate-label, .startDate-label {
+    font-size: 18px;
+    padding-left: 20px;
+}
+.text-input, .location-input {
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+}
+
+.buttons-buttonSave {
+    width: 30%;
+    height: 40px;
+    float: right;
+    font-size: 18px;
+}
+/*text end*/
+/*editBar end*/
