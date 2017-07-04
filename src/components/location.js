@@ -15,7 +15,7 @@ class Location extends Component {
                 <label className='location-label' htmlFor='input-location'>Location</label>
                 <input className='location-input'
                     id='input-location'
-                    placeholder='Введите место'
+                    placeholder='Enter location...'
                     onBlur={:: that.changeLocation}
                     maxLength='25'
                 /> 

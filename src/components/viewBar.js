@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Griddle, { plugins, RowDefinition, ColumnDefinition} from 'griddle-react';
+import Griddle, { plugins, RowDefinition, ColumnDefinition } from 'griddle-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -10,8 +10,28 @@ class ViewBar extends Component {
         let that = this,
             eventList = that.props.user.eventList;
 
-        const styleConfig =  {
-            classNames: {},
+        const styleConfig = {
+            classNames: {
+                Cell: 'griddle-cell',
+                Filter: 'griddle-filter',
+                Loading: 'griddle-loadingResults',
+                NextButton: 'griddle-next-button',
+                NoResults: 'griddle-noResults',
+                PageDropdown: 'griddle-page-select',
+                Pagination: 'griddle-pagination',
+                PreviousButton: 'griddle-previous-button',
+                Row: 'griddle-row',
+                RowDefinition: 'griddle-row-definition',
+                Settings: 'griddle-settings',
+                SettingsToggle: 'griddle-settings-toggle',
+                Table: 'griddle-table',
+                TableBody: 'griddle-table-body',
+                TableHeading: 'griddle-table-heading',
+                TableHeadingCell: 'griddle-table-heading-cell',
+                TableHeadingCellAscending: 'griddle-heading-ascending',
+                TableHeadingCellDescending: 'griddle-heading-descending',
+                PageDropdownContainer:'griddle-page-dropdown-container'
+            },
             icons: {},
             styles: {}
         };
@@ -26,16 +46,21 @@ class ViewBar extends Component {
         return <div className='app-viewBar'>
             <Griddle data={eventList}
                 plugins={[plugins.LocalPlugin]}
-                styleConfig={styleConfig} 
+                styleConfig={styleConfig}
                 components={{
-                    Layout:NewLayout  
-                }}>        
-                <RowDefinition hidden>
-                    <ColumnDefinition id="text" title="Text"/>
-                    <ColumnDefinition id="author" title="Author"/>
-                    <ColumnDefinition id="location" title="Location"/>
-                    <ColumnDefinition id="correctEventDate" title="Date of event" />
-                    <ColumnDefinition id="correctStartDate" title="Publish date of event"/>
+                    Layout: NewLayout
+                }}
+                pageProperties={{
+                    currentPage: 1,
+                    pageSize: 17,
+                    recordCount: 100
+                }}>
+                <RowDefinition >
+                    <ColumnDefinition id="text" title="Text" width="18%" />
+                    <ColumnDefinition id="author" title="Author" width="10%" />
+                    <ColumnDefinition id="location" title="Location" width="18%" />
+                    <ColumnDefinition id="correctEventDate" title="Date of event" width="12%" />
+                    <ColumnDefinition id="correctStartDate" title="Publish date of event" width="12%" />
                 </RowDefinition>
             </Griddle>
         </div>

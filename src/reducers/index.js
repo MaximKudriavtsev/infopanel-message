@@ -19,14 +19,19 @@ function getEventList(){
 
     for(var i=0, len=localStorage.length; i<len; i++) {
         var key = localStorage.key(i),
-            date;
+            date, hours, min;
             
         list.push(JSON.parse(localStorage[key]));
 
         date = new Date(list[i].eventDate);
-        list[i].correctEventDate = date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes();
+        hours = date.getHours().lenght == 1 ? '0'+date.getHours():date.getHours();
+        min = date.getMinutes().lenght == 1 ? '0'+date.getMinutes():date.getMinutes();
+        list[i].correctEventDate = date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + ' ' + hours + ':' + min;
+        
         date = new Date(list[i].startDate);
-        list[i].correctStartDate = date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes();
+        hours = date.getHours().lenght == 1 ? '0'+date.getHours():date.getHours();
+        min = date.getMinutes().lenght == 1 ? '0'+date.getMinutes():date.getMinutes();
+        list[i].correctStartDate = date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + ' ' + hours + ':' + min;
     }
     
     return list;
@@ -66,7 +71,7 @@ export default function user(state = initialState, action) {
                                 messageAuthor: state.messageAuthor,
                                 messageDate: new Date()
                              }));
-            return { ...state, eventList:getEventList() }
+            return { ...state, eventList:getEventList(), text: '', author: '', location: '', eventDate: new Date(), startDate: new Date() }
         }
     }
     return state;

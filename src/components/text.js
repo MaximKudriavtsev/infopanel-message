@@ -4,10 +4,16 @@ import { bindActionCreators } from 'redux';
 
 import * as actions from '../actions/actions';
 
+//import ReactDOM from 'react-dom'
+
 class Text extends Component {
     changeText(e) {
         this.props.actions.changeText(e.target.value);
     }
+    // componentDidUpdate() {
+    //     console.log('didUpdate');
+
+    // }
     render() {
         let that = this;
 
@@ -15,9 +21,9 @@ class Text extends Component {
                 <label className='text-label' htmlFor='input-text'>Text</label>
                 <input id='input-text'
                     className='text-input' 
-                    placeholder='Введите текс'
+                    placeholder='Enter message...'
                     onBlur={:: that.changeText}
-                    maxLength='25'
+                    maxLength='30'
                 /> 
             </div>
     }

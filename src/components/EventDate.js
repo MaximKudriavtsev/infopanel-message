@@ -21,11 +21,12 @@ class EventDate extends Component {
         let that = this;
             
         return <div className='eventDate'>
-                <label className='eventDate-label'>eventDate</label> 
+                <label className='eventDate-label'>Date of event</label> 
                 <DateTimePicker 
                     min={new Date()}
                     defaultValue={new Date()}
                     onChange={::that.changeEventDate}
+                    format={"d.M.yyyy hh:mm"}
                 />
             </div>
     }

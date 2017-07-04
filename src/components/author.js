@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../actions/actions';
 
 import 'react-widgets/lib/less/react-widgets.less';
-import {DropdownList} from 'react-widgets';
+import {DropdownList } from 'react-widgets';
 
 class Author extends Component {
     
@@ -15,12 +15,14 @@ class Author extends Component {
     render() {
         let that = this,
             user = that.props.user;
-
+        //console.log(messages);
         return <div className='author'>
                 <label className='author-label'>Author</label>
                 <DropdownList 
+                    className='author-dropdownList'
                     data={user.authorList}
                     filter='contains'
+                    placeholder='Choose author...'
                     onChange={::that.changeAuthor}
                 />
             </div>
