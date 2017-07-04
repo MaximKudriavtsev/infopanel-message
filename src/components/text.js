@@ -4,22 +4,25 @@ import { bindActionCreators } from 'redux';
 
 import * as actions from '../actions/actions';
 
-//import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom'
 
 class Text extends Component {
     changeText(e) {
         this.props.actions.changeText(e.target.value);
     }
-    // componentDidUpdate() {
-    //     console.log('didUpdate');
+    componentDidUpdate() {
+        if(this.props.user.text === '') {
+            ReactDOM.findDOMNode(this.refs.input_text).value = '';
+        }
+    }
 
-    // }
     render() {
         let that = this;
 
         return <div className='text'>
                 <label className='text-label' htmlFor='input-text'>Text</label>
                 <input id='input-text'
+                    ref='input_text'
                     className='text-input' 
                     placeholder='Enter message...'
                     onBlur={:: that.changeText}

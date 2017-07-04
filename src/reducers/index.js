@@ -1,17 +1,17 @@
 const initialState = {
     text: '',
-    author: '',
+    author: 'User156',
     location: '',
     eventDate: new Date(),
     startDate: new Date(),
-    messageAuthor:'User',
+    messageAuthor:'User156',
     messageDate:'',
     authorList:example(),
     eventList:getEventList()
 };
 
 function example(){
-    return ['Кошкин','Кудрявцев', 'Туголуков', 'user15'];
+    return ['Кошкин','Кудрявцев', 'Туголуков', 'User15', 'User156'];
 }
 
 function getEventList(){
@@ -71,7 +71,7 @@ export default function user(state = initialState, action) {
                                 messageAuthor: state.messageAuthor,
                                 messageDate: new Date()
                              }));
-            return { ...state, eventList:getEventList(), text: '', author: '', location: '', eventDate: new Date(), startDate: new Date() }
+            return { ...state, eventList:getEventList(), text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date() }
         }
     }
     return state;
