@@ -47,3 +47,23 @@ export function buttonSave() {
         type: 'BUTTON_SAVE'
     }
 }
+
+export function editRowData(value){
+    return {
+        type: 'EDIT_ROW_DATA',
+        value:value
+    }
+}
+
+export function buttonDelete(value){
+    return {
+        type: 'BUTTON_DELETE',
+        value:value
+    }
+}
+
+export function buttonCancel(){
+    return {
+        type: 'BUTTON_CANCEL'
+    }
+}

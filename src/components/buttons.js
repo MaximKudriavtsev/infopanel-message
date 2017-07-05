@@ -13,12 +13,25 @@ class Buttons extends Component {
             alert('Не все поля заполнены');           
         }
     }
+    onButtonDelete(){
+        this.props.actions.buttonDelete(this.props.user.id);
+    }
+    onButtonCancel(){
+        this.props.actions.buttonCancel();
+    }
     render() {
         let that = this;
 
         return <div className='buttons'>
                 <button className='buttons-buttonSave' onClick={:: that.onButtonSave}> 
                     Save
+                </button>
+                <button className='buttons-buttonDelete' onClick={:: that.onButtonDelete}> 
+                    Delete
+                </button>
+                <br></br>
+                <button className='buttons-buttonCancel' onClick={:: that.onButtonCancel}> 
+                    Cancel
                 </button>
             </div>
     }

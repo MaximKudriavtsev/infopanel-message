@@ -19,14 +19,14 @@ const enhancedWithRowData = connect((state, props) => {
 });
 
 class ViewBar extends Component {
-    logg(value, e){
+    editRowData(value, e) {
         e.target;
-        console.log(value);
+        this.props.actions.editRowData(value);
     }
 
     MyCustomComponent({ value, rowData }) {
             return (
-                <span onClick={this.logg.bind(this, rowData)}>{value}</span>
+                <span onClick={this.editRowData.bind(this, rowData)}>{value}</span>
             );
         }
 

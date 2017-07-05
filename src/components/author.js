@@ -23,6 +23,7 @@ class Author extends Component {
                     data={user.authorList}
                     filter='contains'
                     placeholder='Choose author...'
+                    value={user.author}
                     defaultValue={user.messageAuthor}
                     onChange={::that.changeAuthor}
                 />

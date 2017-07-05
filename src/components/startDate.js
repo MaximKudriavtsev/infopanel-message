@@ -29,7 +29,8 @@ class StartDate extends Component {
                     defaultValue={user.startDate}
                     value={user.startDate}
                     onChange={::that.changeStartDate}
-                    format={"d.M.yyyy hh:mm"}
+                    format={"d.M.yyyy HH:mm"}
+                    timeFormat={"HH:mm"}
                 />
             </div>
     }

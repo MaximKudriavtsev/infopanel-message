@@ -118,23 +118,46 @@ body{
 .buttons{
     padding-top: 40px;
 }
-.buttons-buttonSave {
+.buttons-buttonSave, .buttons-buttonDelete, .buttons-buttonCancel {
     -webkit-transition-duration: 0.4s; 
     transition-duration: 0.4s;
     font:20px "Open Sans" !important;
     width: 30%;
     height: 40px;
-    float: right;
     font-size: 18px;
     background-color:white;
     border: 1px solid #2faceb;
     color:#2faceb;
 }
 
-.buttons-buttonSave:hover {
+.buttons-buttonCancel{
+    color: #f0c36d;
+    border: 1px solid #f0c36d;
+}
+.buttons-buttonDelete{
+    color: #cb3837;
+    border: 1px solid #cb3837;
+}
+.buttons-buttonSave:hover  {
     background-color: #2faceb; 
     color: white;
     border: 1px solid #2faceb;
+}
+.buttons-buttonCancel:hover{
+    background-color: #f0c36d; 
+    color: white;
+    border: 1px solid #f0c36d;
+}
+.buttons-buttonDelete:hover{
+    background-color: #cb3837;
+    color: white;
+    border: 1px solid #cb3837;
+}
+.buttons-buttonSave{
+    float: right;
+}
+.buttons-buttonCancel{
+    margin-top: 10px;
 }
 /*text end*/
 /*editBar end*/
