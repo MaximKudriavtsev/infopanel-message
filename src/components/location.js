@@ -11,11 +11,11 @@ class Location extends Component {
     render() {
         let that = this;
 
-        return <div>
-                <label htmlFor='input-location'>Location</label> {that.props.user.location}
-                <input id='input-location'
-                    className='input-location' 
-                    placeholder='Введите место'
+        return <div className='location'>
+                <label className='location-label' htmlFor='input-location'>Location</label>
+                <input className='location-input'
+                    id='input-location'
+                    placeholder='Enter location...'
                     onBlur={:: that.changeLocation}
                     maxLength='25'
                 /> 

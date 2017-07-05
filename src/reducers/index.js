@@ -2,9 +2,9 @@ const initialState = {
     text: '',
     author: '',
     location: '',
-    eventDate: '',
-    startDate:null,
-    messageAuthor:'user',
+    eventDate: new Date(),
+    startDate: new Date(),
+    messageAuthor:'User',
     messageDate:'',
     authorList:example(),
     eventList:getEventList()
@@ -19,14 +19,19 @@ function getEventList(){
 
     for(var i=0, len=localStorage.length; i<len; i++) {
         var key = localStorage.key(i),
-            date;
+            date, hours, min;
             
         list.push(JSON.parse(localStorage[key]));
 
         date = new Date(list[i].eventDate);
-        list[i].correctEventDate = date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes();
+        hours = date.getHours().lenght == 1 ? '0'+date.getHours():date.getHours();
+        min = date.getMinutes().lenght == 1 ? '0'+date.getMinutes():date.getMinutes();
+        list[i].correctEventDate = date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + ' ' + hours + ':' + min;
+        
         date = new Date(list[i].startDate);
-        list[i].correctStartDate = date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + ' ' + date.getHours() + ':' + date.getMinutes();
+        hours = date.getHours().lenght == 1 ? '0'+date.getHours():date.getHours();
+        min = date.getMinutes().lenght == 1 ? '0'+date.getMinutes():date.getMinutes();
+        list[i].correctStartDate = date.getDate() + '.' + date.getMonth() + '.' + date.getFullYear() + ' ' + hours + ':' + min;
     }
     
     return list;
@@ -46,6 +51,9 @@ export default function user(state = initialState, action) {
         case 'CHANGE_EVENTDATE':{
             var date = new Date(action.value);
             date.setDate(date.getDate() - 5);
+            if(date < new Date()) {
+                date = new Date();
+            }
             
             return { ...state, eventDate: action.value, startDate: date }
         }
@@ -55,14 +63,15 @@ export default function user(state = initialState, action) {
         case 'BUTTON_SAVE':{
             var lenght = localStorage.length;
             localStorage.setItem( lenght+1, JSON.stringify({
-                                text : state.text,
+                                text : state.text.trim(),
                                 author: state.author,
-                                location: state.location,
+                                location: state.location.trim(),
                                 eventDate: state.eventDate,
                                 startDate: state.startDate,
                                 messageAuthor: state.messageAuthor,
                                 messageDate: new Date()
                              }));
+            return { ...state, eventList:getEventList(), text: '', author: '', location: '', eventDate: new Date(), startDate: new Date() }
         }
     }
     return state;

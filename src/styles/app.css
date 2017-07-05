@@ -4,31 +4,290 @@ body{
 }
 
 .app {
-    width: 100%;
 }
 
+/*TitleBar START*/
 .app-titleBar {
+    font-size: 20px;
+    color: white;
     width: 100%;
     height: 40px;
-    border: 1px solid black;
+    background: #2faceb;
 }
 .app-titleBar-title{
     float: left;
     padding: 5px;
+    padding-left: 20px;
 }
 .app-titleBar-userName{
+    
     float: right;
     padding: 5px;
+    padding-right: 20px;
 }
+/*tittle bar end*/
 
+/*editBar START*/
 .app-editBar {
     float: left;
-    width: 25%;
-    border: 1px solid black;
+    width: 20%;
+    height: 100%;
 }
-
 .app-viewBar {
     float: left;
-    width: 74%;
-    border: 1px solid black;
+    width: 80%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 24px 10px 0px 10px;
 }
+
+/*text start*/
+.text{
+    padding-top: 5px !important;
+}
+.text, .author, .location, .eventDate, .startDate, .buttons {
+    padding-top: 20px;
+    
+}
+.text-label, .author-label, .location-label, .eventDate-label, .startDate-label {
+    font-size: 18px;
+    padding-left: 20px;
+}
+.text-input, .location-input {
+    box-sizing: border-box;
+    padding-left: 10px;
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    border: #ccc 1px solid;
+    border-radius: 4px;
+    color: #555555;
+    outline:0;
+}
+.text-input:focus, .location-input:focus{
+    box-shadow:inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    border-color:#66afe9;
+}
+.text-input:hover, .location-input:hover{
+
+}
+.text-input:active, .location-input:active{
+    background-image:none;
+    box-shadow:inset 0 3px 5px rgba(0,0,0,0.125)
+}
+.text-input::placeholder, .location-input::placeholder{
+    color: #858585;
+    font-size: 18px;
+}
+/*dropdownList*/
+.rw-widget{
+    text-align: start;  
+}
+.rw-widget:hover{
+    border-color: #ccc;
+    background: white;
+}
+.rw-input{
+    padding-left: 10px;
+    font-size: 18px;
+}
+.rw-placeholder{
+    color: #858585;
+}
+.rw-list-option{
+    outline:0
+}
+.rw-list-option:hover, .rw-calendar-grid .rw-btn:hover{
+    background: #2faceb !important;
+    color: white;
+    border: 1px solid #2faceb !important;
+}
+.rw-state-selected{
+    background: #2faceb !important;
+    color: white;
+}
+.rw-calendar-grid .rw-state-focus{
+    border: 1px solid #2faceb !important;
+}
+.rw-list .rw-state-focus{
+    border: 1px solid #2faceb !important;
+    background: white !important;
+}
+
+/*end dropdownList*/
+.buttons{
+    padding-top: 40px;
+}
+.buttons-buttonSave {
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    font:20px "Open Sans" !important;
+    width: 30%;
+    height: 40px;
+    float: right;
+    font-size: 18px;
+    background-color:white;
+    border: 1px solid #2faceb;
+    color:#2faceb;
+}
+
+.buttons-buttonSave:hover {
+    background-color: #2faceb; 
+    color: white;
+    border: 1px solid #2faceb;
+}
+/*text end*/
+/*editBar end*/
+
+/*griddle*/
+.griddle-table{
+    border-collapse: collapse;
+    margin: 5px 0px 5px 0px;
+    width: 100%;
+    border-bottom:1px solid hsla(0,0%,0%,0.12);
+    font-size:18px;
+}
+
+.griddle-cell, .griddle-table-heading-cell {
+    text-align: left;
+    padding: 6px 16px 6px 2px;
+
+}
+.griddle-page-select, .griddle-previous-button, .griddle-next-button{
+    font:18px "Open Sans" !important;
+    display: inline-block;
+    font-size: 18px;
+    margin: 20px 7px 7px 0px;
+    padding: 0px 10px 0px 10px;
+    color: #2faceb;
+    background: transparent;
+    border: 1px solid #2faceb;
+    height: 40px;
+    cursor: pointer;
+}
+
+.griddle-previous-button, .griddle-next-button {
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+}
+
+.griddle-previous-button:hover, .griddle-next-button:hover {
+    background-color: #2faceb; 
+    color: white;
+    border: 1px solid #2faceb;
+}
+/*option:hover{
+    background-color: black !important; 
+}*/
+.griddle-filter{
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: 10px;
+    height: 40px;
+    font-size: 18px;
+    border: #ccc 1px solid;
+    border-radius: 4px;
+    color: #555555;
+    outline:0;
+    margin: 5px 0px 5px 0px;
+}
+.griddle-filter:focus{
+    box-shadow:inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    border-color:#66afe9;
+}
+
+.griddle-filter:active{
+    background-image:none;
+    box-shadow:inset 0 3px 5px rgba(0,0,0,0.125)
+}
+.griddle-filter::placeholder {
+    color: #858585;
+}
+.griddle-table-heading-cell:hover{
+    cursor: pointer;
+        margin-bottom: 10px;
+}
+.griddle-row{
+    border-top: 1px solid hsla(0,0%,0%,0.12);
+    border-left: 1px solid transparent;
+}
+.griddle-row:hover{
+    border: 1px solid #2faceb !important;
+    background: #2faceb !important;
+    color: white;
+}
+.griddle-row:focus{
+    border: 1px solid black !important;
+    background: black !important;
+    color: white;
+}
+/*end griddle*/
+
+/*MEDIA start*/
+/*@media screen and (max-width: 770px) {
+    .app-editBar {
+        width: 100%;
+    }
+    .app-viewBar {
+        display: none;
+    }
+}*/
+/*@media screen and (max-width: 375px) {
+    .app-editBar {
+        width: 100%;
+    }
+    .app-viewBar {
+        display: none;
+    }
+}*/
+@media only screen and (max-device-width: 667px) {
+    body{
+        height: 100% !important;
+        width: 100% !important;
+    }
+    .app-editBar {
+        width: 100%;
+    }
+    .app-viewBar {
+        display: none;
+    }
+    .app-titleBar {
+        height: 100px !important;
+        font-size: 40px !important;
+    }
+    .app-titleBar-title, .app-titleBar-userName {
+        padding-top: 20px;
+    }
+    .text {
+        padding-top: 10px !important;
+    }
+    .text, .author, .location, .eventDate, .startDate {
+        font-size: 40px !important;
+        padding-top: 40px !important;
+    }
+    .text-input, .location-input, .rw-input, .text-input::placeholder, .location-input::placeholder {
+        height: 150px;
+        font-size: 40px;
+    }
+    .text-label, .location-label, .startDate-label, .eventDate-label, .author-label {
+        font-size: 50px;
+    }
+    .buttons-buttonSave {
+        height: 120px;
+        width: 340px;
+        font-size: 50px !important;
+    }
+}
+/*@media screen and (max-width: 375px) {
+    .app-editBar {
+        width: 100%;
+    }
+    .app-viewBar {
+        display: none;
+    }
+    .app-titleBar {
+        height: 100px !important;
+        font-size: 40px;
+    }
+}*/
+/*media end*/

@@ -4,20 +4,26 @@ import { bindActionCreators } from 'redux';
 
 import * as actions from '../actions/actions';
 
+//import ReactDOM from 'react-dom'
+
 class Text extends Component {
     changeText(e) {
         this.props.actions.changeText(e.target.value);
     }
+    // componentDidUpdate() {
+    //     console.log('didUpdate');
+
+    // }
     render() {
         let that = this;
 
-        return <div>
-                <label htmlFor='input-text'>Text</label> {that.props.user.text}
+        return <div className='text'>
+                <label className='text-label' htmlFor='input-text'>Text</label>
                 <input id='input-text'
-                className='input-text' 
-                placeholder='Введите текс'
-                onBlur={:: that.changeText}
-                maxLength='25'
+                    className='text-input' 
+                    placeholder='Enter message...'
+                    onBlur={:: that.changeText}
+                    maxLength='30'
                 /> 
             </div>
     }

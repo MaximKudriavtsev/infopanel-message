@@ -7,7 +7,7 @@ import * as actions from '../actions/actions';
 class Buttons extends Component {
     onButtonSave() {
         let user = this.props.user;
-        if(user.text && user.author && user.eventDate && user.startDate){
+        if(user.text.trim() && user.author && user.eventDate && user.startDate){
             this.props.actions.buttonSave();
         } else {
             alert('Не все поля заполнены');           
@@ -16,8 +16,8 @@ class Buttons extends Component {
     render() {
         let that = this;
 
-        return <div>
-                <button className='edit-buttonSave' onClick={:: that.onButtonSave}> 
+        return <div className='buttons'>
+                <button className='buttons-buttonSave' onClick={:: that.onButtonSave}> 
                     Save
                 </button>
             </div>

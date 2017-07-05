@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Griddle, { plugins, RowDefinition, ColumnDefinition} from 'griddle-react';
+import Griddle, { plugins, RowDefinition, ColumnDefinition } from 'griddle-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -34,8 +34,28 @@ class ViewBar extends Component {
         let that = this,
             eventList = that.props.user.eventList;
 
-        const styleConfig =  {
-            classNames: {},
+        const styleConfig = {
+            classNames: {
+                Cell: 'griddle-cell',
+                Filter: 'griddle-filter',
+                Loading: 'griddle-loadingResults',
+                NextButton: 'griddle-next-button',
+                NoResults: 'griddle-noResults',
+                PageDropdown: 'griddle-page-select',
+                Pagination: 'griddle-pagination',
+                PreviousButton: 'griddle-previous-button',
+                Row: 'griddle-row',
+                RowDefinition: 'griddle-row-definition',
+                Settings: 'griddle-settings',
+                SettingsToggle: 'griddle-settings-toggle',
+                Table: 'griddle-table',
+                TableBody: 'griddle-table-body',
+                TableHeading: 'griddle-table-heading',
+                TableHeadingCell: 'griddle-table-heading-cell',
+                TableHeadingCellAscending: 'griddle-heading-ascending',
+                TableHeadingCellDescending: 'griddle-heading-descending',
+                PageDropdownContainer:'griddle-page-dropdown-container'
+            },
             icons: {},
             styles: {}
         };
@@ -48,20 +68,22 @@ class ViewBar extends Component {
         );
 
         return <div className='app-viewBar'>
-            <p>View Bar</p>
             <Griddle data={eventList}
-            plugins={[plugins.LocalPlugin]}
-            styleConfig={styleConfig} 
-            components={{
-              Layout:NewLayout
-            }}>        
-
+                plugins={[plugins.LocalPlugin]}
+                styleConfig={styleConfig}
+                components={{
+                    Layout: NewLayout
+                }}
+                pageProperties={{
+                    pageSize: 17,
+                    recordCount: 100
+                }}>
                 <RowDefinition >
-                    <ColumnDefinition id="text" title="Text" customComponent={enhancedWithRowData(::this.MyCustomComponent)}/>
-                    <ColumnDefinition id="author" title="Author" customComponent={enhancedWithRowData(::this.MyCustomComponent)}/>
-                    <ColumnDefinition id="location" title="Location" customComponent={enhancedWithRowData(::this.MyCustomComponent)}/>
-                    <ColumnDefinition id="correctEventDate" title="Date of event" customComponent={enhancedWithRowData(::this.MyCustomComponent)} />
-                    <ColumnDefinition id="correctStartDate" title="Publish date of event" customComponent={enhancedWithRowData(::this.MyCustomComponent)}/>
+                    <ColumnDefinition id="text" title="Text" width="20%" customComponent={enhancedWithRowData(::this.MyCustomComponent)} />
+                    <ColumnDefinition id="author" title="Author" width="10%" customComponent={enhancedWithRowData(::this.MyCustomComponent)} />
+                    <ColumnDefinition id="location" title="Location" width="18%" customComponent={enhancedWithRowData(::this.MyCustomComponent)} />
+                    <ColumnDefinition id="correctEventDate" title="Date of event" width="8%" customComponent={enhancedWithRowData(::this.MyCustomComponent)} />
+                    <ColumnDefinition id="correctStartDate" title="Publish date of event" width="10%" customComponent={enhancedWithRowData(::this.MyCustomComponent)} />
                 </RowDefinition>
                 
             </Griddle>

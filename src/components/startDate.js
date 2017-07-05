@@ -21,12 +21,15 @@ class StartDate extends Component {
         let that = this,
             user=that.props.user;
 
-        return <div>
-                <label>StartDate</label> 
+        return <div className='startDate'>
+                <label className='startDate-label'>Publish date of event</label> 
                 <DateTimePicker 
+                    min={new Date()}
+                    max={user.eventDate}
                     defaultValue={user.startDate}
                     value={user.startDate}
                     onChange={::that.changeStartDate}
+                    format={"d.M.yyyy hh:mm"}
                 />
             </div>
     }
