@@ -5,7 +5,31 @@ import { bindActionCreators } from 'redux';
 
 import * as actions from '../actions/actions';
 
+const rowDataSelector = (state, { griddleKey }) => {
+    return state
+            .get('data')
+            .find(rowMap => rowMap.get('griddleKey') === griddleKey)
+            .toJSON();
+};
+
+const enhancedWithRowData = connect((state, props) => {
+    return {
+        rowData: rowDataSelector(state, props)
+    };
+});
+
 class ViewBar extends Component {
+    logg(value, e){
+        e.target;
+        console.log(value);
+    }
+
+    MyCustomComponent({ value, rowData }) {
+            return (
+                <span onClick={this.logg.bind(this, rowData)}>{value}</span>
+            );
+        }
+
     render() {
         let that = this,
             eventList = that.props.user.eventList;
@@ -51,17 +75,17 @@ class ViewBar extends Component {
                     Layout: NewLayout
                 }}
                 pageProperties={{
-                    currentPage: 1,
                     pageSize: 17,
                     recordCount: 100
                 }}>
                 <RowDefinition >
-                    <ColumnDefinition id="text" title="Text" width="18%" />
-                    <ColumnDefinition id="author" title="Author" width="10%" />
-                    <ColumnDefinition id="location" title="Location" width="18%" />
-                    <ColumnDefinition id="correctEventDate" title="Date of event" width="12%" />
-                    <ColumnDefinition id="correctStartDate" title="Publish date of event" width="12%" />
+                    <ColumnDefinition id="text" title="Text" width="20%" customComponent={enhancedWithRowData(::this.MyCustomComponent)} />
+                    <ColumnDefinition id="author" title="Author" width="10%" customComponent={enhancedWithRowData(::this.MyCustomComponent)} />
+                    <ColumnDefinition id="location" title="Location" width="18%" customComponent={enhancedWithRowData(::this.MyCustomComponent)} />
+                    <ColumnDefinition id="correctEventDate" title="Date of event" width="8%" customComponent={enhancedWithRowData(::this.MyCustomComponent)} />
+                    <ColumnDefinition id="correctStartDate" title="Publish date of event" width="10%" customComponent={enhancedWithRowData(::this.MyCustomComponent)} />
                 </RowDefinition>
+                
             </Griddle>
         </div>
     }
