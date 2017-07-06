@@ -72,9 +72,9 @@ export default function user(state = initialState, action) {
             }
             localStorage.setItem( id, JSON.stringify({
                                 id: id,
-                                text : state.text.trim(),
+                                text : state.text,
                                 author: state.author,
-                                location: state.location.trim(),
+                                location: state.location,
                                 eventDate: state.eventDate,
                                 startDate: state.startDate,
                                 messageAuthor: state.messageAuthor,
@@ -94,6 +94,9 @@ export default function user(state = initialState, action) {
         }
         case 'SET_ROW_FOCUS':{
             return { ...state, focusRow: action.value };
+        }
+        case 'VALIDATE_ERROR':{
+            return {...state }
         }
     }
     return state;

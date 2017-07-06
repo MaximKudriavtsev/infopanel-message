@@ -45,7 +45,7 @@ body{
     padding-top: 5px !important;
 }
 .text, .author, .location, .eventDate, .startDate, .buttons {
-    padding-top: 20px;
+    padding-top: 30px;
     
 }
 .text-label, .author-label, .location-label, .eventDate-label, .startDate-label {
@@ -128,7 +128,9 @@ body{
     border: 1px solid #2faceb;
     color:#2faceb;
 }
-
+.buttons-buttonSave:focus, .buttons-buttonDelete:focus, .buttons-buttonCancel:focus{
+    outline:0;
+}
 .buttons-buttonCancel{
     color: #f0c36d;
     border: 1px solid #f0c36d;
@@ -177,6 +179,7 @@ body{
 .griddle-div{
     height: 100%;
 }
+/*
 .griddle-page-select, .griddle-previous-button, .griddle-next-button{
     font:18px "Open Sans" !important;
     display: inline-block;
@@ -199,7 +202,7 @@ body{
     background-color: #2faceb; 
     color: white;
     border: 1px solid #2faceb;
-}
+}*/
 /*option:hover{
     background-color: black !important; 
 }*/
@@ -229,22 +232,22 @@ body{
 }
 .griddle-table-heading-cell:hover{
     cursor: pointer;
-        margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 .griddle-row{
-    border-top: 1px solid hsla(0,0%,0%,0.12);
+    border-top: 2px solid hsla(0,0%,0%,0.12);
     font-weight:normal;
     border-left: 1px solid transparent;
     border-right: 1px solid transparent;
 }
 .griddle-row:hover, .griddle-row-focus:hover{
-    border: 1px solid #2faceb !important;
+    border: 2px solid #2faceb !important;
     background: #2faceb !important;
     color: white !important;
     outline:0;
 }
 .griddle-row-focus{
-    border: 1px solid #2faceb !important;
+    border: 2px solid #2faceb !important;
     font-weight: bold;
     color: black;
     outline:0;
@@ -284,6 +287,17 @@ body{
     width: 100%;
     height: 100%;
     white-space: pre;
+}
+.error-label{
+    color:red;
+    position: absolute;
+    display: block;
+}
+.error-input{
+    border: 2px solid red !important;
+}
+.none{
+    display: none;
 }
 /*.griddle-table-heading, .griddle-table-body{display: block; }
 .griddle-table-body{
