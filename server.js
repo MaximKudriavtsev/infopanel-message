@@ -14,6 +14,15 @@ app.get("/", function(req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
+app.get("/query", function(req, res) {
+  res.send(tableData);
+});
+
+app.post("/command", function(req, res) {
+  res.send('=> /query');
+  console.log('=> /query');
+});
+
 app.listen(port, function(error) {
   if (error) {
     console.error(error);
