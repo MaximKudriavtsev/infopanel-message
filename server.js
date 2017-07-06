@@ -27,11 +27,13 @@ app.get('/', function(req, res) {
 });
 
 app.get('/query_users', function(req, res) {
+  //query from db
   res.send(tableData);
 });
 
 app.post('/send_data', function(req, res, next) {
   res.send('=> /send_data');
+  //post query to db
   console.log('=> /send_data');
   console.log(req.body);
 });
