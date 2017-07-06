@@ -67,3 +67,10 @@ export function buttonCancel(){
         type: 'BUTTON_CANCEL'
     }
 }
+
+export function setRowFocus(value){
+    return {
+        type: 'SET_ROW_FOCUS',
+        value:value
+    }
+}

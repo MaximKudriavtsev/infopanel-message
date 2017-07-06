@@ -8,16 +8,29 @@ class Buttons extends Component {
     onButtonSave() {
         let user = this.props.user;
         if(user.text.trim() && user.author && user.eventDate && user.startDate){
+            if(user.focusRow != '') {
+                user.focusRow.className = 'griddle-row';
+            }
             this.props.actions.buttonSave();
         } else {
             alert('Не все поля заполнены');           
         }
     }
     onButtonDelete(){
-        this.props.actions.buttonDelete(this.props.user.id);
+        let props = this.props,
+            focusRow = props.user.focusRow;
+        if(focusRow != '') {
+            focusRow.className = 'griddle-row';
+        }
+        props.actions.buttonDelete(this.props.user.id);
     }
     onButtonCancel(){
-        this.props.actions.buttonCancel();
+        let props = this.props,
+            focusRow = props.user.focusRow;
+        if(focusRow != '') {
+            focusRow.className = 'griddle-row';
+        }
+        props.actions.buttonCancel();
     }
     render() {
         let that = this;

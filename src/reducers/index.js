@@ -8,7 +8,8 @@ const initialState = {
     messageAuthor:'User156',
     messageDate:'',
     authorList:example(),
-    eventList:getEventList()
+    eventList:getEventList(),
+    focusRow:''
 };
 
 function example(){
@@ -79,17 +80,20 @@ export default function user(state = initialState, action) {
                                 messageAuthor: state.messageAuthor,
                                 messageDate: new Date()
                              }));
-            return { ...state, eventList:getEventList(), text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id:-1 }
+            return { ...state, eventList:getEventList(), text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id:-1, focusRow:'' }
         }
         case 'EDIT_ROW_DATA':{
             return { ...state, text: action.value.text, author: action.value.author, location:action.value.location, eventDate: new Date(action.value.eventDate), startDate: new Date(action.value.startDate), id:action.value.id  }
         }
         case 'BUTTON_DELETE':{
             localStorage.removeItem(action.value);
-            return { ...state, id:-1, eventList:getEventList(), text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date() }
+            return { ...state, id:-1, eventList:getEventList(), text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow:'' }
         }
         case 'BUTTON_CANCEL':{
-            return { ...state, id:-1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date() };
+            return { ...state, id:-1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow:'' };
+        }
+        case 'SET_ROW_FOCUS':{
+            return { ...state, focusRow: action.value };
         }
     }
     return state;
