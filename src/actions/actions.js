@@ -47,3 +47,18 @@ export function buttonSave() {
         type: 'BUTTON_SAVE'
     }
 }
+
+export function userListDownload() {
+  return (dispatch) => {
+    dispatch({
+      type: 'GET_USERS_REQUEST'
+    })
+
+    setTimeout(() => {
+      dispatch({
+        type: 'GET_USERS_SUCCESS',
+        value: [1,2,3,4,5]
+      })
+    }, 1000)
+  }
+}

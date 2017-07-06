@@ -51,6 +51,11 @@ export default function user(state = initialState, action) {
             querys.sendData(data);
             return { ...state, eventList: querys.getEventList(), text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date() }
         }
+        case 'GET_USERS_REQUEST':
+            return { ...state}
+
+        case 'GET_USERS_SUCCESS':
+            return { ...state, authorList: action.value}
     }
     return state;
 }

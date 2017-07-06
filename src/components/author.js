@@ -12,9 +12,16 @@ class Author extends Component {
     changeAuthor(e) {
         this.props.actions.changeAuthor(e);
     }
+
+    componentDidMount() {
+        this.props.actions.userListDownload();
+    }
+
     render() {
         let that = this,
             user = that.props.user;
+
+        
         //console.log(messages);
         return <div className='author'>
                 <label className='author-label'>Author</label>
