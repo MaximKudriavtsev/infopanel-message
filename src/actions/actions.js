@@ -49,16 +49,43 @@ export function buttonSave() {
 }
 
 export function userListDownload() {
-  return (dispatch) => {
-    dispatch({
-      type: 'GET_USERS_REQUEST'
-    })
+    return (dispatch) => {
+        dispatch({
+            type: 'GET_USERS_REQUEST'
+        })
 
-    setTimeout(() => {
-      dispatch({
-        type: 'GET_USERS_SUCCESS',
-        value: [1,2,3,4,5]
-      })
-    }, 1000)
-  }
+        fetch('/query_users')
+            .then(function (response) {
+                if (response.status !== 200) {
+                    console.log('Looks like there was a problem. Status Code: ' +
+                        response.status);
+                }
+                var usersObj,
+                    usersList = [];
+                    
+                response.json().then(function (data) {
+                    usersObj = data;
+                    console.log('query Users => ');
+
+                    for (var key in usersObj) {
+                        usersList.push(usersObj[key].name + ' ' + usersObj[key].surname);
+                    }
+
+                    console.log(usersList);
+                });
+                dispatch({
+                    type: 'GET_USERS_SUCCESS',
+                    value: usersList
+                });
+
+            })
+            .catch(function (err) {
+                console.log('Fetch Error :-S', err);
+                dispatch({
+                    type: 'GET_USERS_FAILURE',
+                    value: err
+                })
+            });
+
+    }
 }
