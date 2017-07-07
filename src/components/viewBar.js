@@ -19,16 +19,48 @@ const enhancedWithRowData = connect((state, props) => {
 });
 
 class ViewBar extends Component {
-    logg(value, e){
+    editRowData(value, e) {
         e.target;
-        console.log(value);
+        this.props.actions.editRowData(value);
     }
 
     MyCustomComponent({ value, rowData }) {
-            return (
-                <span onClick={this.logg.bind(this, rowData)}>{value}</span>
-            );
+        return (
+            <div onClick={this.editRowData.bind(this, rowData)}>
+                <div className='griddle-div'>{value==''? ' ':value}</div>
+            </div>
+        );
+    }
+    testFunc(e){
+        let that = this,
+            rowGriddle = that.props.user.focusRow;
+        
+        if(rowGriddle != '') {
+            rowGriddle.className = 'griddle-row';
+        }    
+
+        var tegs = e.path, i = 0,
+            newRow;
+        while(tegs[i].tagName != 'TR'){
+            i++;
         }
+        newRow = tegs[i];
+        newRow.className = 'griddle-row-focus';
+
+        this.props.actions.setRowFocus(newRow);
+    }
+    componentDidMount(){
+        var tegs = document.getElementsByClassName('griddle-row'), i;
+        for(i=0; i<tegs.length; i++){
+            tegs[i].setAttribute('tabIndex','-1');
+            tegs[i].addEventListener('click',(e)=>this.testFunc(e));       //
+        }
+        
+        tegs = document.getElementsByClassName('griddle-table-heading-cell');
+        while(tegs[0]){
+            tegs[0].setAttribute('class', 'griddle-table-heading-cell-'+ tegs[0].innerText);
+        }
+    }
 
     render() {
         let that = this,
@@ -59,11 +91,10 @@ class ViewBar extends Component {
             icons: {},
             styles: {}
         };
-        const NewLayout = ({ Table, Pagination, Filter }) => (
+        const NewLayout = ({ Table, Filter }) => (
             <div>
                 <Filter />
                 <Table />
-                <Pagination />
             </div>
         );
 
@@ -75,9 +106,11 @@ class ViewBar extends Component {
                     Layout: NewLayout
                 }}
                 pageProperties={{
-                    pageSize: 17,
-                    recordCount: 100
-                }}>
+                    recordCount: 100,
+                    pageSize: 100
+                }}
+                sortProperties={[{id: 'eventDate', sortAscending: false}]}
+                >
                 <RowDefinition >
                     <ColumnDefinition id="text" title="Text" width="20%" customComponent={enhancedWithRowData(::this.MyCustomComponent)} />
                     <ColumnDefinition id="author" title="Author" width="10%" customComponent={enhancedWithRowData(::this.MyCustomComponent)} />

@@ -7,13 +7,18 @@ import * as actions from '../actions/actions';
 
 class Location extends Component {
     changeLocation(e) {
-        this.props.actions.changeLocation(e.target.value);
+        this.props.actions.changeLocation(e.target.value.trim());
     }
     componentDidUpdate() {
-        if(this.props.user.location === '') {
-            ReactDOM.findDOMNode(this.refs.input_location).value = '';
+        let input_location = this.refs.input_location,
+            location = this.props.user.location;
+        if(location === '') {
+            ReactDOM.findDOMNode(input_location).value = '';
+        }else{
+            ReactDOM.findDOMNode(input_location).value = location;
         }
     }
+
     render() {
         let that = this;
 

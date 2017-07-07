@@ -86,6 +86,37 @@ export function userListDownload() {
                     value: err
                 })
             });
+    }}
+    
+export function editRowData(value){
+    return {
+        type: 'EDIT_ROW_DATA',
+        value:value
+    }
+}
 
+export function buttonDelete(value){
+    return {
+        type: 'BUTTON_DELETE',
+        value:value
+    }
+}
+
+export function buttonCancel(){
+    return {
+        type: 'BUTTON_CANCEL'
+    }
+}
+
+export function setRowFocus(value){
+    return {
+        type: 'SET_ROW_FOCUS',
+        value:value
+    }
+}
+
+export function validateError(){
+    return{
+        type: 'VALIDATE_ERROR'
     }
 }

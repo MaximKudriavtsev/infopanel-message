@@ -36,7 +36,6 @@ body{
 .app-viewBar {
     float: left;
     width: 80%;
-    height: 100%;
     box-sizing: border-box;
     padding: 24px 10px 0px 10px;
 }
@@ -46,7 +45,7 @@ body{
     padding-top: 5px !important;
 }
 .text, .author, .location, .eventDate, .startDate, .buttons {
-    padding-top: 20px;
+    padding-top: 30px;
     
 }
 .text-label, .author-label, .location-label, .eventDate-label, .startDate-label {
@@ -118,23 +117,48 @@ body{
 .buttons{
     padding-top: 40px;
 }
-.buttons-buttonSave {
+.buttons-buttonSave, .buttons-buttonDelete, .buttons-buttonCancel {
     -webkit-transition-duration: 0.4s; 
     transition-duration: 0.4s;
     font:20px "Open Sans" !important;
     width: 30%;
     height: 40px;
-    float: right;
     font-size: 18px;
     background-color:white;
     border: 1px solid #2faceb;
     color:#2faceb;
 }
-
-.buttons-buttonSave:hover {
+.buttons-buttonSave:focus, .buttons-buttonDelete:focus, .buttons-buttonCancel:focus{
+    outline:0;
+}
+.buttons-buttonCancel{
+    color: #f0c36d;
+    border: 1px solid #f0c36d;
+}
+.buttons-buttonDelete{
+    color: #cb3837;
+    border: 1px solid #cb3837;
+}
+.buttons-buttonSave:hover  {
     background-color: #2faceb; 
     color: white;
     border: 1px solid #2faceb;
+}
+.buttons-buttonCancel:hover{
+    background-color: #f0c36d; 
+    color: white;
+    border: 1px solid #f0c36d;
+}
+.buttons-buttonDelete:hover{
+    background-color: #cb3837;
+    color: white;
+    border: 1px solid #cb3837;
+}
+.buttons-buttonSave{
+    float: right;
+}
+.buttons-buttonCancel{
+    margin-top: 10px;
 }
 /*text end*/
 /*editBar end*/
@@ -148,11 +172,14 @@ body{
     font-size:18px;
 }
 
-.griddle-cell, .griddle-table-heading-cell {
+.griddle-div, .griddle-table-heading-cell {
     text-align: left;
     padding: 6px 16px 6px 2px;
-
 }
+.griddle-div{
+    height: 100%;
+}
+/*
 .griddle-page-select, .griddle-previous-button, .griddle-next-button{
     font:18px "Open Sans" !important;
     display: inline-block;
@@ -175,7 +202,7 @@ body{
     background-color: #2faceb; 
     color: white;
     border: 1px solid #2faceb;
-}
+}*/
 /*option:hover{
     background-color: black !important; 
 }*/
@@ -198,29 +225,88 @@ body{
 
 .griddle-filter:active{
     background-image:none;
-    box-shadow:inset 0 3px 5px rgba(0,0,0,0.125)
+    box-shadow:inset 0 3px 5px rgba(0,0,0,0.125);
 }
 .griddle-filter::placeholder {
     color: #858585;
 }
 .griddle-table-heading-cell:hover{
     cursor: pointer;
-        margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 .griddle-row{
-    border-top: 1px solid hsla(0,0%,0%,0.12);
+    border-top: 2px solid hsla(0,0%,0%,0.12);
+    font-weight:normal;
     border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
 }
-.griddle-row:hover{
-    border: 1px solid #2faceb !important;
+.griddle-row:hover, .griddle-row-focus:hover{
+    border: 2px solid #2faceb !important;
     background: #2faceb !important;
-    color: white;
+    color: white !important;
+    outline:0;
 }
-.griddle-row:focus{
-    border: 1px solid black !important;
-    background: black !important;
-    color: white;
+.griddle-row-focus{
+    border: 2px solid #2faceb !important;
+    font-weight: bold;
+    color: black;
+    outline:0;
 }
+.griddle-table-heading, .griddle-table-body{
+    display: block;
+}
+.griddle-table-heading{
+    margin-right: 17px;
+}
+.griddle-table-body{
+    max-height: 500px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+.griddle-table-heading-cell-Text{
+    width: 20%;
+    text-align: left;
+}
+.griddle-table-heading-cell-Author{
+    width: 10%;
+    text-align: left;
+}
+.griddle-table-heading-cell-Location{
+    width: 18%;
+    text-align: left;
+}
+.griddle-table-heading-cell-Date{
+    width: 8%;
+    text-align: left;
+}
+.griddle-table-heading-cell-Publish{
+    width: 10%;
+    text-align: left;
+}
+.griddle-div{
+    width: 100%;
+    height: 100%;
+    white-space: pre;
+}
+.error-label{
+    color:red;
+    position: absolute;
+    display: block;
+}
+.error-input{
+    border: 2px solid red !important;
+}
+.none{
+    display: none;
+}
+/*.griddle-table-heading, .griddle-table-body{display: block; }
+.griddle-table-body{
+    height: 400px;      
+    overflow-y: auto;   
+    overflow-x: hidden;  
+
+}*/
+
 /*end griddle*/
 
 /*MEDIA start*/
