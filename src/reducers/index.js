@@ -1,3 +1,5 @@
+import * as querys from '../querys/querys';
+
 const initialState = {
     id:-1,
     text: '',
@@ -5,10 +7,10 @@ const initialState = {
     location: '',
     eventDate: new Date(),
     startDate: new Date(),
-    messageAuthor:'User156',
-    messageDate:'',
-    authorList:example(),
-    eventList:getEventList(),
+    messageAuthor: 'User156',
+    messageDate: '',
+    authorList: querys.queryUsers(),
+    eventList: querys.getEventList(),
     focusRow:''
 };
 
@@ -40,7 +42,7 @@ function getEventList(){
 }
 
 export default function user(state = initialState, action) {
-    switch(action.type) {
+    switch (action.type) {
         case 'CHANGE_TEXT': {
             return { ...state, text: action.value }
         }
@@ -50,19 +52,19 @@ export default function user(state = initialState, action) {
         case 'CHANGE_LOCATION': {
             return { ...state, location: action.value }
         }
-        case 'CHANGE_EVENTDATE':{
+        case 'CHANGE_EVENTDATE': {
             var date = new Date(action.value);
             date.setDate(date.getDate() - 5);
-            if(date < new Date()) {
+            if (date < new Date()) {
                 date = new Date();
             }
-            
+
             return { ...state, eventDate: action.value, startDate: date }
         }
-        case 'CHANGE_STARTDATE':{
+        case 'CHANGE_STARTDATE': {
             return { ...state, startDate: action.value }
         }
-        case 'BUTTON_SAVE':{
+        case 'BUTTON_SAVE': {
             var id;
             if(state.id == -1) {
                 id = localStorage.length;
@@ -70,18 +72,21 @@ export default function user(state = initialState, action) {
             } else {
                 id = state.id;
             }
-            localStorage.setItem( id, JSON.stringify({
-                                id: id,
-                                text : state.text,
-                                author: state.author,
-                                location: state.location,
-                                eventDate: state.eventDate,
-                                startDate: state.startDate,
-                                messageAuthor: state.messageAuthor,
-                                messageDate: new Date()
-                             }));
-            return { ...state, eventList:getEventList(), text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id:-1, focusRow:'' }
-        }
+            var lenght = localStorage.length,
+                data = {
+                    id: id,
+                    text: state.text,
+                    author: state.author,
+                    location: state.location,
+                    eventDate: state.eventDate,
+                    startDate: state.startDate,
+                    messageAuthor: state.messageAuthor,
+                    messageDate: new Date()
+                };
+
+            localStorage.setItem(id, JSON.stringify(data));
+            querys.sendData(data);
+            return { ...state, eventList: querys.getEventList(), text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id:-1, focusRow:'' }
         case 'EDIT_ROW_DATA':{
             return { ...state, text: action.value.text, author: action.value.author, location:action.value.location, eventDate: new Date(action.value.eventDate), startDate: new Date(action.value.startDate), id:action.value.id  }
         }
@@ -98,6 +103,11 @@ export default function user(state = initialState, action) {
         case 'VALIDATE_ERROR':{
             return {...state, id:-2 }
         }
+        case 'GET_USERS_REQUEST':
+            return { ...state}
+
+        case 'GET_USERS_SUCCESS':
+            return { ...state, authorList: action.value}
     }
     return state;
 }
