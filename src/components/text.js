@@ -30,11 +30,15 @@ class Text extends Component {
         this.props.actions.changeText(text);
     }
     componentDidUpdate() {
-        let text            = this.props.user.text,
+        let user            = this.props.user,
+            text            = user.text,
             DOM_input_text  = ReactDOM.findDOMNode(this.refs.input_text);
         
         if(text === '') {
-            DOM_input_text.value = '';                   
+            DOM_input_text.value = '';
+            if(user.id==-2){
+                this.validate(text);              
+            }           
         } else {
             DOM_input_text.value = text;
             this.validate(text);              

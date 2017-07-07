@@ -96,7 +96,7 @@ export default function user(state = initialState, action) {
             return { ...state, focusRow: action.value };
         }
         case 'VALIDATE_ERROR':{
-            return {...state }
+            return {...state, id:-2 }
         }
     }
     return state;
