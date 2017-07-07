@@ -74,3 +74,9 @@ export function setRowFocus(value){
         value:value
     }
 }
+
+export function validateError(){
+    return{
+        type: 'VALIDATE_ERROR'
+    }
+}

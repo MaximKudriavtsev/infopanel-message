@@ -7,14 +7,41 @@ import * as actions from '../actions/actions';
 import ReactDOM from 'react-dom'
 
 class Text extends Component {
+    validate(text){
+        let refs                 = this.refs,
+            DOM_input_text       = ReactDOM.findDOMNode(refs.input_text),        
+            DOM_input_text_error = ReactDOM.findDOMNode(refs.input_text_error);  
+        
+        if(text === '') {
+            if(DOM_input_text.className.search('error-input') == -1) {
+                DOM_input_text.className += ' error-input';      
+            }
+            DOM_input_text_error.className  = 'error-label';
+        } else {
+            DOM_input_text.className        = DOM_input_text.className.replace(' error-input','');
+            DOM_input_text_error.className  = 'none';               
+        }
+    }
+
     changeText(e) {
-        this.props.actions.changeText(e.target.value);
+        let text = e.target.value.trim();
+        this.validate(text);
+
+        this.props.actions.changeText(text);
     }
     componentDidUpdate() {
-        if(this.props.user.text === '') {
-            ReactDOM.findDOMNode(this.refs.input_text).value = '';
-        }else{
-            ReactDOM.findDOMNode(this.refs.input_text).value = this.props.user.text;
+        let user            = this.props.user,
+            text            = user.text,
+            DOM_input_text  = ReactDOM.findDOMNode(this.refs.input_text);
+        
+        if(text === '') {
+            DOM_input_text.value = '';
+            if(user.id==-2){
+                this.validate(text);              
+            }           
+        } else {
+            DOM_input_text.value = text;
+            this.validate(text);              
         }
     }
 
@@ -25,11 +52,14 @@ class Text extends Component {
                 <label className='text-label' htmlFor='input-text'>Text</label>
                 <input id='input-text'
                     ref='input_text'
-                    className='text-input' 
+                    className='text-input'
                     placeholder='Enter message...'
                     onBlur={:: that.changeText}
                     maxLength='30'
-                /> 
+                />
+                <label htmlFor='input-text' ref='input_text_error' className='none'>
+                    Please enter text message
+                </label>
             </div>
     }
 }

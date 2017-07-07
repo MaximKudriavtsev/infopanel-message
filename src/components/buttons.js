@@ -6,14 +6,15 @@ import * as actions from '../actions/actions';
 
 class Buttons extends Component {
     onButtonSave() {
-        let user = this.props.user;
-        if(user.text.trim() && user.author && user.eventDate && user.startDate){
+        let user    = this.props.user,
+            actions = this.props.actions;
+        if(user.text && user.author && user.eventDate && user.startDate){
             if(user.focusRow != '') {
                 user.focusRow.className = 'griddle-row';
             }
-            this.props.actions.buttonSave();
+            actions.buttonSave();
         } else {
-            alert('Не все поля заполнены');           
+            actions.validateError();
         }
     }
     onButtonDelete(){
