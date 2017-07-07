@@ -5,7 +5,7 @@ var config = require('./webpack.config');
 var bodyParser = require('body-parser');
 
 var userList = require('./userList.json');
-var userList = require('./userRecords.json');
+var userRecords = require('./userRecords.json');
 
 var app = new (require('express'))();
 var port = 3000;
@@ -34,7 +34,7 @@ app.get('/query_users', function(req, res) {
 
 app.get('/query_user_records', function(req, res) {
   //query from db
-  res.send(userList);
+  res.send(userRecords);
 });
 
 app.post('/send_data', function(req, res, next) {
