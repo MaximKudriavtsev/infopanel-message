@@ -7,9 +7,9 @@ import * as actions from '../actions/actions';
 
 const rowDataSelector = (state, { griddleKey }) => {
     return state
-            .get('data')
-            .find(rowMap => rowMap.get('griddleKey') === griddleKey)
-            .toJSON();
+        .get('data')
+        .find(rowMap => rowMap.get('griddleKey') === griddleKey)
+        .toJSON();
 };
 
 const enhancedWithRowData = connect((state, props) => {
@@ -27,21 +27,21 @@ class ViewBar extends Component {
     MyCustomComponent({ value, rowData }) {
         return (
             <div onClick={this.editRowData.bind(this, rowData)}>
-                <div className='griddle-div'>{value==''? ' ':value}</div>
+                <div className='griddle-div'>{value == '' ? ' ' : value}</div>
             </div>
         );
     }
-    testFunc(e){
+    testFunc(e) {
         let that = this,
             rowGriddle = that.props.user.focusRow;
-        
-        if(rowGriddle != '') {
+
+        if (rowGriddle != '') {
             rowGriddle.className = 'griddle-row';
-        }    
+        }
 
         var tegs = e.path, i = 0,
             newRow;
-        while(tegs[i].tagName != 'TR'){
+        while (tegs[i].tagName != 'TR') {
             i++;
         }
         newRow = tegs[i];
@@ -49,16 +49,27 @@ class ViewBar extends Component {
 
         this.props.actions.setRowFocus(newRow);
     }
-    componentDidMount(){
-        var tegs = document.getElementsByClassName('griddle-row'), i;
-        for(i=0; i<tegs.length; i++){
-            tegs[i].setAttribute('tabIndex','-1');
-            tegs[i].addEventListener('click',(e)=>this.testFunc(e));       //
-        }
-        
-        tegs = document.getElementsByClassName('griddle-table-heading-cell');
-        while(tegs[0]){
-            tegs[0].setAttribute('class', 'griddle-table-heading-cell-'+ tegs[0].innerText);
+    componentDidMount() {
+        this.props.actions.recordListDownload();
+
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+
+        console.log('prevProps', prevProps.user.eventList);
+        console.log('this props', this.props.user.eventList);
+
+        if (prevProps.user.eventList.length !== this.props.user.eventList.length/* || prevProps.user.focusRow !== this.props.user.focusRow*/) {
+            var tegs = document.getElementsByClassName('griddle-row'), i;
+            for (i = 0; i < tegs.length; i++) {
+                tegs[i].setAttribute('tabIndex', '-1');
+                tegs[i].addEventListener('click', (e) => this.testFunc(e));
+            }
+
+            tegs = document.getElementsByClassName('griddle-table-heading-cell');
+            while (tegs[0]) {
+                tegs[0].setAttribute('class', 'griddle-table-heading-cell-' + tegs[0].innerText);
+            }
         }
     }
 
@@ -86,7 +97,7 @@ class ViewBar extends Component {
                 TableHeadingCell: 'griddle-table-heading-cell',
                 TableHeadingCellAscending: 'griddle-heading-ascending',
                 TableHeadingCellDescending: 'griddle-heading-descending',
-                PageDropdownContainer:'griddle-page-dropdown-container'
+                PageDropdownContainer: 'griddle-page-dropdown-container'
             },
             icons: {},
             styles: {}
@@ -109,8 +120,8 @@ class ViewBar extends Component {
                     recordCount: 100,
                     pageSize: 100
                 }}
-                sortProperties={[{id: 'eventDate', sortAscending: false}]}
-                >
+                sortProperties={[{ id: 'eventDate', sortAscending: false }]}
+            >
                 <RowDefinition >
                     <ColumnDefinition id="text" title="Text" width="20%" customComponent={enhancedWithRowData(::this.MyCustomComponent)} />
                     <ColumnDefinition id="author" title="Author" width="10%" customComponent={enhancedWithRowData(::this.MyCustomComponent)} />
@@ -118,7 +129,7 @@ class ViewBar extends Component {
                     <ColumnDefinition id="correctEventDate" title="Date of event" width="8%" customComponent={enhancedWithRowData(::this.MyCustomComponent)} />
                     <ColumnDefinition id="correctStartDate" title="Publish date of event" width="10%" customComponent={enhancedWithRowData(::this.MyCustomComponent)} />
                 </RowDefinition>
-                
+
             </Griddle>
         </div>
     }

@@ -1,16 +1,62 @@
 {
-    "1":{
-        "text":"wdwqd",
-        "author":"User156",
-        "location":"dqd…ser156",
-        "messageDate":"2017-07-06T09:38:44.397Z",
-        "startDate":"2017-07-06T09:38:44.397Z"
+    "0": {  
+            "id": "0",
+            "text": "Лекция по js",
+            "author": "Dmitry Koshkin",
+            "location": "Первый этаж",
+            "eventDate": "2017-07-07T09:39:07.359Z",
+            "startDate": "2017-07-07T09:39:07.359Z",
+            "messageAuthor": "User156",
+            "messageDate": "2017-07-07T09:39:07.359Z"
     },
-    "2":{
-        "text":"sobranie",
-        "author":"Ivan",
-        "location":"dqd…ser156",
-        "messageDate":"2017-07-06T09:38:44.397Z",
-        "startDate":"2017-07-06T09:38:44.397Z"
+    "1": {  
+            "id": "1",
+            "text": "Лекция",
+            "author": "M. Kudryavtsev",
+            "location": "Кухня",
+            "eventDate": "2017-07-07T09:39:07.359Z",
+            "startDate": "2017-07-07T09:39:07.359Z",
+            "messageAuthor": "User156",
+            "messageDate": "2017-07-07T09:39:07.359Z"
+    },
+    "2": {  
+            "id": "2",
+            "text": "Подтягивания",
+            "author": "Tugolukov",
+            "location": "Спортзал",
+            "eventDate": "2017-07-07T09:39:07.359Z",
+            "startDate": "2017-07-07T09:39:07.359Z",
+            "messageAuthor": "User156",
+            "messageDate": "2017-07-07T09:39:07.359Z"
+    },
+    "3": {  
+            "id": "3",
+            "text": "Практика по js",
+            "author": "Dmitry Koshkin",
+            "location": "Дисплейный зал",
+            "eventDate": "2017-07-07T09:39:07.359Z",
+            "startDate": "2017-07-07T09:39:07.359Z",
+            "messageAuthor": "User156",
+            "messageDate": "2017-07-07T09:39:07.359Z"
+    },
+    "4": {  
+            "id": "4",
+            "text": "Обед",
+            "author": "Maxim Kudryavtsev",
+            "location": "Столовая",
+            "eventDate": "2017-07-07T09:39:07.359Z",
+            "startDate": "2017-07-07T09:39:07.359Z",
+            "messageAuthor": "User156",
+            "messageDate": "2017-07-07T09:39:07.359Z"
+    },
+    "5": {  
+            "id": "5",
+            "text": "Выходные",
+            "author": "Admin",
+            "location": "На природе",
+            "eventDate": "2017-07-07T09:39:07.359Z",
+            "startDate": "2017-07-07T09:39:07.359Z",
+            "messageAuthor": "User156",
+            "messageDate": "2017-07-07T09:39:07.359Z"
     }
 }
