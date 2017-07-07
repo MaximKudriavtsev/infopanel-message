@@ -4,7 +4,8 @@ var webpackHotMiddleware = require('webpack-hot-middleware');
 var config = require('./webpack.config');
 var bodyParser = require('body-parser');
 
-var tableData = require('./tableData.json');
+var userList = require('./userList.json');
+var userList = require('./userRecords.json');
 
 var app = new (require('express'))();
 var port = 3000;
@@ -28,7 +29,12 @@ app.get('/', function(req, res) {
 
 app.get('/query_users', function(req, res) {
   //query from db
-  res.send(tableData);
+  res.send(userList);
+});
+
+app.get('/query_user_records', function(req, res) {
+  //query from db
+  res.send(userList);
 });
 
 app.post('/send_data', function(req, res, next) {
