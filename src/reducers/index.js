@@ -14,10 +14,6 @@ const initialState = {
     focusRow:''
 };
 
-function example(){
-    return ['Кошкин','Кудрявцев', 'Туголуков', 'User15', 'User156'];
-}
-
 function getEventList(){
     var list = [];
 
@@ -72,8 +68,7 @@ export default function user(state = initialState, action) {
             } else {
                 id = state.id;
             }
-            var lenght = localStorage.length,
-                data = {
+            var data = {
                     id: id,
                     text: state.text,
                     author: state.author,
@@ -87,7 +82,8 @@ export default function user(state = initialState, action) {
             localStorage.setItem(id, JSON.stringify(data));
             querys.sendData(data);
             return { ...state, eventList: querys.getEventList(), text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id:-1, focusRow:'' }
-        case 'EDIT_ROW_DATA':{
+        }
+        case 'EDIT_ROW_DATA' :{
             return { ...state, text: action.value.text, author: action.value.author, location:action.value.location, eventDate: new Date(action.value.eventDate), startDate: new Date(action.value.startDate), id:action.value.id  }
         }
         case 'BUTTON_DELETE':{
