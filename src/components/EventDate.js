@@ -25,8 +25,10 @@ class EventDate extends Component {
                 <DateTimePicker 
                     min={new Date()}
                     defaultValue={new Date()}
+                    value={that.props.user.eventDate}
                     onChange={::that.changeEventDate}
-                    format={"d.M.yyyy hh:mm"}
+                    format={"d.M.yyyy HH:mm"}
+                    timeFormat={"HH:mm"}
                 />
             </div>
     }

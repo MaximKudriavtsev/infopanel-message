@@ -12,8 +12,11 @@ class Location extends Component {
     componentDidUpdate() {
         if(this.props.user.location === '') {
             ReactDOM.findDOMNode(this.refs.input_location).value = '';
+        }else{
+            ReactDOM.findDOMNode(this.refs.input_location).value = this.props.user.location;
         }
     }
+
     render() {
         let that = this;
 

@@ -13,6 +13,8 @@ class Text extends Component {
     componentDidUpdate() {
         if(this.props.user.text === '') {
             ReactDOM.findDOMNode(this.refs.input_text).value = '';
+        }else{
+            ReactDOM.findDOMNode(this.refs.input_text).value = this.props.user.text;
         }
     }
 

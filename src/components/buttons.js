@@ -8,10 +8,29 @@ class Buttons extends Component {
     onButtonSave() {
         let user = this.props.user;
         if(user.text.trim() && user.author && user.eventDate && user.startDate){
+            if(user.focusRow != '') {
+                user.focusRow.className = 'griddle-row';
+            }
             this.props.actions.buttonSave();
         } else {
             alert('Не все поля заполнены');           
         }
+    }
+    onButtonDelete(){
+        let props = this.props,
+            focusRow = props.user.focusRow;
+        if(focusRow != '') {
+            focusRow.className = 'griddle-row';
+        }
+        props.actions.buttonDelete(this.props.user.id);
+    }
+    onButtonCancel(){
+        let props = this.props,
+            focusRow = props.user.focusRow;
+        if(focusRow != '') {
+            focusRow.className = 'griddle-row';
+        }
+        props.actions.buttonCancel();
     }
     render() {
         let that = this;
@@ -19,6 +38,13 @@ class Buttons extends Component {
         return <div className='buttons'>
                 <button className='buttons-buttonSave' onClick={:: that.onButtonSave}> 
                     Save
+                </button>
+                <button className='buttons-buttonDelete' onClick={:: that.onButtonDelete}> 
+                    Delete
+                </button>
+                <br></br>
+                <button className='buttons-buttonCancel' onClick={:: that.onButtonCancel}> 
+                    Cancel
                 </button>
             </div>
     }
