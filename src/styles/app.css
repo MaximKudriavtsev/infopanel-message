@@ -4,6 +4,8 @@ body{
 }
 
 .app {
+    width: 100%;
+    height: 100%;
 }
 
 /*TitleBar START*/
@@ -377,3 +379,78 @@ body{
     }
 }*/
 /*media end*/
+
+/*viewBar-table START*/
+.viewBar {
+    float: left;
+    width: 80%;
+    box-sizing: border-box;
+    padding: 0 10px 0 10px;
+    height: 100%;
+}
+.table {
+    overflow: auto;
+}
+.viewBar_head {
+    padding-right: 16px;
+}
+.viewBar_table {
+    width: 100%;
+    font-size: 18px;
+    border-collapse: collapse;
+    padding-right: 7px;
+}
+.viewBar_table_ {
+    width: 100%;
+    overflow: scroll !important;
+    font-size: 18px;
+    border-collapse: collapse;
+}
+.viewBar_table_tr {
+    cursor: pointer;
+}
+.viewBar_table_tr:hover {
+    color:black;
+    background: #89D2F5 !important;
+}
+.viewBar_table_tr:focus {
+    color:white;
+    background: #2faceb !important;
+    outline: 0;
+}
+.viewBar_table_head {
+    font-size: 22px;
+    padding: 0;
+    border-bottom: 2px solid gray;
+}
+.viewBar_table_text {
+    text-align: left;
+    width: 30%;
+    border-bottom: 1px solid gray;
+    padding: 10px;
+}
+.viewBar_table_author {
+    text-align: left;
+    width: 14%;
+    padding: 10px;
+    border-bottom: 1px solid gray;
+}
+.viewBar_table_location {
+    text-align: left;
+    width: 20%;
+    padding: 10px;
+    border-bottom: 1px solid gray;
+}
+.viewBar_table_startDate {
+    text-align: right;
+    width: 18%;
+    padding: 10px;
+    border-bottom: 1px solid gray;
+}
+.viewBar_table_eventDate {
+    text-align: right;
+    width: 18%;
+    padding: 10px;
+    border-bottom: 1px solid gray;
+}
+/*viewBar-table end*/
