@@ -23,35 +23,35 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/query_users', function(req, res) {
+app.get('/query_users', function (req, res) {
   //query from db
   res.send(userList);
 });
 
-app.get('/query_user_records', function(req, res) {
+app.get('/query_user_records', function (req, res) {
   //query from db
   res.send(userRecords);
 });
 
-app.post('/send_data', function(req, res, next) {
+app.post('/send_data', function (req, res, next) {
   res.send('=> /send_data');
   //post query to db
   console.log('=> /send_data');
   console.log(req.body);
 });
 
-app.post('/delete_data', function(req, res, next) {
+app.post('/delete_data', function (req, res, next) {
   res.send('=> /send_data');
   //post query to db
   console.log('=> /send_data');
   console.log(req.body);
 });
 
-app.listen(port, function(error) {
+app.listen(port, '172.22.11.62', function (error) {
   if (error) {
     console.error(error);
   } else {

@@ -132,16 +132,21 @@ export function recordListDownload() {
 
                 response.json().then(function (data) {
                     function getCorrectDate(time) {
-                        let date, hours, min,
-                            getHours, getMinutes;
+                        let date, 
+                            day, month, hours, min, 
+                            getDay, getMonth, getHours, getMinutes;
 
-                        date = new Date(time);
-                        getHours = date.getHours().toString();
-                        getMinutes = date.getMinutes().toString();
+                        date        = new Date(time);
+                        getDay      = date.getDate().toString();
+                        getMonth    = (date.getMonth() + 1).toString();
+                        getHours    = date.getHours().toString();
+                        getMinutes  = date.getMinutes().toString();
 
-                        hours = getHours.length == 1 ? '0' + getHours : getHours;
-                        min = getMinutes.length == 1 ? '0' + getMinutes : getMinutes;
-                        return (date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear() + ' ' + hours + ':' + min);
+                        day     = getDay == 1 ? '0' + getDay : getDay;
+                        month   = getMonth == 1 ? '0' + getMonth : getMonth;
+                        hours   = getHours.length == 1 ? '0' + getHours : getHours;
+                        min     = getMinutes.length == 1 ? '0' + getMinutes : getMinutes;
+                        return (day + '.' + month + '.' + date.getFullYear() + ' ' + hours + ':' + min);
                     }
 
                     let recordList = [];

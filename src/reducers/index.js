@@ -68,7 +68,7 @@ export default function user(state = initialState, action) {
         }
         case 'BUTTON_DELETE': {
             querys.deleteData({id:state.id});
-            return { ...state, id: -1, /*eventList: getEventList(),*/ text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' }
+            return { ...state, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' }
         }
         case 'BUTTON_CANCEL': {
             return { ...state, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' };
