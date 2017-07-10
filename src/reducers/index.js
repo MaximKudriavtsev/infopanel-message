@@ -4,6 +4,7 @@ import * as querys from '../querys/querys';
 //id = -2 validate error for new element
 //id = -3 validate error for edit 
 const initialState = {
+
     id:-1,                  
     text: '',
     author: 'User156',
@@ -12,33 +13,10 @@ const initialState = {
     startDate: new Date(),
     messageAuthor: 'User156',
     messageDate: '',
-    authorList: querys.queryUsers(),
-    eventList: querys.getEventList(),
-    focusKey: ''
+    authorList: [],
+    eventList: [{text: 'some text'}],
+    focusRow: ''
 };
-
-function getEventList(){
-    var list = [];
-
-    for(var i=0, len=localStorage.length; i<len; i++) {
-        var key = localStorage.key(i),
-            date, hours, min;
-            
-        list.push(JSON.parse(localStorage[key]));
-
-        date = new Date(list[i].eventDate);
-        hours = date.getHours().lenght == 1 ? '0'+date.getHours():date.getHours();
-        min = date.getMinutes().lenght == 1 ? '0'+date.getMinutes():date.getMinutes();
-        list[i].correctEventDate = date.getDate() + '.' + (date.getMonth()+1) + '.' + date.getFullYear() + ' ' + hours + ':' + min;
-        
-        date = new Date(list[i].startDate);
-        hours = date.getHours().lenght == 1 ? '0'+date.getHours():date.getHours();
-        min = date.getMinutes().lenght == 1 ? '0'+date.getMinutes():date.getMinutes();
-        list[i].correctStartDate = date.getDate() + '.' + (date.getMonth()+1) + '.' + date.getFullYear() + ' ' + hours + ':' + min;
-    }
-    
-    return list;
-}
 
 export default function user(state = initialState, action) {
     switch (action.type) {
@@ -67,43 +45,56 @@ export default function user(state = initialState, action) {
             var id;
             if(state.id < 0) {
                 id = localStorage.length;
-                while(localStorage.getItem(id) != null) id++;
+                while (localStorage.getItem(id) != null) id++;
             } else {
                 id = state.id;
             }
             var data = {
-                    id: id,
-                    text: state.text,
-                    author: state.author,
-                    location: state.location,
-                    eventDate: state.eventDate,
-                    startDate: state.startDate,
-                    messageAuthor: state.messageAuthor,
-                    messageDate: new Date()
-                };
+                id: id,
+                text: state.text,
+                author: state.author,
+                location: state.location,
+                eventDate: state.eventDate,
+                startDate: state.startDate,
+                messageAuthor: state.messageAuthor,
+                messageDate: new Date()
+            };
 
             localStorage.setItem(id, JSON.stringify(data));
             querys.sendData(data);
-            return { ...state, eventList: querys.getEventList(), text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id:-1, focusKey:''  }
+            return { ...state, /*eventList: querys.getEventList(),*/ text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '' }
         }
         case 'EDIT_ROW_DATA' :{
             return { ...state, text: action.value.text, author: action.value.author, location:action.value.location, eventDate: new Date(action.value.eventDate), startDate: new Date(action.value.startDate), id:action.value.id, focusKey:action.value.id}
         }
-        case 'BUTTON_DELETE':{
+        case 'BUTTON_DELETE': {
             localStorage.removeItem(action.value);
-            return { ...state, id:-1, eventList:getEventList(), text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusKey:''  }
+            return { ...state, id: -1, /*eventList: getEventList(),*/ text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' }
         }
-        case 'BUTTON_CANCEL':{
-            return { ...state, id:-1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusKey:'' };
+        case 'BUTTON_CANCEL': {
+            return { ...state, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' };
+        }
+        case 'SET_ROW_FOCUS': {
+            return { ...state, focusRow: action.value };
         }
         case 'VALIDATE_ERROR':{
             return {...state, id: (action.value < 0 ? -2 : action.value) }
         }
-        case 'GET_USERS_REQUEST':
-            return { ...state}
+        case 'GET_USERS_REQUEST': {
+            return { ...state } 
+        }
 
-        case 'GET_USERS_SUCCESS':
-            return { ...state, authorList: action.value}
+        case 'GET_USERS_SUCCESS': {
+            return { ...state, authorList: action.value }
+        }
+
+        case 'GET_RECORDS_REQUEST': {
+            return { ...state }
+        }
+
+        case 'GET_RECORDS_SUCCESS': {
+            return { ...state, eventList: action.value }
+        }
     }
     return state;
 }
