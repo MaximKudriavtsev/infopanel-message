@@ -27,6 +27,9 @@ class EventDate extends Component {
         this.validate(e);
         this.props.actions.changeEventDate(e);
     }
+    componentDidUpdate(){
+        this.validate(this.props.user.eventDate);
+    }
     render() {
         let that = this;
             
