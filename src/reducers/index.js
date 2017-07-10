@@ -10,7 +10,7 @@ const initialState = {
     messageAuthor: 'User156',
     messageDate: '',
     authorList: [],
-    eventList: [{text: 'some text'}],
+    eventList: '',
     focusRow: ''
 };
 

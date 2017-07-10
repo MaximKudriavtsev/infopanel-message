@@ -8,7 +8,11 @@ class ViewBar_table extends Component {
     addScroll() {
         var that = this,
             elemTable = ReactDOM.findDOMNode(that.refs['table']),
-            isScroll = elemTable.offsetWidth > elemTable.scrollWidth,
+            isScroll, elemHead;
+
+            if(!elemTable)
+                return;
+            isScroll = elemTable.offsetWidth > elemTable.scrollWidth;
             elemHead = ReactDOM.findDOMNode(that.refs['viewBar_head']);
 
         isScroll ? elemHead.setAttribute('class', 'viewBar_head') : elemHead.setAttribute('class', '');
@@ -16,6 +20,7 @@ class ViewBar_table extends Component {
 
     componentDidMount() {
         this.addScroll();
+
     }
     componentDidUpdate() {
         this.addScroll();
@@ -35,7 +40,23 @@ class ViewBar_table extends Component {
                 )
             });
         } else {
-            return (<div>No data for view...</div>)
+            return (
+                <div className='viewBar'>
+                    <div className='' ref='viewBar_head'>
+                        <table className='viewBar_table' ref='viewBar_table'>
+                            <tbody>
+                                <tr className='viewBar_table_head'>
+                                    <td className='viewBar_table_text'>Text</td>
+                                    <td className='viewBar_table_author'>Author</td>
+                                    <td className='viewBar_table_location'>Location</td>
+                                    <td className='viewBar_table_eventDate'>Date of event</td>
+                                    <td className='viewBar_table_startDate'>Publish date of event</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>No data for view</div>
+                </div>)
         }
         return (
             <div className='viewBar'>
@@ -52,7 +73,7 @@ class ViewBar_table extends Component {
                         </tbody>
                     </table>
                 </div>
-                <div className='table' ref='table' style={{height: height}}>
+                <div className='table' ref='table' style={{ height: height }}>
                     <table className='viewBar_table_'>
                         <tbody className='viewBar_tbody'>
                             {template}
