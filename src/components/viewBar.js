@@ -55,10 +55,6 @@ class ViewBar extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-
-        console.log('prevProps', prevProps.user.eventList);
-        console.log('this props', this.props.user.eventList);
-
         if (prevProps.user.eventList.length !== this.props.user.eventList.length/* || prevProps.user.focusRow !== this.props.user.focusRow*/) {
             var tegs = document.getElementsByClassName('griddle-row'), i;
             for (i = 0; i < tegs.length; i++) {

@@ -60,22 +60,18 @@ export function userListDownload() {
                     console.log('Looks like there was a problem. Status Code: ' +
                         response.status);
                 }
-                var usersObj,
-                    usersList = [];
                 response.json().then(function (data) {
-                    usersObj = data;
-                    console.log('query Users => ');
-                    for (var key in usersObj) {
-                        usersList.push(usersObj[key].name + ' ' + usersObj[key].surname);
+                    var usersList = [];
+
+                    for (var key in data) {
+                        usersList.push(data[key].name + ' ' + data[key].surname);
                     }
 
-                    console.log(usersList);
                     dispatch({
                         type: 'GET_USERS_SUCCESS',
                         value: usersList
                     });
                 });
-
             })
             .catch(function (err) {
                 console.log('Fetch Error :-S', err);
@@ -132,35 +128,34 @@ export function recordListDownload() {
                     console.log('Looks like there was a problem. Status Code: ' +
                         response.status);
                 }
-                var recordList = [];
 
                 response.json().then(function (data) {
-                    console.log('query /query_user_records => ');
+                    function getCorrectDate(time) {
+                        var date, hours, min,
+                            getHours, getMinutes;
 
+                        date = new Date(time);
+                        getHours = date.getHours();
+                        getMinutes = date.getMinutes();
+
+                        hours = getHours.lenght == 1 ? '0' + getHours : getHours;
+                        min = getMinutes.lenght == 1 ? '0' + getMinutes : getMinutes;
+                        return (date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear() + ' ' + hours + ':' + min);
+                    }
+
+                    var recordList = [];
 
                     for (var key in data) {
-                        var date, hours, min;
-
                         recordList.push(data[key]);
 
-
-                        date = new Date(recordList[key].eventDate);
-
-                        hours = date.getHours().lenght == 1 ? '0' + date.getHours() : date.getHours();
-                        min = date.getMinutes().lenght == 1 ? '0' + date.getMinutes() : date.getMinutes();
-                        recordList[key].correctEventDate = date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear() + ' ' + hours + ':' + min;
-
-                        date = new Date(recordList[key].startDate);
-                        hours = date.getHours().lenght == 1 ? '0' + date.getHours() : date.getHours();
-                        min = date.getMinutes().lenght == 1 ? '0' + date.getMinutes() : date.getMinutes();
-                        recordList[key].correctStartDate = date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear() + ' ' + hours + ':' + min;
+                        recordList[key].correctEventDate = getCorrectDate(recordList[key].eventDate);
+                        recordList[key].correctStartDate = getCorrectDate(recordList[key].startDate);
                     }
                     dispatch({
-                    type: 'GET_RECORDS_SUCCESS',
-                    value: recordList
+                        type: 'GET_RECORDS_SUCCESS',
+                        value: recordList
+                    });
                 });
-                });
-
             })
             .catch(function (err) {
                 console.log('Fetch Error :-S', err);

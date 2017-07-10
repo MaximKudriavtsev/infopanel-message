@@ -14,31 +14,6 @@ const initialState = {
     focusRow: ''
 };
 
-// function getEventList() {
-//     var list = [];
-
-//     for (var i = 0, len = localStorage.length; i < len; i++) {
-//         var key = localStorage.key(i),
-//             date, hours, min;
-
-//         list.push(JSON.parse(localStorage[key]));
-
-//         // console.log('typeof in old func -> ',typeof(list[i].eventDate));
-//         // console.log('value in old func -> ', list[i].eventDate);
-//         date = new Date(list[i].eventDate);
-//         hours = date.getHours().lenght == 1 ? '0' + date.getHours() : date.getHours();
-//         min = date.getMinutes().lenght == 1 ? '0' + date.getMinutes() : date.getMinutes();
-//         list[i].correctEventDate = date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear() + ' ' + hours + ':' + min;
-
-//         date = new Date(list[i].startDate);
-//         hours = date.getHours().lenght == 1 ? '0' + date.getHours() : date.getHours();
-//         min = date.getMinutes().lenght == 1 ? '0' + date.getMinutes() : date.getMinutes();
-//         list[i].correctStartDate = date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear() + ' ' + hours + ':' + min;
-//     }
-
-//     return list;
-// }
-
 export default function user(state = initialState, action) {
     switch (action.type) {
         case 'CHANGE_TEXT': {
