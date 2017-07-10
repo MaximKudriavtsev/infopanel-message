@@ -10,39 +10,27 @@ class Buttons extends Component {
         let user    = this.props.user,
             actions = this.props.actions;
         if(user.text && user.author && user.eventDate && user.startDate){
-            if(user.focusRow != '') {
-                user.focusRow.className = 'griddle-row';
-            }
             actions.buttonSave();
         } else {
-            actions.validateError();
+            actions.validateError(user.id);
         }
     }
-    onButtonDelete() {
-        this.props.actions.recordListDownload();
-        let props = this.props,
-            focusRow = props.user.focusRow;
-        if(focusRow != '') {
-            focusRow.className = 'griddle-row';
-        }
-        props.actions.buttonDelete(this.props.user.id);
+    onButtonDelete(){
+        this.props.actions.buttonDelete(this.props.user.id);
     }
-    onButtonCancel() {
-        let props = this.props,
-            focusRow = props.user.focusRow;
-        if(focusRow != '') {
-            focusRow.className = 'griddle-row';
-        }
-        props.actions.buttonCancel();
+    onButtonCancel(){
+        this.props.actions.buttonCancel();
     }
     render() {
         let that = this;
 
         return <div className='buttons'>
-                <button className='buttons-buttonDelete' onClick={:: that.onButtonDelete}> 
+                <button className={this.props.user.id >= 0 ? 'buttons-buttonDelete' : 'none' }
+                    onClick={:: that.onButtonDelete}> 
                     Delete
                 </button>
-                <button className='buttons-buttonCancel' onClick={:: that.onButtonCancel}> 
+                <button className={this.props.user.id >= 0 ? 'buttons-buttonCancel' : 'none' }
+                    onClick={:: that.onButtonCancel}> 
                     Cancel
                 </button>
                 <button className='buttons-buttonSave' onClick={:: that.onButtonSave}> 

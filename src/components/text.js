@@ -9,16 +9,11 @@ import ReactDOM from 'react-dom'
 class Text extends Component {
     validate(text){
         let refs                 = this.refs,
-            DOM_input_text       = ReactDOM.findDOMNode(refs.input_text),        
             DOM_input_text_error = ReactDOM.findDOMNode(refs.input_text_error);  
         
         if(text === '') {
-            if(DOM_input_text.className.search('error-input') == -1) {
-                DOM_input_text.className += ' error-input';      
-            }
             DOM_input_text_error.className  = 'error-label';
         } else {
-            DOM_input_text.className        = DOM_input_text.className.replace(' error-input','');
             DOM_input_text_error.className  = 'none';               
         }
     }
@@ -36,12 +31,14 @@ class Text extends Component {
         
         if(text === '') {
             DOM_input_text.value = '';
-            if(user.id==-2){
-                this.validate(text);              
-            }           
         } else {
             DOM_input_text.value = text;
-            this.validate(text);              
+        }
+
+        if(user.id == -1){
+            this.validate('text');
+        } else {
+            this.validate(text);
         }
     }
 
