@@ -5,7 +5,7 @@ import * as querys from '../querys/querys';
 //id = -3 validate error for edit 
 const initialState = {
 
-    id:-1,                  
+    id: '-1',                  
     text: '',
     author: 'User156',
     location: '',
@@ -68,7 +68,7 @@ export default function user(state = initialState, action) {
             return { ...state, text: action.value.text, author: action.value.author, location:action.value.location, eventDate: new Date(action.value.eventDate), startDate: new Date(action.value.startDate), id:action.value.id, focusKey:action.value.id}
         }
         case 'BUTTON_DELETE': {
-            localStorage.removeItem(action.value);
+            querys.deleteData({id:state.id});
             return { ...state, id: -1, /*eventList: getEventList(),*/ text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' }
         }
         case 'BUTTON_CANCEL': {
