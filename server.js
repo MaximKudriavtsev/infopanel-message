@@ -44,6 +44,13 @@ app.post('/send_data', function(req, res, next) {
   console.log(req.body);
 });
 
+app.post('/delete_data', function(req, res, next) {
+  res.send('=> /send_data');
+  //post query to db
+  console.log('=> /send_data');
+  console.log(req.body);
+});
+
 app.listen(port, function(error) {
   if (error) {
     console.error(error);
