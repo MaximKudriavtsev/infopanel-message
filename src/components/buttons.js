@@ -39,15 +39,14 @@ class Buttons extends Component {
         let that = this;
 
         return <div className='buttons'>
-                <button className='buttons-buttonSave' onClick={:: that.onButtonSave}> 
-                    Save
-                </button>
                 <button className='buttons-buttonDelete' onClick={:: that.onButtonDelete}> 
                     Delete
                 </button>
-                <br></br>
                 <button className='buttons-buttonCancel' onClick={:: that.onButtonCancel}> 
                     Cancel
+                </button>
+                <button className='buttons-buttonSave' onClick={:: that.onButtonSave}> 
+                    Save
                 </button>
             </div>
     }

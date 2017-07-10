@@ -49,8 +49,8 @@ class ViewBar_table extends Component {
                                     <td className='viewBar_table_text'>Text</td>
                                     <td className='viewBar_table_author'>Author</td>
                                     <td className='viewBar_table_location'>Location</td>
-                                    <td className='viewBar_table_eventDate'>Date of event</td>
-                                    <td className='viewBar_table_startDate'>Publish date of event</td>
+                                    <td className='viewBar_table_eventDate'>Date</td>
+                                    <td className='viewBar_table_startDate'>Publish date</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -67,8 +67,8 @@ class ViewBar_table extends Component {
                                 <td className='viewBar_table_text'>Text</td>
                                 <td className='viewBar_table_author'>Author</td>
                                 <td className='viewBar_table_location'>Location</td>
-                                <td className='viewBar_table_eventDate'>Date of event</td>
-                                <td className='viewBar_table_startDate'>Publish date of event</td>
+                                <td className='viewBar_table_eventDate'>Date</td>
+                                <td className='viewBar_table_startDate'>Publish date</td>
                             </tr>
                         </tbody>
                     </table>
