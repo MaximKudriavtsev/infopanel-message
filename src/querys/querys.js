@@ -1,4 +1,4 @@
-export function getEventList() {
+function getEventList() {
     var list = [];
 
     for (var i = 0, len = localStorage.length; i < len; i++) {
@@ -21,7 +21,15 @@ export function getEventList() {
     return list;
 }
 
-export function queryUsers() {
+function getUsers(data) {
+    var usersList = [];
+    for (var key in data) {
+        usersList.push(data[key].name + ' ' + data[key].surname);
+    }
+    return usersList;
+}
+
+function queryUsers() {
     fetch('/query_users')
         .then(function (response) {
             if (response.status !== 200) {
@@ -43,7 +51,7 @@ export function queryUsers() {
         });
 }
 
-export function sendData(sData) {
+function sendData(sData) {
     fetch('/send_data', {
         method: 'POST',
         body: JSON.stringify(sData),
@@ -52,15 +60,15 @@ export function sendData(sData) {
             'Content-Type': 'application/json'
         }
     })
-    .then(function () {
-        console.log('Send data succeeded');
-    })
-    .catch(function (error) {
-        console.log('Request failed', error);
-    });
+        .then(function () {
+            console.log('Send data succeeded');
+        })
+        .catch(function (error) {
+            console.log('Request failed', error);
+        });
 }
 
-export function deleteData(data) {
+function deleteData(data) {
     fetch('/delete_data', {
         method: 'POST',
         body: JSON.stringify(data),
@@ -69,10 +77,10 @@ export function deleteData(data) {
             'Content-Type': 'application/json'
         }
     })
-    .then(function () {
-        console.log('Delete data succeeded');
-    })
-    .catch(function (error) {
-        console.log('Request failed', error);
-    });
+        .then(function () {
+            console.log('Delete data succeeded');
+        })
+        .catch(function (error) {
+            console.log('Request failed', error);
+        });
 }
