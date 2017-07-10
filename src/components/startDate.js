@@ -35,17 +35,17 @@ class StartDate extends Component {
             user=that.props.user;
 
         return <div className='startDate'>
-                <label className='startDate-label'>Publish date of event</label> 
+                <label className='startDate-label' unselectable='on'>Show message from date</label> 
                 <DateTimePicker 
                     min={new Date()}
                     max={user.eventDate}
                     defaultValue={user.startDate}
                     value={user.startDate}
                     onChange={::that.changeStartDate}
-                    format={"d.M.yyyy HH:mm"}
+                    format={"dd.MM.yyyy HH:mm"}
                     timeFormat={"HH:mm"}
                 />
-                <label ref='input_startDate_error' className='none'>
+                <label ref='input_startDate_error' className='none' unselectable='on'>
                     Please choose start date
                 </label>
             </div>

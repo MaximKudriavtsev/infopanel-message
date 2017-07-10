@@ -46,7 +46,7 @@ class Text extends Component {
         let that = this;
 
         return <div className='text'>
-                <label className='text-label' htmlFor='input-text'>Text</label>
+                <label className='text-label' htmlFor='input-text' unselectable='on'>Text</label>
                 <input id='input-text'
                     ref='input_text'
                     className='text-input'
@@ -54,7 +54,7 @@ class Text extends Component {
                     onBlur={:: that.changeText}
                     maxLength='30'
                 />
-                <label htmlFor='input-text' ref='input_text_error' className='none'>
+                <label htmlFor='input-text' ref='input_text_error' className='none' unselectable='on'>
                     Please enter text message
                 </label>
             </div>

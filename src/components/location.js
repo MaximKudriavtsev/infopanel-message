@@ -23,7 +23,7 @@ class Location extends Component {
         let that = this;
 
         return <div className='location'>
-                <label className='location-label' htmlFor='input-location'>Location</label>
+                <label className='location-label' htmlFor='input-location' unselectable='on'>Location</label>
                 <input className='location-input'
                     id='input-location'
                     ref='input_location'

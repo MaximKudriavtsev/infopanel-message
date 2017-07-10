@@ -34,16 +34,16 @@ class EventDate extends Component {
         let that = this;
             
         return <div className='eventDate'>
-                <label className='eventDate-label'>Date of event</label> 
+                <label className='eventDate-label' unselectable='on'>Date of event</label> 
                 <DateTimePicker 
                     min={new Date()}
                     defaultValue={new Date()}
                     value={that.props.user.eventDate}
                     onChange={::that.changeEventDate}
-                    format={"d.M.yyyy HH:mm"}
+                    format={"dd.MM.yyyy HH:mm"}
                     timeFormat={"HH:mm"}
                 />
-                <label ref='input_eventDate_error' className='none'>
+                <label ref='input_eventDate_error' className='none' unselectable='on'>
                     Please choose event date
                 </label>
             </div>
