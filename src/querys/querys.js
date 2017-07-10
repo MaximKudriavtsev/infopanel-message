@@ -60,3 +60,19 @@ export function sendData(sData) {
     });
 }
 
+export function deleteData(data) {
+    fetch('/delete_data', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(function () {
+        console.log('Request succeeded');
+    })
+    .catch(function (error) {
+        console.log('Request failed', error);
+    });
+}
