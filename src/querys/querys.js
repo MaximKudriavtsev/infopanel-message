@@ -53,7 +53,7 @@ export function sendData(sData) {
         }
     })
     .then(function () {
-        console.log('Request succeeded');
+        console.log('Send data succeeded');
     })
     .catch(function (error) {
         console.log('Request failed', error);
@@ -70,7 +70,7 @@ export function deleteData(data) {
         }
     })
     .then(function () {
-        console.log('Request succeeded');
+        console.log('Delete data succeeded');
     })
     .catch(function (error) {
         console.log('Request failed', error);

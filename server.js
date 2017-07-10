@@ -45,9 +45,9 @@ app.post('/send_data', function(req, res, next) {
 });
 
 app.post('/delete_data', function(req, res, next) {
-  res.send('=> /send_data');
+  res.send('=> /delete_data');
   //post query to db
-  console.log('=> /send_data');
+  console.log('=> /delete_data');
   console.log(req.body);
 });
 
