@@ -43,8 +43,6 @@ body{
 }
 
 /*text start*/
-.text{
-}
 .text, .author, .location, .eventDate, .startDate, .buttons {
     font-size: 20px;
     padding-left: 10px;
