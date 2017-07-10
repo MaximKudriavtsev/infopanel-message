@@ -407,13 +407,16 @@ body{
     border-collapse: collapse;
 }
 .viewBar_table_tr {
+    transition-duration: 0.4s;    
     cursor: pointer;
 }
 .viewBar_table_tr:hover {
+    transition-duration: 0.4s;
     color:black;
     background: #89D2F5 !important;
 }
-.viewBar_table_tr:focus {
+.viewBar_table_tr_focus {
+    transition-duration: 0.4s;
     color:white;
     background: #2faceb !important;
     outline: 0;
