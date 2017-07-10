@@ -11,7 +11,7 @@ class Buttons extends Component {
         if(user.text && user.author && user.eventDate && user.startDate){
             actions.buttonSave();
         } else {
-            actions.validateError();
+            actions.validateError(user.id);
         }
     }
     onButtonDelete(){

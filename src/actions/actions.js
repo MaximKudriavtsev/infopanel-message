@@ -115,8 +115,9 @@ export function setRowFocus(value){
     }
 }
 
-export function validateError(){
+export function validateError(value){
     return{
-        type: 'VALIDATE_ERROR'
+        type: 'VALIDATE_ERROR',
+        value: value
     }
 }

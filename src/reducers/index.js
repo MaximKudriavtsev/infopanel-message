@@ -1,7 +1,10 @@
 import * as querys from '../querys/querys';
 
+//id = -1 default
+//id = -2 validate error for new element
+//id = -3 validate error for edit 
 const initialState = {
-    id:-1,
+    id:-1,                  
     text: '',
     author: 'User156',
     location: '',
@@ -94,7 +97,7 @@ export default function user(state = initialState, action) {
             return { ...state, id:-1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusKey:'' };
         }
         case 'VALIDATE_ERROR':{
-            return {...state, id:-2 }
+            return {...state, id: (action.value < 0 ? -2 : action.value) }
         }
         case 'GET_USERS_REQUEST':
             return { ...state}
