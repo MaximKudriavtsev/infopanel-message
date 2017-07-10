@@ -4,12 +4,7 @@ import * as querys from '../querys/querys';
 //id = -2 validate error for new element
 //id = -3 validate error for edit 
 const initialState = {
-<<<<<<< HEAD
     id:-1,                  
-=======
-
-    id: '-1',                  
->>>>>>> a94eee9b74c981a946dde3f9f09f2d0906105aed
     text: '',
     author: 'User156',
     location: '',
@@ -72,13 +67,8 @@ export default function user(state = initialState, action) {
             return { ...state, text: action.value.text, author: action.value.author, location:action.value.location, eventDate: new Date(action.value.eventDate), startDate: new Date(action.value.startDate), id:action.value.id, focusRow:action.value.id}
         }
         case 'BUTTON_DELETE': {
-<<<<<<< HEAD
-            localStorage.removeItem(action.value);
-            return { ...state, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' }
-=======
             querys.deleteData({id:state.id});
             return { ...state, id: -1, /*eventList: getEventList(),*/ text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' }
->>>>>>> a94eee9b74c981a946dde3f9f09f2d0906105aed
         }
         case 'BUTTON_CANCEL': {
             return { ...state, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' };
