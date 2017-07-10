@@ -6,6 +6,7 @@ import * as actions from '../actions/actions';
 
 class Buttons extends Component {
     onButtonSave() {
+        this.props.actions.recordListDownload();
         let user    = this.props.user,
             actions = this.props.actions;
         if(user.text && user.author && user.eventDate && user.startDate){
@@ -17,7 +18,8 @@ class Buttons extends Component {
             actions.validateError();
         }
     }
-    onButtonDelete(){
+    onButtonDelete() {
+        this.props.actions.recordListDownload();
         let props = this.props,
             focusRow = props.user.focusRow;
         if(focusRow != '') {
@@ -25,7 +27,7 @@ class Buttons extends Component {
         }
         props.actions.buttonDelete(this.props.user.id);
     }
-    onButtonCancel(){
+    onButtonCancel() {
         let props = this.props,
             focusRow = props.user.focusRow;
         if(focusRow != '') {

@@ -22,9 +22,6 @@ export function getEventList() {
 }
 
 export function queryUsers() {
-    var usersObj,
-        usersList = [];
-
     fetch('/query_users')
         .then(function (response) {
             if (response.status !== 200) {
@@ -32,16 +29,12 @@ export function queryUsers() {
                     response.status);
                 return;
             }
- 
+
             response.json().then(function (data) {
-                usersObj = data;
-                console.log('query Users => ');
-
-                for(var key in usersObj) {
-                    usersList.push(usersObj[key].name +' '+ usersObj[key].surname);
+                var usersList = [];
+                for (var key in data) {
+                    usersList.push(data[key].name + ' ' + data[key].surname);
                 }
-
-                console.log(usersList);
                 return usersList;
             });
         })
@@ -52,18 +45,18 @@ export function queryUsers() {
 
 export function sendData(sData) {
     fetch('/send_data', {
-            method: 'POST',
-            body: JSON.stringify(sData),
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(function () {
-            console.log('Request succeeded');
-        })
-        .catch(function (error) {
-            console.log('Request failed', error);
+        method: 'POST',
+        body: JSON.stringify(sData),
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(function () {
+        console.log('Request succeeded');
+    })
+    .catch(function (error) {
+        console.log('Request failed', error);
     });
 }
 

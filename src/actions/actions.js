@@ -60,24 +60,18 @@ export function userListDownload() {
                     console.log('Looks like there was a problem. Status Code: ' +
                         response.status);
                 }
-                var usersObj,
-                    usersList = [];
-                    
                 response.json().then(function (data) {
-                    usersObj = data;
-                    console.log('query Users => ');
+                    var usersList = [];
 
-                    for (var key in usersObj) {
-                        usersList.push(usersObj[key].name + ' ' + usersObj[key].surname);
+                    for (var key in data) {
+                        usersList.push(data[key].name + ' ' + data[key].surname);
                     }
 
-                    console.log(usersList);
+                    dispatch({
+                        type: 'GET_USERS_SUCCESS',
+                        value: usersList
+                    });
                 });
-                dispatch({
-                    type: 'GET_USERS_SUCCESS',
-                    value: usersList
-                });
-
             })
             .catch(function (err) {
                 console.log('Fetch Error :-S', err);
@@ -86,37 +80,89 @@ export function userListDownload() {
                     value: err
                 })
             });
-    }}
-    
-export function editRowData(value){
+    }
+}
+
+export function editRowData(value) {
     return {
         type: 'EDIT_ROW_DATA',
-        value:value
+        value: value
     }
 }
 
-export function buttonDelete(value){
+export function buttonDelete(value) {
     return {
         type: 'BUTTON_DELETE',
-        value:value
+        value: value
     }
 }
 
-export function buttonCancel(){
+export function buttonCancel() {
     return {
         type: 'BUTTON_CANCEL'
     }
 }
 
-export function setRowFocus(value){
+export function setRowFocus(value) {
     return {
         type: 'SET_ROW_FOCUS',
-        value:value
+        value: value
     }
 }
 
-export function validateError(){
-    return{
+export function validateError() {
+    return {
         type: 'VALIDATE_ERROR'
+    }
+}
+
+export function recordListDownload() {
+    return (dispatch) => {
+        dispatch({
+            type: 'GET_RECORDS_REQUEST'
+        })
+
+        fetch('/query_user_records')
+            .then(function (response) {
+                if (response.status !== 200) {
+                    console.log('Looks like there was a problem. Status Code: ' +
+                        response.status);
+                }
+
+                response.json().then(function (data) {
+                    function getCorrectDate(time) {
+                        var date, hours, min,
+                            getHours, getMinutes;
+
+                        date = new Date(time);
+                        getHours = date.getHours();
+                        getMinutes = date.getMinutes();
+
+                        hours = getHours.lenght == 1 ? '0' + getHours : getHours;
+                        min = getMinutes.lenght == 1 ? '0' + getMinutes : getMinutes;
+                        return (date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear() + ' ' + hours + ':' + min);
+                    }
+
+                    var recordList = [];
+
+                    for (var key in data) {
+                        recordList.push(data[key]);
+
+                        recordList[key].correctEventDate = getCorrectDate(recordList[key].eventDate);
+                        recordList[key].correctStartDate = getCorrectDate(recordList[key].startDate);
+                    }
+                    dispatch({
+                        type: 'GET_RECORDS_SUCCESS',
+                        value: recordList
+                    });
+                });
+            })
+            .catch(function (err) {
+                console.log('Fetch Error :-S', err);
+                dispatch({
+                    type: 'GET_RECORDS_FAILURE',
+                    value: err
+                })
+            });
     }
 }
