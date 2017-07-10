@@ -44,10 +44,11 @@ app.post('/send_data', function (req, res, next) {
   console.log(req.body);
 });
 
-app.post('/delete_data', function (req, res, next) {
-  res.send('=> /send_data');
+
+app.post('/delete_data', function(req, res, next) {
+  res.send('=> /delete_data');
   //post query to db
-  console.log('=> /send_data');
+  console.log('=> /delete_data');
   console.log(req.body);
 });
 

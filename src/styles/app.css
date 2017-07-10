@@ -51,7 +51,7 @@ body{
 }
 .text-label, .author-label, .location-label, .eventDate-label, .startDate-label {
     font-size: 20px;
-    padding: 10px;
+    padding: 15px 10px 10px 10px;
     display: block;
 }
 .text-input, .location-input {
@@ -296,7 +296,7 @@ body{
 }
 .error-label{
     color:red;
-    font-size: 13px;
+    font-size: 12px;
     position: absolute;
     display: block;
 }
@@ -341,7 +341,7 @@ body{
     .app-editBar {
         width: 100%;
     }
-    .app-viewBar {
+    .viewBar {
         display: none;
     }
     .app-titleBar {
@@ -369,6 +369,9 @@ body{
         height: 120px;
         width: 340px;
         font-size: 50px !important;
+    }
+    .error-label {
+        font-size: 32px;
     }
 }
 /*@media screen and (max-width: 375px) {
@@ -435,30 +438,30 @@ body{
     text-align: left;
     width: 30%;
     border-bottom: 1px solid gray;
-    padding: 10px;
+    padding: 15px 10px 10px 10px;
 }
 .viewBar_table_author {
     text-align: left;
     width: 14%;
-    padding: 10px;
+    padding: 15px 10px 10px 10px;
     border-bottom: 1px solid gray;
 }
 .viewBar_table_location {
     text-align: left;
     width: 20%;
-    padding: 10px;
+    padding: 15px 10px 10px 10px;
     border-bottom: 1px solid gray;
 }
 .viewBar_table_startDate {
     text-align: right;
     width: 18%;
-    padding: 10px;
+    padding: 15px 10px 10px 10px;
     border-bottom: 1px solid gray;
 }
 .viewBar_table_eventDate {
     text-align: right;
     width: 18%;
-    padding: 10px;
+    padding: 15px 10px 10px 10px;
     border-bottom: 1px solid gray;
 }
 /*viewBar-table end*/
