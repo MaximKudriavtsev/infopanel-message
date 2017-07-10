@@ -25,17 +25,16 @@ class Buttons extends Component {
         let that = this;
 
         return <div className='buttons'>
-                <button className='buttons-buttonSave' onClick={:: that.onButtonSave}> 
-                    Save
-                </button>
                 <button className={this.props.user.id >= 0 ? 'buttons-buttonDelete' : 'none' }
                     onClick={:: that.onButtonDelete}> 
                     Delete
                 </button>
-                <br></br>
                 <button className={this.props.user.id >= 0 ? 'buttons-buttonCancel' : 'none' }
                     onClick={:: that.onButtonCancel}> 
                     Cancel
+                </button>
+                <button className='buttons-buttonSave' onClick={:: that.onButtonSave}> 
+                    Save
                 </button>
             </div>
     }

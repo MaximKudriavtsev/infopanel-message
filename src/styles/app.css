@@ -44,15 +44,15 @@ body{
 
 /*text start*/
 .text{
-    padding-top: 5px !important;
 }
 .text, .author, .location, .eventDate, .startDate, .buttons {
-    padding-top: 30px;
-    
+    font-size: 20px;
+    padding-left: 10px;
 }
 .text-label, .author-label, .location-label, .eventDate-label, .startDate-label {
-    font-size: 18px;
-    padding-left: 20px;
+    font-size: 20px;
+    padding: 10px;
+    display: block;
 }
 .text-input, .location-input {
     box-sizing: border-box;
@@ -117,7 +117,8 @@ body{
 
 /*end dropdownList*/
 .buttons{
-    padding-top: 40px;
+    padding-top: 20px;
+    height: 42px;
 }
 .buttons-buttonSave, .buttons-buttonDelete, .buttons-buttonCancel {
     -webkit-transition-duration: 0.4s; 
@@ -129,15 +130,19 @@ body{
     background-color:white;
     border: 1px solid #2faceb;
     color:#2faceb;
+    padding: 0px;
 }
 .buttons-buttonSave:focus, .buttons-buttonDelete:focus, .buttons-buttonCancel:focus{
     outline:0;
 }
 .buttons-buttonCancel{
+    float: left;
+    margin-left: 5%;
     color: #f0c36d;
     border: 1px solid #f0c36d;
 }
 .buttons-buttonDelete{
+    float: left;
     color: #cb3837;
     border: 1px solid #cb3837;
 }
@@ -160,7 +165,6 @@ body{
     float: right;
 }
 .buttons-buttonCancel{
-    margin-top: 10px;
 }
 /*text end*/
 /*editBar end*/
@@ -292,6 +296,7 @@ body{
 }
 .error-label{
     color:red;
+    font-size: 13px;
     position: absolute;
     display: block;
 }
@@ -422,7 +427,7 @@ body{
     outline: 0;
 }
 .viewBar_table_head {
-    font-size: 22px;
+    font-size: 20px;
     padding: 0;
     border-bottom: 2px solid gray;
 }
