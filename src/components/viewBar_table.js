@@ -43,11 +43,11 @@ class ViewBar_table extends Component {
                         <table className='viewBar_table' ref='viewBar_table'>
                             <tbody>
                                 <tr className='viewBar_table_head'>
-                                    <td className='viewBar_table_text'>Text</td>
-                                    <td className='viewBar_table_author'>Author</td>
-                                    <td className='viewBar_table_location'>Location</td>
-                                    <td className='viewBar_table_eventDate'>Date</td>
-                                    <td className='viewBar_table_startDate'>Publish date</td>
+                                    <td className='viewBar_table_text' unselectable='on'>Text</td>
+                                    <td className='viewBar_table_author' unselectable='on'>Author</td>
+                                    <td className='viewBar_table_location' unselectable='on'>Location</td>
+                                    <td className='viewBar_table_eventDate' unselectable='on'>Date</td>
+                                    <td className='viewBar_table_startDate' unselectable='on'>Publish date</td>
                                 </tr>
                             </tbody>
                         </table>

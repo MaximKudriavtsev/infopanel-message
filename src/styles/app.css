@@ -119,6 +119,7 @@ body{
 .buttons{
     padding-top: 20px;
     height: 42px;
+    min-width: 70px;
 }
 .buttons-buttonSave, .buttons-buttonDelete, .buttons-buttonCancel {
     -webkit-transition-duration: 0.4s; 
@@ -131,6 +132,7 @@ body{
     border: 1px solid #2faceb;
     color:#2faceb;
     padding: 0px;
+    min-width: 70px;    
 }
 .buttons-buttonSave:focus, .buttons-buttonDelete:focus, .buttons-buttonCancel:focus{
     outline:0;
@@ -465,3 +467,21 @@ body{
     border-bottom: 1px solid gray;
 }
 /*viewBar-table end*/
+
+/*none select element*/
+.author-label, .buttons, .eventDate-label, .location-label,
+.startDate-label, .text-label, .app-titleBar-title, .viewBar_table_head,
+.error-label{
+    -webkit-user-select: none;
+    /* user-select -- это нестандартное свойство */
+
+    -moz-user-select: none;
+    /* поэтому нужны префиксы */
+
+    -ms-user-select: none;
+
+    cursor: context-menu;
+    
+}
+
+/*end none select element*/

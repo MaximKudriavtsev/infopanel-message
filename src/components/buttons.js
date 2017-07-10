@@ -22,19 +22,25 @@ class Buttons extends Component {
         this.props.actions.buttonCancel();
     }
     render() {
-        let that = this;
+        let that = this,
+          user = that.props.user,
+          idUser = user.id;
 
         return <div className='buttons'>
-                <button className={this.props.user.id >= 0 ? 'buttons-buttonDelete' : 'none' }
-                    onClick={:: that.onButtonDelete}> 
+                <button className={idUser >= 0 ? 'buttons-buttonDelete' : 'none' }
+                    onClick={:: that.onButtonDelete}
+                    unselectable='on'> 
                     Delete
                 </button>
-                <button className={this.props.user.id >= 0 ? 'buttons-buttonCancel' : 'none' }
-                    onClick={:: that.onButtonCancel}> 
+                <button className={idUser >= 0 ? 'buttons-buttonCancel' : 'none' }
+                    onClick={:: that.onButtonCancel}
+                    unselectable='on'> 
                     Cancel
                 </button>
-                <button className='buttons-buttonSave' onClick={:: that.onButtonSave}> 
-                    Save
+                <button className='buttons-buttonSave' 
+                  onClick={:: that.onButtonSave}
+                  unselectable='on'> 
+                    { idUser < 0 ? 'Create' : 'Save' }
                 </button>
             </div>
     }

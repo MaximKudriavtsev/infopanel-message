@@ -142,8 +142,8 @@ export function recordListDownload() {
                         getHours    = date.getHours().toString();
                         getMinutes  = date.getMinutes().toString();
 
-                        day     = getDay == 1 ? '0' + getDay : getDay;
-                        month   = getMonth == 1 ? '0' + getMonth : getMonth;
+                        day     = getDay.length == 1 ? '0' + getDay : getDay;
+                        month   = getMonth.length == 1 ? '0' + getMonth : getMonth;
                         hours   = getHours.length == 1 ? '0' + getHours : getHours;
                         min     = getMinutes.length == 1 ? '0' + getMinutes : getMinutes;
                         return (day + '.' + month + '.' + date.getFullYear() + ' ' + hours + ':' + min);
