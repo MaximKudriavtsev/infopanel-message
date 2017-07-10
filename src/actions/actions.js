@@ -61,7 +61,7 @@ export function userListDownload() {
                         response.status);
                 }
                 response.json().then(function (data) {
-                    var usersList = [];
+                    let usersList = [];
 
                     for (var key in data) {
                         usersList.push(data[key].name + ' ' + data[key].surname);
@@ -132,19 +132,19 @@ export function recordListDownload() {
 
                 response.json().then(function (data) {
                     function getCorrectDate(time) {
-                        var date, hours, min,
+                        let date, hours, min,
                             getHours, getMinutes;
 
                         date = new Date(time);
-                        getHours = date.getHours();
-                        getMinutes = date.getMinutes();
+                        getHours = date.getHours().toString();
+                        getMinutes = date.getMinutes().toString();
 
-                        hours = getHours.lenght == 1 ? '0' + getHours : getHours;
-                        min = getMinutes.lenght == 1 ? '0' + getMinutes : getMinutes;
+                        hours = getHours.length == 1 ? '0' + getHours : getHours;
+                        min = getMinutes.length == 1 ? '0' + getMinutes : getMinutes;
                         return (date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear() + ' ' + hours + ':' + min);
                     }
 
-                    var recordList = [];
+                    let recordList = [];
 
                     for (var key in data) {
                         recordList.push(data[key]);

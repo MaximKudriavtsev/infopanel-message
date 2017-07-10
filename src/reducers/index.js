@@ -4,7 +4,6 @@ import * as querys from '../querys/querys';
 //id = -2 validate error for new element
 //id = -3 validate error for edit 
 const initialState = {
-
     id:-1,                  
     text: '',
     author: 'User156',
@@ -30,7 +29,7 @@ export default function user(state = initialState, action) {
             return { ...state, location: action.value }
         }
         case 'CHANGE_EVENTDATE': {
-            var date = new Date(action.value);
+            let date = new Date(action.value);
             date.setDate(date.getDate() - 5);
             if (date < new Date()) {
                 date = new Date();
@@ -42,14 +41,14 @@ export default function user(state = initialState, action) {
             return { ...state, startDate: action.value }
         }
         case 'BUTTON_SAVE': {
-            var id;
+            let id;
             if(state.id < 0) {
                 id = localStorage.length;
                 while (localStorage.getItem(id) != null) id++;
             } else {
                 id = state.id;
             }
-            var data = {
+            let data = {
                 id: id,
                 text: state.text,
                 author: state.author,
@@ -62,14 +61,14 @@ export default function user(state = initialState, action) {
 
             localStorage.setItem(id, JSON.stringify(data));
             querys.sendData(data);
-            return { ...state, /*eventList: querys.getEventList(),*/ text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '' }
+            return { ...state, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '' }
         }
         case 'EDIT_ROW_DATA' :{
-            return { ...state, text: action.value.text, author: action.value.author, location:action.value.location, eventDate: new Date(action.value.eventDate), startDate: new Date(action.value.startDate), id:action.value.id, focusKey:action.value.id}
+            return { ...state, text: action.value.text, author: action.value.author, location:action.value.location, eventDate: new Date(action.value.eventDate), startDate: new Date(action.value.startDate), id:action.value.id, focusRow:action.value.id}
         }
         case 'BUTTON_DELETE': {
             localStorage.removeItem(action.value);
-            return { ...state, id: -1, /*eventList: getEventList(),*/ text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' }
+            return { ...state, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' }
         }
         case 'BUTTON_CANCEL': {
             return { ...state, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' };
