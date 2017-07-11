@@ -6,8 +6,10 @@ var bodyParser = require('body-parser');
 var fs = require('fs');
 
 var app = new (require('express'))();
-// var server = require('http').Server(app);
-// var io = require('socket.io')(server);
+var server = require('http').Server(app);
+//должен включиться Socket.io server на порте 3000
+var io = new (require('socket.io'))(server);
+
 var port = 3000;
 
 var userList = require('./userList.json');
@@ -120,13 +122,12 @@ app.post('/create_data', function (req, res, next) {
 
 app.post('/delete_data', function (req, res, next) {
   res.send('=> /delete_data');
-  debugger;
   //post query to db
   console.log('=> /delete_data');
   console.log(req.body);
 });
 
-app.listen(port, function (error) {
+server.listen(port, function (error) {
   if (error) {
     console.error(error);
   } else {
@@ -134,9 +135,15 @@ app.listen(port, function (error) {
   }
 });
 
-// io.on('connection', function (socket) {
-//   socket.emit('news', { hello: 'world' });
-//   socket.on('my other event', function (data) {
-//     console.log(data);
-//   });
-// });
+console.log('connection');
+
+io.on('connection', function(socket){
+  console.log("Socket connected: " + socket.id);
+  socket.emit('news', {data:'good day!'});
+  socket.on('my other event', function (action) { //если пришле emit = action !
+    console.log(action);
+    if(action.type === 'server/hello'){
+      console.log('Got hello data!', action.data);
+    }
+  });
+});

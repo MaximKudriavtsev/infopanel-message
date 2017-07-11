@@ -1,5 +1,4 @@
 export function createRecord(sData) {
-    debugger;
     fetch('/create_data', {
         method: 'POST',
         body: JSON.stringify(sData),

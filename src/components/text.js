@@ -22,7 +22,9 @@ class Text extends Component {
         let text = e.target.value.trim();
         this.validate(text);
 
+        
         this.props.actions.changeText(text);
+        this.props.actions.socketIoText();
     }
     componentDidUpdate() {
         let user            = this.props.user,

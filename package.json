@@ -39,7 +39,7 @@
     "jquery": "3.2.1",
     "redux-socket.io": "1.4.0",
     "socket.io-client": "2.0.3",
-    "socket.io":"2.0.3"
+    "socket.io":"1.6.0"
   },
   "dependencies": {
     "babel-polyfill": "6.5.0",

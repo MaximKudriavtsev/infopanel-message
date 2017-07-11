@@ -93,3 +93,10 @@ export function validateError(value){
         value: value
     }
 }
+
+export function socketIoText() {
+    return {
+        type : 'server/hello/',
+        data : 'PRIVET!!!!!'
+    }
+}

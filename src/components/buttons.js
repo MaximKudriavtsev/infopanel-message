@@ -9,7 +9,6 @@ class Buttons extends Component {
         let user    = this.props.user,
             actions = this.props.actions;
 
-            debugger;
         if(user.text && user.author && user.eventDate && user.startDate){
             (user.id < 0) ? actions.createRecord() : actions.updateRecord();
         } else {
