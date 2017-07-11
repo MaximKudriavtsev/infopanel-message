@@ -29,7 +29,7 @@ class ViewBar_table extends Component {
             template,
             data = that.props.user.eventList,
             clientHeight = document.documentElement.clientHeight,
-            height = clientHeight - 92;
+            height = clientHeight - 94;
         if (data.length) {
             template = data.map(function (item, index) {
                 return (

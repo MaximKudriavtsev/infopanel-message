@@ -296,11 +296,14 @@ body{
     height: 100%;
     white-space: pre;
 }
-.error-label{
+.error-label, .warning-label{
     color:red;
     font-size: 12px;
     position: absolute;
     display: block;
+}
+.warning-label{
+    color:orange;
 }
 .error-input{
     border: 2px solid red !important;
@@ -485,3 +488,11 @@ body{
 }
 
 /*end none select element*/
+/*SelectList*/
+ul li label {
+    width: 100%;
+}
+ul li {
+    cursor: context-menu !important;
+}
+/*end SelectList*/

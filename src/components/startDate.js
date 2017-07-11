@@ -4,50 +4,59 @@ import { bindActionCreators } from 'redux';
 
 import * as actions from '../actions/actions';
 
-import 'react-widgets/lib/less/react-widgets.less';
-import {DateTimePicker} from 'react-widgets';
+import {SelectList} from 'react-widgets';
 
 import ReactDOM from 'react-dom'
 
-const Globalize = require('globalize');
-const globalizeLocalizer = require('react-widgets/lib/localizers/globalize');
-Globalize('ru');
-globalizeLocalizer(Globalize);
-
 class StartDate extends Component {
-    validate(e){
-        let DOM_input_startDate_error = ReactDOM.findDOMNode(this.refs.input_startDate_error);        
-        if(e == null) {
-            DOM_input_startDate_error.className  = 'error-label';
-        } else {
-            DOM_input_startDate_error.className  = 'none';
-        }
+    changeStartDate(value) {
+        let props = this.props,
+            date = new Date(props.user.eventDate);
+        date.setHours(7);
+        date.setMinutes(0);
+        date.setDate(date.getDate() - value.id);
+        
+        props.actions.changeStartDate(date, value.id);
     }
-    changeStartDate(e) {
-        this.validate(e);
-        this.props.actions.changeStartDate(e);
-    }
-    componentDidUpdate(){
-        this.validate(this.props.user.startDate);
-    }
+
     render() {
         let that = this,
             user=that.props.user;
+        
+        let dates = [
+            { id: 30, name: 'Month'},
+            { id: 14, name: '2 weeks'},
+            { id: 7,  name: '1 week' },
+            { id: 3,  name: '3 days' },
+            { id: 1,  name: '1 days' },
+            { id: 0,  name: 'Now' }
+        ],
+            name, countOfDisabled = 0,
+            days = Math.floor((user.eventDate.getTime() - new Date().getTime()) / 3600 / 1000 / 24);
 
+        if(days < 0 ) {
+            countOfDisabled = dates.length - 1;
+            name = 'Now';
+        } else {
+            while(dates[countOfDisabled].id > days) countOfDisabled++;
+        }
+        for(var i = 0; i < dates.length; i++) {
+            if(dates[i].id == user.dayRange){
+                name = dates[i].name;
+                break;
+            }
+        }
         return <div className='startDate'>
-                <label className='startDate-label' unselectable='on'>Show message from date</label> 
-                <DateTimePicker 
-                    min={new Date()}
-                    max={user.eventDate}
-                    defaultValue={user.startDate}
-                    value={user.startDate}
+                <label className='startDate-label' unselectable='on'
+                title="Publish about your event from choosed date">Show message from date</label>
+                <SelectList
+                    className="startDate-SelectList"
+                    data={dates}
+                    valueField='id' textField='name'
+                    disabled={dates.slice(0,countOfDisabled)}
+                    value={{id: user.dayRange, name: name}}
                     onChange={::that.changeStartDate}
-                    format={"dd.MM.yyyy HH:mm"}
-                    timeFormat={"HH:mm"}
                 />
-                <label ref='input_startDate_error' className='none' unselectable='on'>
-                    Please choose start date
-                </label>
             </div>
     }
 }

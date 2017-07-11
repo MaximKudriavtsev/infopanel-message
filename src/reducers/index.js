@@ -14,7 +14,8 @@ const initialState = {
     messageDate: '',
     authorList: [],
     eventList: '',
-    focusRow: ''
+    focusRow: '',
+    dayRange: 0
 };
 
 export default function user(state = initialState, action) {
@@ -29,16 +30,10 @@ export default function user(state = initialState, action) {
             return { ...state, location: action.value }
         }
         case 'CHANGE_EVENTDATE': {
-            let date = new Date(action.value);
-            date.setDate(date.getDate() - 5);
-            if (date < new Date()) {
-                date = new Date();
-            }
-
-            return { ...state, eventDate: action.value, startDate: date }
+            return { ...state, eventDate: action.value, startDate: new Date(), dayRange: 0 }
         }
         case 'CHANGE_STARTDATE': {
-            return { ...state, startDate: action.value }
+            return { ...state, startDate: action.day, dayRange: action.dayRange }
         }
         case 'BUTTON_SAVE': {
             let id;
@@ -56,22 +51,23 @@ export default function user(state = initialState, action) {
                 eventDate: state.eventDate,
                 startDate: state.startDate,
                 messageAuthor: state.messageAuthor,
-                messageDate: new Date()
+                messageDate: new Date(),
+                dayRange: state.dayRange
             };
 
             localStorage.setItem(id, JSON.stringify(data));
             querys.sendData(data);
-            return { ...state, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '' }
+            return { ...state, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '', dayRange: 0 }
         }
         case 'EDIT_ROW_DATA' :{
-            return { ...state, text: action.value.text, author: action.value.author, location:action.value.location, eventDate: new Date(action.value.eventDate), startDate: new Date(action.value.startDate), id:action.value.id, focusRow:action.value.id}
+            return { ...state, text: action.value.text, author: action.value.author, location:action.value.location, eventDate: new Date(action.value.eventDate), startDate: new Date(action.value.startDate), id:action.value.id, focusRow:action.value.id, dayRange: action.value.dayRange }
         }
         case 'BUTTON_DELETE': {
             querys.deleteData({id:state.id});
-            return { ...state, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' }
+            return { ...state, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '', dayRange: 0 }
         }
         case 'BUTTON_CANCEL': {
-            return { ...state, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' };
+            return { ...state, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '', dayRange: 0 };
         }
         case 'SET_ROW_FOCUS': {
             return { ...state, focusRow: action.value };
@@ -82,7 +78,6 @@ export default function user(state = initialState, action) {
         case 'GET_USERS_REQUEST': {
             return { ...state } 
         }
-
         case 'GET_USERS_SUCCESS': {
             return { ...state, authorList: action.value }
         }
