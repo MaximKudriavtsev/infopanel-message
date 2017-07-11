@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import user from './reducers'
 import { createStore } from 'redux';
-// import configureStore from './store/configureStore';
+
 import App from './containers/App';
 
 import './styles/app.css';
@@ -17,8 +17,6 @@ delete window.__PRELOADED_STATE__;
 
 // Create Redux store with initial state
 const store = createStore(user, preloadedState);
-
-console.log(store.getState());
 
 render(
   <Provider store={store}>

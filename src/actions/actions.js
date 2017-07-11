@@ -42,44 +42,21 @@ export function changeStartDate(value) {
     }
 }
 
-export function buttonSave() {
+export function updateRecord() {
     return {
-        type: 'BUTTON_SAVE'
+        type: 'UPDATE_RECORD'
     }
 }
 
-export function userListDownload() {
-    return (dispatch) => {
-        dispatch({
-            type: 'GET_USERS_REQUEST'
-        })
+export function createRecord() {
+    return {
+        type: 'CREATE_RECORD'
+    }
+}
 
-        fetch('/query_users')
-            .then(function (response) {
-                if (response.status !== 200) {
-                    console.log('Looks like there was a problem. Status Code: ' +
-                        response.status);
-                }
-                response.json().then(function (data) {
-                    let usersList = [];
-
-                    for (var key in data) {
-                        usersList.push(data[key].name + ' ' + data[key].surname);
-                    }
-
-                    dispatch({
-                        type: 'GET_USERS_SUCCESS',
-                        value: usersList
-                    });
-                });
-            })
-            .catch(function (err) {
-                console.log('Fetch Error :-S', err);
-                dispatch({
-                    type: 'GET_USERS_FAILURE',
-                    value: err
-                })
-            });
+export function buttonSave() {
+    return {
+        type: 'BUTTON_SAVE'
     }
 }
 
@@ -114,61 +91,5 @@ export function validateError(value){
     return{
         type: 'VALIDATE_ERROR',
         value: value
-    }
-}
-
-export function recordListDownload() {
-    return (dispatch) => {
-        dispatch({
-            type: 'GET_RECORDS_REQUEST'
-        })
-
-        fetch('/query_user_records')
-            .then(function (response) {
-                if (response.status !== 200) {
-                    console.log('Looks like there was a problem. Status Code: ' +
-                        response.status);
-                }
-
-                response.json().then(function (data) {
-                    function getCorrectDate(time) {
-                        let date, 
-                            day, month, hours, min, 
-                            getDay, getMonth, getHours, getMinutes;
-
-                        date        = new Date(time);
-                        getDay      = date.getDate().toString();
-                        getMonth    = (date.getMonth() + 1).toString();
-                        getHours    = date.getHours().toString();
-                        getMinutes  = date.getMinutes().toString();
-
-                        day     = getDay.length == 1 ? '0' + getDay : getDay;
-                        month   = getMonth.length == 1 ? '0' + getMonth : getMonth;
-                        hours   = getHours.length == 1 ? '0' + getHours : getHours;
-                        min     = getMinutes.length == 1 ? '0' + getMinutes : getMinutes;
-                        return (day + '.' + month + '.' + date.getFullYear() + ' ' + hours + ':' + min);
-                    }
-
-                    let recordList = [];
-
-                    for (var key in data) {
-                        recordList.push(data[key]);
-
-                        recordList[key].correctEventDate = getCorrectDate(recordList[key].eventDate);
-                        recordList[key].correctStartDate = getCorrectDate(recordList[key].startDate);
-                    }
-                    dispatch({
-                        type: 'GET_RECORDS_SUCCESS',
-                        value: recordList
-                    });
-                });
-            })
-            .catch(function (err) {
-                console.log('Fetch Error :-S', err);
-                dispatch({
-                    type: 'GET_RECORDS_FAILURE',
-                    value: err
-                })
-            });
     }
 }

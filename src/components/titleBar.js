@@ -5,9 +5,6 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../actions/actions';
 
 class TitleBar extends Component {
-    componentDidMount() {
-        this.props.actions.recordListDownload();
-    }
     render() {
         return <div className='app-titleBar'>
             <div className='app-titleBar-title' unselectable='on'>

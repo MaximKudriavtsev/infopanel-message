@@ -1,30 +1,12 @@
 import * as querys from '../querys/querys';
 
-//id = -1 default
-//id = -2 validate error for new element
-//id = -3 validate error for edit 
-// const initialState = {
-//     id:-1,                  
-//     text: '',
-//     author: 'User156',
-//     location: '',
-//     eventDate: new Date(),
-//     startDate: new Date(),
-//     messageAuthor: 'User156',
-//     messageDate: '',
-//     authorList: [],
-//     eventList: '',
-//     focusRow: ''
-// };
-
-
 export default function user(state = {}, action) {
     switch (action.type) {
         case 'CHANGE_TEXT': {
-            return { text : action.value }
+            return { ... state, text : action.value }
         }
         case 'CHANGE_AUTHOR': {
-            return { author: action.value }
+            return { ...state, author: action.value }
         }
         case 'CHANGE_LOCATION': {
             return { ...state, location: action.value }
@@ -35,20 +17,14 @@ export default function user(state = {}, action) {
             if (date < new Date()) {
                 date = new Date();
             }
-
             return { ...state, eventDate: action.value, startDate: date }
         }
         case 'CHANGE_STARTDATE': {
             return { ...state, startDate: action.value }
         }
-        case 'BUTTON_SAVE': {
-            let id;
-            if(state.id < 0) {
-                id = localStorage.length;
-                while (localStorage.getItem(id) != null) id++;
-            } else {
-                id = state.id;
-            }
+        case 'CREATE_RECORD': {
+            let id = 9;
+
             let data = {
                 id: id,
                 text: state.text,
@@ -60,8 +36,22 @@ export default function user(state = {}, action) {
                 messageDate: new Date()
             };
 
-            localStorage.setItem(id, JSON.stringify(data));
-            querys.sendData(data);
+            querys.createRecord(data);
+            return { ...state, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '' }
+        }
+        case 'UPDATE_RECORD': {
+            let data = {
+                id: state.id,
+                text: state.text,
+                author: state.author,
+                location: state.location,
+                eventDate: state.eventDate,
+                startDate: state.startDate,
+                messageAuthor: state.messageAuthor,
+                messageDate: new Date()
+            };
+
+            querys.updateRecord(data);
             return { ...state, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '' }
         }
         case 'EDIT_ROW_DATA' :{
@@ -83,15 +73,12 @@ export default function user(state = {}, action) {
         case 'GET_USERS_REQUEST': {
             return { ...state } 
         }
-
         case 'GET_USERS_SUCCESS': {
             return { ...state, authorList: action.value }
         }
-
         case 'GET_RECORDS_REQUEST': {
             return { ...state }
         }
-
         case 'GET_RECORDS_SUCCESS': {
             return { ...state, eventList: action.value }
         }

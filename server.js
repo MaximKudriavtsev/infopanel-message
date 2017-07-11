@@ -73,11 +73,11 @@ const uList = getUsers(userList),
 const serverState = {
   id: -1,
   text: '',
-  author: '',
+  author: 'Max',
   location: '',
   eventDate: new Date(),
   startDate: new Date(),
-  messageAuthor: '',
+  messageAuthor: 'Max',
   messageDate: '',
   authorList: getUsers(userList),
   eventList: getRecords(userRecords),
@@ -104,20 +104,27 @@ app.get('/', function (req, res) {
 //   res.send(userRecords);
 // });
 
-// app.post('/send_data', function (req, res, next) {
-//   res.send('=> /send_data');
-//   //post query to db
-//   console.log('=> /send_data');
-//   console.log(req.body);
-// });
+app.post('/update_data', function (req, res, next) {
+  res.send('=> /update_data');
+  //post query to db
+  console.log('=> /update_data');
+  console.log(req.body);
+});
 
+app.post('/create_data', function (req, res, next) {
+  res.send('=> /create_data');
+  //post query to db
+  console.log('=> /create_data');
+  console.log(req.body);
+});
 
-// app.post('/delete_data', function (req, res, next) {
-//   res.send('=> /delete_data');
-//   //post query to db
-//   console.log('=> /delete_data');
-//   console.log(req.body);
-// });
+app.post('/delete_data', function (req, res, next) {
+  res.send('=> /delete_data');
+  debugger;
+  //post query to db
+  console.log('=> /delete_data');
+  console.log(req.body);
+});
 
 app.listen(port, function (error) {
   if (error) {

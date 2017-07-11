@@ -32,8 +32,6 @@ class EventDate extends Component {
     }
     render() {
         let that = this;
-
-        console.log(that.props.user);
             
         return <div className='eventDate'>
                 <label className='eventDate-label' unselectable='on'>Date of event</label> 
