@@ -32,13 +32,15 @@ class EventDate extends Component {
     }
     render() {
         let that = this;
+
+        console.log(that.props.user);
             
         return <div className='eventDate'>
                 <label className='eventDate-label' unselectable='on'>Date of event</label> 
                 <DateTimePicker 
                     min={new Date()}
                     defaultValue={new Date()}
-                    value={that.props.user.eventDate}
+                    value={new Date(that.props.user.eventDate)}
                     onChange={::that.changeEventDate}
                     format={"dd.MM.yyyy HH:mm"}
                     timeFormat={"HH:mm"}

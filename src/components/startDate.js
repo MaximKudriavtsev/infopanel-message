@@ -38,9 +38,9 @@ class StartDate extends Component {
                 <label className='startDate-label' unselectable='on'>Show message from date</label> 
                 <DateTimePicker 
                     min={new Date()}
-                    max={user.eventDate}
-                    defaultValue={user.startDate}
-                    value={user.startDate}
+                    max={new Date(user.eventDate)}
+                    defaultValue={new Date(user.startDate)}
+                    value={new Date(user.startDate)}
                     onChange={::that.changeStartDate}
                     format={"dd.MM.yyyy HH:mm"}
                     timeFormat={"HH:mm"}

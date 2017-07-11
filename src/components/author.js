@@ -22,7 +22,7 @@ class Author extends Component {
             user = that.props.user;
 
         
-        //console.log(messages);
+        console.log(user.authorList);
         return <div className='author'>
                 <label className='author-label' unselectable='on'>Author</label>
                 <DropdownList 

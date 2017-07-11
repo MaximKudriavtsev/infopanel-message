@@ -3,27 +3,28 @@ import * as querys from '../querys/querys';
 //id = -1 default
 //id = -2 validate error for new element
 //id = -3 validate error for edit 
-const initialState = {
-    id:-1,                  
-    text: '',
-    author: 'User156',
-    location: '',
-    eventDate: new Date(),
-    startDate: new Date(),
-    messageAuthor: 'User156',
-    messageDate: '',
-    authorList: [],
-    eventList: '',
-    focusRow: ''
-};
+// const initialState = {
+//     id:-1,                  
+//     text: '',
+//     author: 'User156',
+//     location: '',
+//     eventDate: new Date(),
+//     startDate: new Date(),
+//     messageAuthor: 'User156',
+//     messageDate: '',
+//     authorList: [],
+//     eventList: '',
+//     focusRow: ''
+// };
 
-export default function user(state = initialState, action) {
+
+export default function user(state = {}, action) {
     switch (action.type) {
         case 'CHANGE_TEXT': {
-            return { ...state, text: action.value }
+            return { text : action.value }
         }
         case 'CHANGE_AUTHOR': {
-            return { ...state, author: action.value }
+            return { author: action.value }
         }
         case 'CHANGE_LOCATION': {
             return { ...state, location: action.value }
