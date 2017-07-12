@@ -6,11 +6,11 @@ import * as actions from '../actions/actions';
 
 class Buttons extends Component {
     onButtonSave() {
-        this.props.actions.recordListDownload();
         let user    = this.props.user,
             actions = this.props.actions;
+
         if(user.text && user.author && user.eventDate && user.startDate){
-            actions.buttonSave();
+            (user.id < 0) ? actions.createRecord() : actions.updateRecord();
         } else {
             actions.validateError(user.id);
         }

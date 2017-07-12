@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactDOM from 'react-dom'
 
+//import io from 'socket.io-client';
+
 import Row from './Row.js'
 
 class ViewBar_table extends Component {
@@ -10,14 +12,22 @@ class ViewBar_table extends Component {
             elemTable = ReactDOM.findDOMNode(that.refs['table']),
             isScroll, elemHead;
 
-            if(!elemTable)
-                return;
-            isScroll = elemTable.offsetWidth > elemTable.scrollWidth;
-            elemHead = ReactDOM.findDOMNode(that.refs['viewBar_head']);
+        if (!elemTable)
+            return;
+        isScroll = elemTable.offsetWidth > elemTable.scrollWidth;
+        elemHead = ReactDOM.findDOMNode(that.refs['viewBar_head']);
 
         isScroll ? elemHead.setAttribute('class', 'viewBar_head') : elemHead.setAttribute('class', '');
     }
     componentDidMount() {
+        // var socket = io('http://localhost:3000');
+        // socket.on('news', function (data) {
+        //     console.log(data);
+        //     socket.emit('my other event', { my: 'data' });
+        // });
+        // socket.on('create_data', function (data) {
+        //     console.log(data);
+        // });
         this.addScroll();
     }
     componentDidUpdate() {
@@ -38,7 +48,7 @@ class ViewBar_table extends Component {
             });
         } else {
             return (
-                <div className='viewBar'>
+                <div className='viewBar' >
                     <div className='' ref='viewBar_head'>
                         <table className='viewBar_table' ref='viewBar_table'>
                             <tbody>

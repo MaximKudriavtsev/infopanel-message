@@ -8,21 +8,14 @@ import 'react-widgets/lib/less/react-widgets.less';
 import {DropdownList } from 'react-widgets';
 
 class Author extends Component {
-    
     changeAuthor(e) {
         this.props.actions.changeAuthor(e);
-    }
-
-    componentDidMount() {
-        this.props.actions.userListDownload();
     }
 
     render() {
         let that = this,
             user = that.props.user;
-
         
-        //console.log(messages);
         return <div className='author'>
                 <label className='author-label' unselectable='on'
                 title='Event organizer'>Author</label>

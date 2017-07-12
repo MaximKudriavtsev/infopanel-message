@@ -3,22 +3,30 @@ import * as querys from '../querys/querys';
 //id = -1 default
 //id = -2 validate error for new element
 //id = -3 validate error for edit 
-const initialState = {
-    id:-1,                  
-    text: '',
-    author: 'User156',
-    location: '',
-    eventDate: new Date(),
-    startDate: new Date(),
-    messageAuthor: 'User156',
-    messageDate: '',
-    authorList: [],
-    eventList: '',
-    focusRow: '',
-    dayRange: 0
-};
 
-export default function user(state = initialState, action) {
+function validateRecord(record) {
+    function getCorrectDate(time) {
+        let date,
+            day, month, hours, min,
+            getDay, getMonth, getHours, getMinutes;
+        date = new Date(time);
+        getDay = date.getDate().toString();
+        getMonth = (date.getMonth() + 1).toString();
+        getHours = date.getHours().toString();
+        getMinutes = date.getMinutes().toString();
+
+        day = getDay.length == 1 ? '0' + getDay : getDay;
+        month = getMonth.length == 1 ? '0' + getMonth : getMonth;
+        hours = getHours.length == 1 ? '0' + getHours : getHours;
+        min = getMinutes.length == 1 ? '0' + getMinutes : getMinutes;
+        return (day + '.' + month + '.' + date.getFullYear() + ' ' + hours + ':' + min);
+    }
+    record.correctEventDate = getCorrectDate(record.eventDate);
+    record.correctStartDate = getCorrectDate(record.startDate);
+    return record;
+}
+
+export default function user(state = {}, action) {
     switch (action.type) {
         case 'CHANGE_TEXT': {
             return { ...state, text: action.value }
@@ -35,16 +43,27 @@ export default function user(state = initialState, action) {
         case 'CHANGE_STARTDATE': {
             return { ...state, startDate: action.day, dayRange: action.dayRange }
         }
-        case 'BUTTON_SAVE': {
-            let id;
-            if(state.id < 0) {
-                id = localStorage.length;
-                while (localStorage.getItem(id) != null) id++;
-            } else {
-                id = state.id;
-            }
+        case 'CREATE_RECORD': {
+            let id = 9,
+                data = {
+                    id: id,
+                    text: state.text,
+                    author: state.author,
+                    location: state.location,
+                    eventDate: state.eventDate,
+                    startDate: state.startDate,
+                    messageAuthor: state.messageAuthor,
+                    messageDate: new Date()
+                },
+                eList = state.eventList;
+
+            eList.push(validateRecord(data));
+            querys.createRecord(data);
+            return { ...state, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '', eventList: eList }
+        }
+        case 'UPDATE_RECORD': {
             let data = {
-                id: id,
+                id: state.id,
                 text: state.text,
                 author: state.author,
                 location: state.location,
@@ -54,17 +73,15 @@ export default function user(state = initialState, action) {
                 messageDate: new Date(),
                 dayRange: state.dayRange
             };
-
-            localStorage.setItem(id, JSON.stringify(data));
-            querys.sendData(data);
-            return { ...state, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '', dayRange: 0 }
+            querys.updateRecord(data);
+            return { ...state, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '' }
         }
-        case 'EDIT_ROW_DATA' :{
-            return { ...state, text: action.value.text, author: action.value.author, location:action.value.location, eventDate: new Date(action.value.eventDate), startDate: new Date(action.value.startDate), id:action.value.id, focusRow:action.value.id, dayRange: action.value.dayRange }
+        case 'EDIT_ROW_DATA': {
+            return { ...state, text: action.value.text, author: action.value.author, location: action.value.location, eventDate: new Date(action.value.eventDate), startDate: new Date(action.value.startDate), id: action.value.id, focusRow: action.value.id }
         }
         case 'BUTTON_DELETE': {
-            querys.deleteData({id:state.id});
-            return { ...state, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '', dayRange: 0 }
+            querys.deleteData({ id: state.id });
+            return { ...state, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' }
         }
         case 'BUTTON_CANCEL': {
             return { ...state, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '', dayRange: 0 };
@@ -72,22 +89,32 @@ export default function user(state = initialState, action) {
         case 'SET_ROW_FOCUS': {
             return { ...state, focusRow: action.value };
         }
-        case 'VALIDATE_ERROR':{
-            return {...state, id: (action.value < 0 ? -2 : action.value) }
+        case 'VALIDATE_ERROR': {
+            return { ...state, id: (action.value < 0 ? -2 : action.value) }
         }
         case 'GET_USERS_REQUEST': {
-            return { ...state } 
+            return { ...state }
         }
         case 'GET_USERS_SUCCESS': {
             return { ...state, authorList: action.value }
         }
-
         case 'GET_RECORDS_REQUEST': {
             return { ...state }
         }
-
         case 'GET_RECORDS_SUCCESS': {
             return { ...state, eventList: action.value }
+        }
+        case 'RECORD_DID_UPDATED' : {
+            console.log('Client: record did updated!')
+            return state;
+        }
+        case 'RECORD_DID_CREATED' : {
+            console.log('Client: record did created!')
+            return state;
+        }
+        case 'RECORD_DID_DELETED' : {
+            console.log('Client: record did deleted!')
+            return state;
         }
     }
     return state;
