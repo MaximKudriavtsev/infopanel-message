@@ -96,16 +96,6 @@ app.get('/', function (req, res) {
   });
 });
 
-// app.get('/query_users', function (req, res) {
-//   //query from db
-//   res.send(userList);
-// });
-
-// app.get('/query_user_records', function (req, res) {
-//   //query from db
-//   res.send(userRecords);
-// });
-
 app.post('/update_data', function (req, res, next) {
   res.send('=> /update_data');
   //post query to db
@@ -143,11 +133,4 @@ server.listen(port, function (error) {
 
 io.on('connection', function (socket) {
   console.log("Socket connected: " + socket.id);
-  //socket.emit('news', {data:'good day!'});
-  // io.on('action', function (action) {
-  //   if (action.type === 'server/hello') {
-  //     console.log('Got hello data!', action.data);
-  //     socket.emit('action', { type: 'message', data: 'good day!' });
-  //   }
-  // });
 });
