@@ -1,11 +1,14 @@
 import * as querys from '../querys/querys';
 
+//id = -1 default
+//id = -2 validate error for new element
+//id = -3 validate error for edit 
+
 function validateRecord(record) {
     function getCorrectDate(time) {
         let date,
             day, month, hours, min,
             getDay, getMonth, getHours, getMinutes;
-
         date = new Date(time);
         getDay = date.getDate().toString();
         getMonth = (date.getMonth() + 1).toString();
@@ -35,15 +38,10 @@ export default function user(state = {}, action) {
             return { ...state, location: action.value }
         }
         case 'CHANGE_EVENTDATE': {
-            let date = new Date(action.value);
-            date.setDate(date.getDate() - 5);
-            if (date < new Date()) {
-                date = new Date();
-            }
-            return { ...state, eventDate: action.value, startDate: date }
+            return { ...state, eventDate: action.value, startDate: new Date(), dayRange: 0 }
         }
         case 'CHANGE_STARTDATE': {
-            return { ...state, startDate: action.value }
+            return { ...state, startDate: action.day, dayRange: action.dayRange }
         }
         case 'CREATE_RECORD': {
             let id = 9,
@@ -72,9 +70,9 @@ export default function user(state = {}, action) {
                 eventDate: state.eventDate,
                 startDate: state.startDate,
                 messageAuthor: state.messageAuthor,
-                messageDate: new Date()
+                messageDate: new Date(),
+                dayRange: state.dayRange
             };
-
             querys.updateRecord(data);
             return { ...state, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '' }
         }
@@ -86,7 +84,7 @@ export default function user(state = {}, action) {
             return { ...state, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' }
         }
         case 'BUTTON_CANCEL': {
-            return { ...state, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' };
+            return { ...state, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '', dayRange: 0 };
         }
         case 'SET_ROW_FOCUS': {
             return { ...state, focusRow: action.value };

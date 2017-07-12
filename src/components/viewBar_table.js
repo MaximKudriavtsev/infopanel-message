@@ -39,8 +39,8 @@ class ViewBar_table extends Component {
             template,
             data = that.props.user.eventList,
             clientHeight = document.documentElement.clientHeight,
-            height = clientHeight - 92;
-        if (data) {
+            height = clientHeight - 94;
+        if (data.length) {
             template = data.map(function (item, index) {
                 return (
                     <Row data={item} key={index} id={that.props.user.focusRow} />

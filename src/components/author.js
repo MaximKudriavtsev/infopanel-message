@@ -17,7 +17,8 @@ class Author extends Component {
             user = that.props.user;
         
         return <div className='author'>
-                <label className='author-label' unselectable='on'>Author</label>
+                <label className='author-label' unselectable='on'
+                title='Event organizer'>Author</label>
                 <DropdownList 
                     className='author-dropdownList'
                     data={user.authorList}

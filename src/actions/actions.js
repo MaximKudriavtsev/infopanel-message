@@ -30,10 +30,11 @@ export function changeEventDate(value) {
         value: value
     }
 }
-export function changeStartDate(value) {
+export function changeStartDate(day, dayRange) {
     return {
         type: 'CHANGE_STARTDATE',
-        value: value
+        day: day,
+        dayRange : dayRange
     }
 }
 export function updateRecord() {
