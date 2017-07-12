@@ -73,6 +73,7 @@ const uList = getUsers(userList),
   eList = getRecords(userRecords);
 
 const serverState = {
+  aggregateId:'0',
   id: -1,
   text: '',
   author: 'Max',
