@@ -111,6 +111,8 @@ app.post('/update_data', function (req, res, next) {
   //post query to db
   console.log('=> /update_data');
   console.log(req.body);
+
+  io.emit('action', { type: 'RECORD_DID_UPDATED' });
 });
 
 app.post('/create_data', function (req, res, next) {
@@ -118,6 +120,8 @@ app.post('/create_data', function (req, res, next) {
   //post query to db
   console.log('=> /create_data');
   console.log(req.body);
+
+  io.emit('action', { type: 'RECORD_DID_CREATED' });
 });
 
 app.post('/delete_data', function (req, res, next) {
@@ -125,6 +129,8 @@ app.post('/delete_data', function (req, res, next) {
   //post query to db
   console.log('=> /delete_data');
   console.log(req.body);
+
+  io.emit('action', { type: 'RECORD_DID_DELETED' });
 });
 
 server.listen(port, function (error) {
@@ -135,15 +141,13 @@ server.listen(port, function (error) {
   }
 });
 
-console.log('connection');
-
-io.on('connection', function(socket){
+io.on('connection', function (socket) {
   console.log("Socket connected: " + socket.id);
-  socket.emit('news', {data:'good day!'});
-  socket.on('my other event', function (action) { //если пришле emit = action !
-    console.log(action);
-    if(action.type === 'server/hello'){
-      console.log('Got hello data!', action.data);
-    }
-  });
+  //socket.emit('news', {data:'good day!'});
+  // io.on('action', function (action) {
+  //   if (action.type === 'server/hello') {
+  //     console.log('Got hello data!', action.data);
+  //     socket.emit('action', { type: 'message', data: 'good day!' });
+  //   }
+  // });
 });

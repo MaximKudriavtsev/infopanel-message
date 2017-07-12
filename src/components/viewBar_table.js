@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactDOM from 'react-dom'
 
-import io from 'socket.io-client';
+//import io from 'socket.io-client';
 
 import Row from './Row.js'
 
@@ -20,11 +20,14 @@ class ViewBar_table extends Component {
         isScroll ? elemHead.setAttribute('class', 'viewBar_head') : elemHead.setAttribute('class', '');
     }
     componentDidMount() {
-        var socket = io('http://localhost:3000');
-        socket.on('news', function (data) {
-            console.log(data);
-            socket.emit('my other event', { my: 'data' });
-        });
+        // var socket = io('http://localhost:3000');
+        // socket.on('news', function (data) {
+        //     console.log(data);
+        //     socket.emit('my other event', { my: 'data' });
+        // });
+        // socket.on('create_data', function (data) {
+        //     console.log(data);
+        // });
         this.addScroll();
     }
     componentDidUpdate() {

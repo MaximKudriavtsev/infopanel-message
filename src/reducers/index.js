@@ -25,11 +25,6 @@ function validateRecord(record) {
 
 export default function user(state = {}, action) {
     switch (action.type) {
-        case 'message': {
-            debugger;
-            console.log(action);
-            return {...state, message: action.data }
-        }
         case 'CHANGE_TEXT': {
             return { ...state, text: action.value }
         }
@@ -110,6 +105,18 @@ export default function user(state = {}, action) {
         }
         case 'GET_RECORDS_SUCCESS': {
             return { ...state, eventList: action.value }
+        }
+        case 'RECORD_DID_UPDATED' : {
+            console.log('Client: record did updated!')
+            return state;
+        }
+        case 'RECORD_DID_CREATED' : {
+            console.log('Client: record did created!')
+            return state;
+        }
+        case 'RECORD_DID_DELETED' : {
+            console.log('Client: record did deleted!')
+            return state;
         }
     }
     return state;
