@@ -23,6 +23,8 @@ class StartDate extends Component {
         let that = this,
             user=that.props.user;
         
+        debugger;
+        
         let dates = [
             { id: 30, name: 'Month'},
             { id: 14, name: '2 weeks'},
@@ -32,7 +34,7 @@ class StartDate extends Component {
             { id: 0,  name: 'Now' }
         ],
             name, countOfDisabled = 0,
-            days = Math.floor((user.eventDate.getTime() - new Date().getTime()) / 3600 / 1000 / 24);
+            days = Math.floor((new Date(user.eventDate).getTime() - new Date().getTime()) / 3600 / 1000 / 24);
 
         if(days < 0 ) {
             countOfDisabled = dates.length - 1;
