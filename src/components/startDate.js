@@ -23,8 +23,6 @@ class StartDate extends Component {
         let that = this,
             user=that.props.user;
         
-        debugger;
-        
         let dates = [
             { id: 30, name: 'Month'},
             { id: 14, name: '2 weeks'},
