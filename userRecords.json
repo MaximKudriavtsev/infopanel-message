@@ -7,27 +7,30 @@
             "eventDate": "2017-07-07T09:39:07.359Z",
             "startDate": "2017-07-07T01:39:07.359Z",
             "messageAuthor": "User156",
-            "messageDate": "2017-07-07T09:39:07.359Z"
+            "messageDate": "2017-07-07T09:39:07.359Z",
+            "dayRange":0
     },
     "1": {  
             "id": "1",
             "text": "Лекция",
             "author": "M. Kudryavtsev",
             "location": "Кухня",
-            "eventDate": "2017-07-07T09:09:07.359Z",
-            "startDate": "2017-07-07T09:00:07.359Z",
+            "eventDate": "2017-07-18T13:34:24.088Z",
+            "startDate": "2017-07-14T21:00:24.088Z",
             "messageAuthor": "User156",
-            "messageDate": "2017-07-07T09:39:07.359Z"
+            "messageDate": "2017-07-07T09:39:07.359Z",
+            "dayRange":3
     },
     "2": {  
             "id": "2",
             "text": "Подтягивания",
             "author": "Tugolukov",
             "location": "Спортзал",
-            "eventDate": "2017-07-07T09:09:07.359Z",
-            "startDate": "2017-07-07T09:39:07.359Z",
+            "eventDate": "2017-08-18T13:34:24.088Z",
+            "startDate": "2017-07-24T21:00:24.088Z",
             "messageAuthor": "User156",
-            "messageDate": "2017-07-07T09:39:07.359Z"
+            "messageDate": "2017-07-07T09:39:07.359Z",
+            "dayRange":30
     },
     "3": {  
             "id": "3",

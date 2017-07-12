@@ -34,7 +34,8 @@ class EventDate extends Component {
         let that = this;
             
         return <div className='eventDate'>
-                <label className='eventDate-label' unselectable='on'>Date of event</label> 
+                <label className='eventDate-label' unselectable='on'
+                title="Select the date when event will be">Date of event</label> 
                 <DateTimePicker 
                     min={new Date()}
                     defaultValue={new Date()}

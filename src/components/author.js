@@ -24,7 +24,8 @@ class Author extends Component {
         
         //console.log(messages);
         return <div className='author'>
-                <label className='author-label' unselectable='on'>Author</label>
+                <label className='author-label' unselectable='on'
+                title='Event organizer'>Author</label>
                 <DropdownList 
                     className='author-dropdownList'
                     data={user.authorList}
