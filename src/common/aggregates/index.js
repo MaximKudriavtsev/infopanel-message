@@ -1,3 +1,3 @@
-import messageService from './messageService'
+import record from './record'
 
-export default [messageService];
+export default [record];

@@ -1,3 +1,5 @@
+//require('babel-core/register');
+//require('./server');
 var webpack = require('webpack');
 var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
@@ -30,6 +32,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 //   next();
 // });
+var event_store = require('./src/store/event_store');
+var subscribe = event_store.subscribe;
+var eventStore = event_store.eventStore;
+var config = require('./resolve.config.js');
+import commandHandler from 'resolve-command';
+import query from 'resolve-query';
+
+const executeQuery = query({
+  eventStore,
+  projections: config.queries
+});
+
+const executeCommand = commandHandler({
+  eventStore,
+  aggregates: config.aggregates
+});
 
 function getUsers(data) {
   var usersList = [];
@@ -97,6 +115,25 @@ app.get('/', function (req, res) {
   });
 });
 
+app.get('/api/queries/:queryName', (req, res) => {
+  executeQuery(req.params.queryName)
+    .then(state => res.status(200).json(state))
+    .catch(err => {
+      res.status(500).end('Query error: ' + err.message);
+      console.log(err);
+    });
+});
+
+app.post('/api/commands', function (req, res) {
+  executeCommand(req.body)
+    .then(function() {
+      res.status(200).send('ok');
+  }).catch(function(err) {
+      res.status(500).end('Command error:' + err.message);
+      console.log(err);
+    });
+});
+
 // app.get('/query_users', function (req, res) {
 //   //query from db
 //   res.send(userList);
@@ -116,14 +153,14 @@ app.post('/update_data', function (req, res, next) {
   io.emit('action', { type: 'RECORD_DID_UPDATED' });
 });
 
-app.post('/create_data', function (req, res, next) {
-  res.send('=> /create_data');
-  //post query to db
-  console.log('=> /create_data');
-  console.log(req.body);
+// app.post('/create_data', function (req, res, next) {
+//   res.send('=> /create_data');
+//   //post query to db
+//   console.log('=> /create_data');
+//   console.log(req.body);
 
-  io.emit('action', { type: 'RECORD_DID_CREATED' });
-});
+//   io.emit('action', { type: 'RECORD_DID_CREATED' });
+// });
 
 app.post('/delete_data', function (req, res, next) {
   res.send('=> /delete_data');
@@ -151,4 +188,11 @@ io.on('connection', function (socket) {
   //     socket.emit('action', { type: 'message', data: 'good day!' });
   //   }
   // });
+  const eventsNames = Object.keys(config.events).map(function(key) {
+    config.events[key];
+  });
+  const unsubscribe = subscribe(eventsNames, function(event){
+    socket.emit('event', JSON.stringify(event));
+  });
+  socket.on('disconnect', unsubscribe);
 });

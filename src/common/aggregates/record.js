@@ -27,7 +27,7 @@ const Aggregate = {
   },
   commands: {
     addRecord:(state: any, command: RecordAdded) => {
-      new Event(RECORD_ADDED, {
+      return new Event(RECORD_ADDED, {
           record: command.payload.record
         })
     },
