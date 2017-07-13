@@ -2,97 +2,90 @@
   "type": "recordAdded",
   "payload": {
     "record": {
-      "aggregateId": "-1",
-      "id": -1,
-      "text": "",
-      "author": "",
-      "location": "",
-      "eventDate": "",
-      "startDate": "",
-      "messageAuthor": "",
-      "messageDate": "",
-      "focusRow": ""
-    }
-  },
-  "aggregateId": "1",
-  "timestamp": 1499950337278
-},{
-  "type": "recordUpdated",
-  "payload": {
-    "record": {
-      "aggregateId": "1",
-      "id": -1,
       "text": "123",
       "author": "Max",
       "location": "123",
       "eventDate": "2017-07-13T12:53:49.241Z",
       "startDate": "2017-07-13T12:53:49.241Z",
       "messageAuthor": "Max",
-      "messageDate": "123",
-      "focusRow": "123"
+      "messageDate": "123"
     }
   },
   "aggregateId": "1",
-  "timestamp": 1499950429296
+  "timestamp": 1499961152163
 },{
   "type": "recordAdded",
   "payload": {
     "record": {
-      "aggregateId": "2",
-      "id": -1,
-      "text": "123",
-      "author": "Max",
-      "location": "123",
-      "eventDate": "241Z",
-      "startDate": "241Z",
-      "messageAuthor": "Dima",
-      "messageDate": "123",
-      "focusRow": "123"
+      "text": " ",
+      "author": " ",
+      "location": " ",
+      "eventDate": "0",
+      "startDate": "0",
+      "messageAuthor": " ",
+      "messageDate": "0"
     }
   },
   "aggregateId": "2",
-  "timestamp": 1499950337278
+  "timestamp": 1499961152167
+},{
+  "type": "recordUpdated",
+  "payload": {
+    "record": {
+      "text": " ",
+      "author": " ",
+      "location": " ",
+      "eventDate": "0",
+      "startDate": "0",
+      "messageAuthor": " ",
+      "messageDate": "0"
+    }
+  },
+  "aggregateId": "2",
+  "timestamp": 1499961152167
 },{
   "type": "recordAdded",
   "payload": {
     "record": {
-      "aggregateId": "3",
-      "id": 0,
-      "text": "Практика по js",
-      "author": "Dmitry Koshkin",
-      "location": "Дисплейный зал",
-      "eventDate": "2017-07-07T09:39:07.359Z",
-      "startDate": "2017-07-10T09:39:07.359Z",
-      "messageAuthor": "User156",
-      "messageDate": "2017-07-07T09:39:07.359Z",
-      "focusRow": "123"
+      "text": "123",
+      "author": "Max",
+      "location": "123",
+      "eventDate": "2017-07-13T12:53:49.241Z",
+      "startDate": "2017-07-13T12:53:49.241Z",
+      "messageAuthor": "Max",
+      "messageDate": "123"
     }
   },
-  "aggregateId": "3",
-  "timestamp": 1499950337278
+  "aggregateId": "1",
+  "timestamp": 1499961162602
 },{
   "type": "recordAdded",
   "payload": {
     "record": {
-      "aggregateId": "-1",
-      "id": -1,
-      "text": "",
-      "author": "",
-      "location": "",
-      "eventDate": "",
-      "startDate": "",
-      "messageAuthor": "",
-      "messageDate": "",
-      "focusRow": ""
+      "text": " ",
+      "author": " ",
+      "location": " ",
+      "eventDate": "0",
+      "startDate": "0",
+      "messageAuthor": " ",
+      "messageDate": "0"
     }
   },
-  "aggregateId": "4",
-  "timestamp": 1499950337278
+  "aggregateId": "2",
+  "timestamp": 1499961162602
 },{
-  "type": "recordDeleted",
+  "type": "recordUpdated",
   "payload": {
-    "id": "4"
+    "record": {
+      "text": " ",
+      "author": " ",
+      "location": " ",
+      "eventDate": "0",
+      "startDate": "0",
+      "messageAuthor": " ",
+      "messageDate": "0"
+    }
   },
-  "aggregateId": "4",
-  "timestamp": 1499950337278
+  "aggregateId": "2",
+  "timestamp": 1499961162603
 },
