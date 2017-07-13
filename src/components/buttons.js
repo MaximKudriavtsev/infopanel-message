@@ -1,59 +1,54 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
-import * as actions from '../actions/actions';
-
-class Buttons extends Component {
+export default class Buttons extends Component {
     onButtonSave() {
-        let user    = this.props.user,
-            actions = this.props.actions;
+        let that = this,
+            client = that.props.client,
+            actions = that.props.actions,
+            data = {
+                text: client.text,
+                author: client.author,
+                location: client.location,
+                eventDate: client.eventDate,
+                startDate: client.startDate,
+                messageAuthor: client.messageAuthor,
+                messageDate: client.messageDate,
+            },
+            id = 1;
 
-        if(user.text && user.author && user.eventDate && user.startDate){
-            (user.id < 0) ? actions.createRecord() : actions.updateRecord();
+        if (client.text && client.author && client.eventDate && client.startDate) {
+            (client.id < 0) ? actions.createRecord(id, data) : actions.updateRecord(id, data);
         } else {
-            actions.validateError(user.id);
+            actions.validateError(client.id);
         }
     }
     onButtonDelete(){
-        this.props.actions.buttonDelete(this.props.user.id);
+        this.props.actions.buttonDelete(this.props.id);
     }
-    onButtonCancel(){
+    onButtonCancel() {
         this.props.actions.buttonCancel();
     }
     render() {
         let that = this,
-          user = that.props.user,
-          idUser = user.id;
+            client = that.props.client,
+            idUser = client.id;
 
         return <div className='buttons'>
-                <button className={idUser >= 0 ? 'buttons-buttonDelete' : 'none' }
-                    onClick={:: that.onButtonDelete}
-                    unselectable='on'> 
-                    Delete
-                </button>
-                <button className={idUser >= 0 ? 'buttons-buttonCancel' : 'none' }
-                    onClick={:: that.onButtonCancel}
-                    unselectable='on'> 
-                    Cancel
-                </button>
-                <button className='buttons-buttonSave' 
-                  onClick={:: that.onButtonSave}
-                  unselectable='on'> 
-                    { idUser < 0 ? 'Create' : 'Save' }
-                </button>
-            </div>
+            <button className={idUser >= 0 ? 'buttons-buttonDelete' : 'none' }
+                onClick={:: that.onButtonDelete}
+                unselectable='on'> 
+                Delete
+            </button>
+            <button className={idUser >= 0 ? 'buttons-buttonCancel' : 'none' }
+                onClick={:: that.onButtonCancel}
+                unselectable='on'> 
+                Cancel
+            </button>
+            <button className='buttons-buttonSave' 
+                onClick={:: that.onButtonSave}
+                unselectable='on'> 
+                { idUser < 0 ? 'Create' : 'Save' }
+            </button>
+        </div>
     }
 }
-
-function mapStateToProps(state) {
-    return {
-        user: state
-    };
-}
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators(actions, dispatch)
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Buttons);

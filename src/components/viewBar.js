@@ -1,49 +1,38 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import ReactDOM from 'react-dom'
-
-//import io from 'socket.io-client';
 
 import Row from './Row.js'
 
-class ViewBar_table extends Component {
+export default class ViewBar extends Component {
     addScroll() {
         let that = this,
             elemTable = ReactDOM.findDOMNode(that.refs['table']),
             isScroll, elemHead;
 
-        if (!elemTable)
-            return;
+        if (!elemTable) return;
+
         isScroll = elemTable.offsetWidth > elemTable.scrollWidth;
         elemHead = ReactDOM.findDOMNode(that.refs['viewBar_head']);
 
         isScroll ? elemHead.setAttribute('class', 'viewBar_head') : elemHead.setAttribute('class', '');
     }
     componentDidMount() {
-        // var socket = io('http://localhost:3000');
-        // socket.on('news', function (data) {
-        //     console.log(data);
-        //     socket.emit('my other event', { my: 'data' });
-        // });
-        // socket.on('create_data', function (data) {
-        //     console.log(data);
-        // });
         this.addScroll();
     }
     componentDidUpdate() {
         this.addScroll();
     }
-
     render() {
         let that = this,
             template,
-            data = that.props.user.eventList,
+            data = that.props.eventList,
             clientHeight = document.documentElement.clientHeight,
             height = clientHeight - 94;
+
         if (data.length) {
             template = data.map(function (item, index) {
                 return (
-                    <Row data={item} key={index} id={that.props.user.focusRow} />
+                    <Row data={item} key={index} id={that.props.focusRow} actions={that.props.actions}/>
                 )
             });
         } else {
@@ -91,9 +80,3 @@ class ViewBar_table extends Component {
         )
     }
 }
-function mapStateToProps(state) {
-    return {
-        user: state
-    };
-}
-export default connect(mapStateToProps, null)(ViewBar_table);
