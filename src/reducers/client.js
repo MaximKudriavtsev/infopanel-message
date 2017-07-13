@@ -26,14 +26,8 @@ function validateRecord(record) {
     return record;
 }
 
-export default function user(state = {}, action) {
-    console.log('in red');
-    console.log(action);
+export default function client(state = {}, action) {
     switch (action.type) {
-        case 'addRecord': {
-            console.log('in case');
-            return state;
-        }
         case 'CHANGE_TEXT': {
             return { ...state, text: action.value }
         }

@@ -91,18 +91,20 @@ const uList = getUsers(userList),
   eList = getRecords(userRecords);
 
 const serverState = {
-  aggregateId:'0',
-  id: -1,
-  text: '',
-  author: 'Max',
-  location: '',
-  eventDate: new Date(),
-  startDate: new Date(),
-  messageAuthor: 'Max',
-  messageDate: '',
-  authorList: getUsers(userList),
-  eventList: getRecords(userRecords),
-  focusRow: ''
+  client: {
+    aggregateId: '0',
+    id: -1,
+    text: '',
+    author: 'Max',
+    location: '',
+    eventDate: new Date(),
+    startDate: new Date(),
+    messageAuthor: 'Max',
+    messageDate: '',
+    authorList: getUsers(userList),
+    eventList: getRecords(userRecords),
+    focusRow: ''
+  }
 }
 
 app.get('/', function (req, res) {
@@ -126,9 +128,9 @@ app.get('/api/queries/:queryName', (req, res) => {
 
 app.post('/api/commands', function (req, res) {
   executeCommand(req.body)
-    .then(function() {
+    .then(function () {
       res.status(200).send('ok');
-  }).catch(function(err) {
+    }).catch(function (err) {
       res.status(500).end('Command error:' + err.message);
       console.log(err);
     });
@@ -188,10 +190,10 @@ io.on('connection', function (socket) {
   //     socket.emit('action', { type: 'message', data: 'good day!' });
   //   }
   // });
-  const eventsNames = Object.keys(config.events).map(function(key) {
+  const eventsNames = Object.keys(config.events).map(function (key) {
     config.events[key];
   });
-  const unsubscribe = subscribe(eventsNames, function(event){
+  const unsubscribe = subscribe(eventsNames, function (event) {
     socket.emit('event', JSON.stringify(event));
   });
   socket.on('disconnect', unsubscribe);
