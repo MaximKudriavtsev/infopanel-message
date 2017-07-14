@@ -1,31 +1,6 @@
-import * as querys from '../querys/querys';
-
 //id = -1 default
 //id = -2 validate error for new element
 //id = -3 validate error for edit 
-
-function validateRecord(record) {
-    function getCorrectDate(time) {
-        let date,
-            day, month, hours, min,
-            getDay, getMonth, getHours, getMinutes;
-        date = new Date(time);
-        getDay = date.getDate().toString();
-        getMonth = (date.getMonth() + 1).toString();
-        getHours = date.getHours().toString();
-        getMinutes = date.getMinutes().toString();
-
-        day = getDay.length == 1 ? '0' + getDay : getDay;
-        month = getMonth.length == 1 ? '0' + getMonth : getMonth;
-        hours = getHours.length == 1 ? '0' + getHours : getHours;
-        min = getMinutes.length == 1 ? '0' + getMinutes : getMinutes;
-        return (day + '.' + month + '.' + date.getFullYear() + ' ' + hours + ':' + min);
-    }
-    record.correctEventDate = getCorrectDate(record.eventDate);
-    record.correctStartDate = getCorrectDate(record.startDate);
-    return record;
-}
-
 export default function client(state = {}, action) {
     switch (action.type) {
         case 'CHANGE_TEXT': {
@@ -44,41 +19,17 @@ export default function client(state = {}, action) {
             return { ...state, startDate: action.day, dayRange: action.dayRange }
         }
         case 'CREATE_BUTTON': {
-            let id = 9,
-                data = {
-                    id: id,
-                    text: state.text,
-                    author: state.author,
-                    location: state.location,
-                    eventDate: state.eventDate,
-                    startDate: state.startDate,
-                    messageAuthor: state.messageAuthor,
-                    messageDate: new Date()
-                },
-                eList = state.eventList;
-
-            eList = eList.concat(validateRecord(data));
-            return { ...state, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '', eventList: eList }
+            let id = ++state.aggregateId;
+            return { ...state,aggregateId: id, dayRange: 0, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '' }
         }
         case 'UPDATE_BUTTON': {
-            let data = {
-                id: state.id,
-                text: state.text,
-                author: state.author,
-                location: state.location,
-                eventDate: state.eventDate,
-                startDate: state.startDate,
-                messageAuthor: state.messageAuthor,
-                messageDate: new Date(),
-                dayRange: state.dayRange
-            };
-            return { ...state, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '' }
+            return { ...state, text: '',dayRange: 0, author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '' }
         }
         case 'DELETE_BUTTON': {
-            return { ...state, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' }
+            return { ...state, dayRange: 0, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' }
         }
         case 'CANCEL_BUTTON': {
-            return { ...state, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '', dayRange: 0 };
+            return { ...state, dayRange: 0, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '', dayRange: 0 };
         }
         case 'EDIT_ROW_DATA': {
             return { ...state, text: action.value.text, author: action.value.author, location: action.value.location, eventDate: new Date(action.value.eventDate), startDate: new Date(action.value.startDate), id: action.value.id, focusRow: action.value.id }
@@ -88,18 +39,6 @@ export default function client(state = {}, action) {
         }
         case 'VALIDATE_ERROR': {
             return { ...state, id: (action.value < 0 ? -2 : action.value) }
-        }
-        case 'RECORD_DID_UPDATED' : {
-            console.log('Client: record did updated!')
-            return state;
-        }
-        case 'RECORD_DID_CREATED' : {
-            console.log('Client: record did created!')
-            return state;
-        }
-        case 'RECORD_DID_DELETED' : {
-            console.log('Client: record did deleted!')
-            return state;
         }
     }
     return state;
