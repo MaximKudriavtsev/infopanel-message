@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import getCorrectDate from './../func/validationTime';
+
 export default class Buttons extends Component {
     onButtonSave() {
         let that = this,
@@ -13,11 +15,14 @@ export default class Buttons extends Component {
                 startDate: client.startDate,
                 messageAuthor: client.messageAuthor,
                 messageDate: client.messageDate,
+                correctEventDate : getCorrectDate(client.eventDate),
+                correctStartDate : getCorrectDate(client.startDate)
             },
-            id = 1;
+            id = client.aggregateId;
 
         if (client.text && client.author && client.eventDate && client.startDate) {
             if(client.id < 0) {
+                console.log(id);
                 actions.addRecord(id, {record: data });
                 actions.createButton();
             } else {
@@ -29,8 +34,11 @@ export default class Buttons extends Component {
         }
     }
     onButtonDelete(){
-        this.props.actions.deleteRecord(this.props.id);
-        this.props.actions.deleteButton();
+        let props = this.props,
+            id = props.id;
+
+        props.actions.deleteRecord(id);
+        props.actions.deleteButton();
     }
     onButtonCancel() {
         this.props.actions.cancelButton();
