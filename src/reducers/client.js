@@ -58,7 +58,7 @@ export default function client(state = {}, action) {
                 eList = state.eventList;
 
             eList.push(validateRecord(data));
-            querys.createRecord(data);
+            // querys.createRecord(data);
             return { ...state, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '', eventList: eList }
         }
         case 'UPDATE_RECORD': {
@@ -73,14 +73,13 @@ export default function client(state = {}, action) {
                 messageDate: new Date(),
                 dayRange: state.dayRange
             };
-            querys.updateRecord(data);
+            // querys.updateRecord(data);
             return { ...state, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '' }
         }
         case 'EDIT_ROW_DATA': {
             return { ...state, text: action.value.text, author: action.value.author, location: action.value.location, eventDate: new Date(action.value.eventDate), startDate: new Date(action.value.startDate), id: action.value.id, focusRow: action.value.id }
         }
         case 'BUTTON_DELETE': {
-            querys.deleteData({ id: state.id });
             return { ...state, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' }
         }
         case 'BUTTON_CANCEL': {

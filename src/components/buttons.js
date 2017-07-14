@@ -14,16 +14,16 @@ export default class Buttons extends Component {
                 messageAuthor: client.messageAuthor,
                 messageDate: client.messageDate,
             },
-            id = 1;
+            id = 777;
 
         if (client.text && client.author && client.eventDate && client.startDate) {
-            (client.id < 0) ? actions.createRecord(id, data) : actions.updateRecord(id, data);
+            (client.id < 0) ? actions.addRecord(id, {record: data }) : actions.updateRecord(id, data);
         } else {
             actions.validateError(client.id);
         }
     }
     onButtonDelete(){
-        this.props.actions.buttonDelete(this.props.id);
+        this.props.actions.deleteRecord(this.props.id);
     }
     onButtonCancel() {
         this.props.actions.buttonCancel();
