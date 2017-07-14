@@ -51,12 +51,14 @@ app.get('/', function (req, res) {
       return console.log(err);
     }
     executeQuery('records').then(state => {
-        let aggregateId = 1,
+        let aggregateId = 0,
           serverState;
+          //create client global id! new aggregate id
         for(var key in state.records) {
           if(state.records[key].aggregateId > aggregateId)
             aggregateId = state.records[key].aggregateId;
         }
+        ++aggregateId;
         serverState = {
           server: state,
           client: {
@@ -70,7 +72,8 @@ app.get('/', function (req, res) {
             messageDate: '',
             authorList: getUsers(userList),
             focusRow: '',
-            aggregateId: aggregateId
+            aggregateId: aggregateId,
+            dayRange: 0
           }
         }
 

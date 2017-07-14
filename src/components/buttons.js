@@ -14,19 +14,20 @@ export default class Buttons extends Component {
                 eventDate: client.eventDate,
                 startDate: client.startDate,
                 messageAuthor: client.messageAuthor,
-                messageDate: client.messageDate,
+                messageDate: new Date(),
                 correctEventDate : getCorrectDate(client.eventDate),
                 correctStartDate : getCorrectDate(client.startDate)
             },
-            id = client.aggregateId;
+            id = client.aggregateId,
+            currId = client.focusRow;
 
+            debugger;
         if (client.text && client.author && client.eventDate && client.startDate) {
             if(client.id < 0) {
-                console.log(id);
                 actions.addRecord(id, {record: data });
                 actions.createButton();
             } else {
-                actions.updateRecord(id, {record: data});
+                actions.updateRecord(currId, {record: data});
                 actions.updateButton();
             }
         } else {
@@ -34,8 +35,9 @@ export default class Buttons extends Component {
         }
     }
     onButtonDelete(){
-        let props = this.props,
-            id = props.id;
+        let props = this.props, 
+            client = props.client,
+            id = client.focusRow;
 
         props.actions.deleteRecord(id);
         props.actions.deleteButton();
