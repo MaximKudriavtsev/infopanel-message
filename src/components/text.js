@@ -31,7 +31,7 @@ class Text extends Component {
     }
     changeText(e) {
         let text = e.target.value.trim();
-        this.validate(text);
+        //this.validate(text);
 
         
         this.props.actions.changeText(text);
