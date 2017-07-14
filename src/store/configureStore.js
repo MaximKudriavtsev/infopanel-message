@@ -17,7 +17,9 @@ function initSocketIO(store) {
   const socketIO = socketIOClient('/');
   //let socketIoMiddleware = createSocketIoMiddleware(socketIO, 'server/');
 
-  socketIO.on('event', event => store.dispatch(JSON.parse(event)));
+  socketIO.on('event', event => {
+    store.dispatch(JSON.parse(event))
+  });
   socketIO.on('disconnect', () => {
     socketIOFailCount++;
     if (socketIOFailCount > CRITICAL_LEVEL) {

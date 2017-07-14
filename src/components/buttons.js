@@ -14,19 +14,26 @@ export default class Buttons extends Component {
                 messageAuthor: client.messageAuthor,
                 messageDate: client.messageDate,
             },
-            id = 777;
+            id = 1;
 
         if (client.text && client.author && client.eventDate && client.startDate) {
-            (client.id < 0) ? actions.addRecord(id, {record: data }) : actions.updateRecord(id, data);
+            if(client.id < 0) {
+                actions.addRecord(id, {record: data });
+                actions.createButton();
+            } else {
+                actions.updateRecord(id, {record: data});
+                actions.updateButton();
+            }
         } else {
             actions.validateError(client.id);
         }
     }
     onButtonDelete(){
         this.props.actions.deleteRecord(this.props.id);
+        this.props.actions.deleteButton();
     }
     onButtonCancel() {
-        this.props.actions.buttonCancel();
+        this.props.actions.cancelButton();
     }
     render() {
         let that = this,

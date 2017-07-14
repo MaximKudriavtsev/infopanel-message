@@ -20,25 +20,22 @@ export default {
         day: day,
         dayRange: dayRange
     }),
-    updateRecord: () => ({
-        type: 'UPDATE_RECORD'
+    updateButton: () => ({
+        type: 'UPDATE_BUTTON'
     }),
-    createRecord: () => ({
-        type: 'CREATE_RECORD'
+    createButton: () => ({
+        type: 'CREATE_BUTTON'
     }),
-    buttonSave: () => ({
-        type: 'BUTTON_SAVE'
+    deleteButton: (value) => ({
+        type: 'DELETE_BUTTON',
+        value: value
+    }),
+    cancelButton: () => ({
+        type: 'CANCEL_BUTTON'
     }),
     editRowData: (value) => ({
         type: 'EDIT_ROW_DATA',
         value: value
-    }),
-    buttonDelete: (value) => ({
-        type: 'BUTTON_DELETE',
-        value: value
-    }),
-    buttonCancel: () => ({
-        type: 'BUTTON_CANCEL'
     }),
     setRowFocus: (value) => ({
         type: 'SET_ROW_FOCUS',

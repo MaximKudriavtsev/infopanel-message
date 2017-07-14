@@ -94,7 +94,10 @@ function getRecords(data) {
 const uList = getUsers(userList),
   eList = getRecords(userRecords);
 
+const [ records ] = config.queries;
+
 const serverState = {
+  server: records.initialState,
   client: {
     aggregateId: '0',
     id: -1,
@@ -127,7 +130,7 @@ app.get('/api/queries/:queryName', (req, res) => {
     console.log("get");
 
     executeQuery(req.params.queryName)
-      .then(state => res.status(200).json(state))
+      .then(state => {console.log(req.params.queryName); res.status(200).json(state) })
       .catch(err => {
         res.status(500).end('Query error: ' + err.message);
         console.log(err);
@@ -231,9 +234,11 @@ io.on('connection', function (socket) {
   //   }
   // });
   const eventsNames = Object.keys(config.events).map(function (key) {
-    config.events[key];
+    return config.events[key];
   });
+  console.log(eventsNames);
   const unsubscribe = subscribe(eventsNames, function (event) {
+    console.log(event);
     socket.emit('event', JSON.stringify(event));
   });
   socket.on('disconnect', unsubscribe);
