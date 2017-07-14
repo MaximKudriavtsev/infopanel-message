@@ -22,9 +22,6 @@ export type RecordUpdate = {
 
 export type RecordDeleted = {
   aggregateId: string;
-  payload: {
-    id: string;
-  };
 };
 
 export type RecordCompleted = {

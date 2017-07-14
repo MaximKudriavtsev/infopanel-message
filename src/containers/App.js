@@ -8,6 +8,7 @@ import EditBar from './EditBar';
 import TitleBar from '../components/TitleBar';
 import ViewBar from '../components/ViewBar';
 
+//import userList from '../../userList'
 class App extends Component {
   render() {
 // var tmp = {
@@ -48,6 +49,7 @@ class App extends Component {
 // }
 //     this.props.appActions.updateRecord('2', tmp);
 //     debugger;
+// getUserList();
 
     let that  = this,
       props   = that.props,

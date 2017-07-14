@@ -12,7 +12,7 @@ var io = new (require('socket.io'))(server);
 
 var port = 3000;
 
-var userList = require('./userList.json');
+//var userList = require('./userList.json');
 var userRecords = require('./userRecords.json');
 
 var compiler = webpack(config);
@@ -90,79 +90,78 @@ function getRecords(data) {
   }
   return recordList;
 }
-
-const uList = getUsers(userList),
-  eList = getRecords(userRecords);
-
-const [ records ] = config.queries;
-
-const serverState = {
-  server: records.initialState,
-  client: {
-    id: '',
-    text: '',
-    author: 'Max',
-    location: '',
-    eventDate: new Date(),
-    startDate: new Date(),
-    messageAuthor: 'Max',
-    messageDate: '',
-    authorList: getUsers(userList),
-    eventList: getRecords(userRecords),
-    focusRow: ''
-  }
+const findUsers = function (db, callback) {
+  return db.collection('userList')
+    .find({ corName: 'userList' })
+    .toArray();
 }
 
+function users() {
+  MongoClient.connect(config.storage.params.url, function (err, db) {
+    assert.equal(null, err);
+    console.log("Connected correctly to server");
+
+    let userList = findUsers(db, db.close());
+
+    console.log(userList + ' after db');
+
+    console.log('db disconect');
+
+    return userList;
+  });
+}
 app.get('/', function (req, res) {
   fs.readFile('./index.html', 'utf8', function (err, data) {
     if (err) {
       return console.log(err);
     }
     executeQuery('records').then(state => {
-        let serverState = {
-          server: state,
-          client: {
-            id: '',
-            text: '',
-            author: 'Max',
-            location: '',
-            eventDate: new Date(),
-            startDate: new Date(),
-            messageAuthor: 'Max',
-            messageDate: '',
-            authorList: getUsers(userList),
-            focusRow: ''
-          }
-        }
 
-        var result = data.replace(/{{PRELOADED_STATE}}/g, JSON.stringify(serverState));
-        res.send(result);
-      }).catch(err => {
-        console.log('Query error: ' + err.message);
-        console.log(err);
-      });
+      let serverState = {
+        server: state,
+        client: {
+          id: '',
+          text: '',
+          author: 'Max',
+          location: '',
+          eventDate: new Date(),
+          startDate: new Date(),
+          messageAuthor: 'Max',
+          messageDate: '',
+          //authorList: getUsers(userList),
+          authorList: users(),
+          focusRow: ''
+        }
+      }
+
+      var result = data.replace(/{{PRELOADED_STATE}}/g, JSON.stringify(serverState));
+      res.send(result);
+    }).catch(err => {
+      console.log('Query error: ' + err.message);
+      console.log(err);
+    });
   });
 });
 
 app.get('/api/queries/:queryName', (req, res) => {
-    console.log("get");
-    executeQuery(req.params.queryName)
-      .then(state => {console.log(req.params.queryName); res.status(200).json(state) })
-      .catch(err => {
-        res.status(500).end('Query error: ' + err.message);
-        console.log(err);
-      });
+  console.log("get");
+  executeQuery(req.params.queryName)
+    .then(state => { console.log(req.params.queryName); res.status(200).json(state) })
+    .catch(err => {
+      res.status(500).end('Query error: ' + err.message);
+      console.log(err);
+    });
 });
 
 app.post('/api/commands', function (req, res) {
-   console.log("post");
-    executeCommand(req.body)
-      .then(function () {
-        res.status(200).send('ok');
-      }).catch(function (err) {
-        res.status(500).end('Command error:' + err.message);
-        console.log(err);
-      });
+  console.log("post");
+  executeCommand(req.body)
+    .then(function () {
+      res.status(200).send('ok');
+    }).catch(function (err) {
+      res.status(500).end('Command error:' + err.message);
+      console.log(err);
+    });
 });
 
 // app.get('/query_users', function (req, res) {
