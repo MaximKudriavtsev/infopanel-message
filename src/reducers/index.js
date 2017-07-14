@@ -5,9 +5,9 @@ import recordsProjection from '../common/read-models/records';
 import client from './client';
 
 const { name, eventHandlers } = recordsProjection;
-const server = createReducer({ name, eventHandlers });
+export default createReducer({ name, eventHandlers });
 
-export default combineReducers({
-  server,
-  client
-});
+// export default combineReducers({
+//   server,
+//   client
+// });

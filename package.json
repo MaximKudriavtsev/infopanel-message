@@ -51,7 +51,8 @@
     "resolve-bus": "^0.0.5",
     "resolve-bus-memory":"^0.0.5",
     "resolve-storage-file":"^0.0.5",
-    "resolve-query":"^0.0.5"
+    "resolve-query":"^0.0.5",
+    "resolve-storage-mongo":"^0.0.5"
   },
   "dependencies": {
     "react": "15.3.1",

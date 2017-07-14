@@ -20,6 +20,7 @@ export default class Text extends Component {
         let text = e.target.value.trim(),
             that = this;
 
+
         that.validate(text);
         that.props.actions.changeText(text);
     }
