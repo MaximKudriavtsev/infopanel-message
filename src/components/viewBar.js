@@ -30,9 +30,9 @@ export default class ViewBar extends Component {
             height = clientHeight - 94;
 
         if (data.length) {
-            template = data.map(function (item, index) {
+            template = data.map(({record: item, aggregateId: aggregateId }, index) => {
                 return (
-                    <Row data={item} key={index} id={that.props.focusRow} actions={that.props.actions}/>
+                    <Row data={item} key={index} aggregateId={aggregateId} focusId={that.props.focusRow} actions={that.props.actions}/>
                 )
             });
         } else {

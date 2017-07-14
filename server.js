@@ -99,8 +99,7 @@ const [ records ] = config.queries;
 const serverState = {
   server: records.initialState,
   client: {
-    aggregateId: '0',
-    id: -1,
+    id: '',
     text: '',
     author: 'Max',
     location: '',
@@ -119,31 +118,43 @@ app.get('/', function (req, res) {
     if (err) {
       return console.log(err);
     }
-    var result = data.replace(/{{PRELOADED_STATE}}/g, JSON.stringify(serverState));
-    res.send(result);
+    executeQuery('records').then(state => {
+        let serverState = {
+          server: state,
+          client: {
+            id: '',
+            text: '',
+            author: 'Max',
+            location: '',
+            eventDate: new Date(),
+            startDate: new Date(),
+            messageAuthor: 'Max',
+            messageDate: '',
+            authorList: getUsers(userList),
+            focusRow: ''
+          }
+        }
+
+        var result = data.replace(/{{PRELOADED_STATE}}/g, JSON.stringify(serverState));
+        res.send(result);
+      }).catch(err => {
+        console.log('Query error: ' + err.message);
+        console.log(err);
+      });
   });
 });
 
 app.get('/api/queries/:queryName', (req, res) => {
-  // MongoClient.connect(uri, function(err, db) {
-  //   assert.equal(null, err);
     console.log("get");
-
     executeQuery(req.params.queryName)
       .then(state => {console.log(req.params.queryName); res.status(200).json(state) })
       .catch(err => {
         res.status(500).end('Query error: ' + err.message);
         console.log(err);
       });
-  //   db.close();
-  // });
 });
 
 app.post('/api/commands', function (req, res) {
-  // Use connect method to connect to the Server
-  // MongoClient.connect(uri, function(err, db) {
-  //   assert.equal(null, err);
-  //   console.log("Connected correctly to server");
    console.log("post");
     executeCommand(req.body)
       .then(function () {
@@ -152,8 +163,6 @@ app.post('/api/commands', function (req, res) {
         res.status(500).end('Command error:' + err.message);
         console.log(err);
       });
-  //   db.close();
-  // });
 });
 
 // app.get('/query_users', function (req, res) {
@@ -166,14 +175,14 @@ app.post('/api/commands', function (req, res) {
 //   res.send(userRecords);
 // });
 
-app.post('/update_data', function (req, res, next) {
-  res.send('=> /update_data');
-  //post query to db
-  console.log('=> /update_data');
-  console.log(req.body);
+// app.post('/update_data', function (req, res, next) {
+//   res.send('=> /update_data');
+//   //post query to db
+//   console.log('=> /update_data');
+//   console.log(req.body);
 
-  io.emit('action', { type: 'RECORD_DID_UPDATED' });
-});
+//   io.emit('action', { type: 'RECORD_DID_UPDATED' });
+// });
 
 // app.post('/create_data', function (req, res, next) {
 //   res.send('=> /create_data');
@@ -184,14 +193,14 @@ app.post('/update_data', function (req, res, next) {
 //   io.emit('action', { type: 'RECORD_DID_CREATED' });
 // });
 
-app.post('/delete_data', function (req, res, next) {
-  res.send('=> /delete_data');
-  //post query to db
-  console.log('=> /delete_data');
-  console.log(req.body);
+// app.post('/delete_data', function (req, res, next) {
+//   res.send('=> /delete_data');
+//   //post query to db
+//   console.log('=> /delete_data');
+//   console.log(req.body);
 
-  io.emit('action', { type: 'RECORD_DID_DELETED' });
-});
+//   io.emit('action', { type: 'RECORD_DID_DELETED' });
+// });
 
 server.listen(port, function (error) {
   if (error) {
@@ -201,30 +210,7 @@ server.listen(port, function (error) {
   }
 });
 
-var insertCollection = function(db, callback) {
-  // Get the documents collection
-  var collection = db.collection('events');
-  // Insert some documents
-  collection.insertMany([
-    {a : 1}, {a : 2}, {a : 3}
-  ], function(err, result) {
-    assert.equal(err, null);
-    assert.equal(3, result.result.n);
-    assert.equal(3, result.ops.length);
-    console.log("Inserted 3 documents into the document collection");
-    callback(result);
-  });
-}
-
 io.on('connection', function (socket) {
-  // MongoClient.connect(uri, function(err, db) {
-  //   assert.equal(null, err);
-  //   console.log("Connected correctly to server");
-  //   insertCollection(db, function(){
-  //     db.close();
-  //   })
-
-  // });
   console.log("Socket connected: " + socket.id);
   //socket.emit('news', {data:'good day!'});
   // io.on('action', function (action) {
@@ -236,9 +222,7 @@ io.on('connection', function (socket) {
   const eventsNames = Object.keys(config.events).map(function (key) {
     return config.events[key];
   });
-  console.log(eventsNames);
   const unsubscribe = subscribe(eventsNames, function (event) {
-    console.log(event);
     socket.emit('event', JSON.stringify(event));
   });
   socket.on('disconnect', unsubscribe);
