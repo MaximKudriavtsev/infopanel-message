@@ -51,7 +51,7 @@ export default class StartDate extends Component {
                 data={dates}
                 valueField='id' textField='name'
                 disabled={dates.slice(0, countOfDisabled)}
-                value={{ id: this.props.dayRange, name: name }}
+                value={{ id: that.props.dayRange, name: name }}
                 onChange={::that.changeStartDate}
                 />
             </div>

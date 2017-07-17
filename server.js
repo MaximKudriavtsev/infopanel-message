@@ -7,12 +7,9 @@ var fs = require('fs');
 
 var app = new (require('express'))();
 var server = require('http').Server(app);
-//должен включиться Socket.io server на порте 3000
 var io = new (require('socket.io'))(server);
 
 var port = 3000;
-
-var userRecords = require('./userRecords.json');
 
 var compiler = webpack(config);
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
@@ -49,42 +46,19 @@ function getUsers(data) {
   return usersList;
 }
 
-function getRecords(data) {
-  function getCorrectDate(time) {
-    var date,
-      day, month, hours, min,
-      getDay, getMonth, getHours, getMinutes;
-
-    date = new Date(time);
-    getDay = date.getDate().toString();
-    getMonth = (date.getMonth() + 1).toString();
-    getHours = date.getHours().toString();
-    getMinutes = date.getMinutes().toString();
-
-    day = getDay.length == 1 ? '0' + getDay : getDay;
-    month = getMonth.length == 1 ? '0' + getMonth : getMonth;
-    hours = getHours.length == 1 ? '0' + getHours : getHours;
-    min = getMinutes.length == 1 ? '0' + getMinutes : getMinutes;
-    return (day + '.' + month + '.' + date.getFullYear() + ' ' + hours + ':' + min);
-  }
-
-  var recordList = [];
-
-  for (var key in data) {
-    recordList.push(data[key]);
-
-    recordList[key].correctEventDate = getCorrectDate(recordList[key].eventDate);
-    recordList[key].correctStartDate = getCorrectDate(recordList[key].startDate);
-  }
-  return recordList;
-}
-
 app.get('/', function (req, res) {
   fs.readFile('./index.html', 'utf8', function (err, data) {
     if (err) {
       return console.log(err);
     }
     executeQuery('records').then(state => {
+      let aggregateId = 0;
+        //create client global id! new aggregate id
+      for(var key in state.records) {
+        if(state.records[key].aggregateId > aggregateId)
+          aggregateId = state.records[key].aggregateId;
+      }
+      ++aggregateId;
       MongoClient.connect(config.storage.params.url, function (err, db) {
         assert.equal(null, err);
         db.collection('userList')
@@ -92,19 +66,22 @@ app.get('/', function (req, res) {
           .map(function(item) { return {name: item.name, surname: item.surname}; } )
           .toArray()
           .then((users) => {
+            let author = users[0].name + ' ' + users[0].surname;
             let serverState = {
               server: state,
               client: {
-                id: '',
+                id: -1,
                 text: '',
-                author: 'Max',
+                author: author,
                 location: '',
                 eventDate: new Date(),
                 startDate: new Date(),
                 messageAuthor: 'Max',
                 messageDate: '',
                 authorList: users,
-                focusRow: ''
+                focusRow: '',
+                aggregateId: aggregateId,
+                dayRange: 0
               }
             }
             var result = data.replace(/{{PRELOADED_STATE}}/g, JSON.stringify(serverState));
