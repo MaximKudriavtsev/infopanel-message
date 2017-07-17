@@ -8,6 +8,7 @@ const events = {
 
 export type RecordAdded = {
   aggregateId: string;
+  corName: string;
   payload: {
     record: object;
   };
@@ -15,6 +16,7 @@ export type RecordAdded = {
 
 export type RecordUpdate = {
   aggregateId: string;
+  corName: string;
   payload: {
     record: object;
   };
@@ -22,10 +24,12 @@ export type RecordUpdate = {
 
 export type RecordDeleted = {
   aggregateId: string;
+  corName: string;
 };
 
 export type RecordCompleted = {
   aggregateId: string;
+  corName: string;
   payload: {
     completed: boolean;
   };

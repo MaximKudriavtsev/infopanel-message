@@ -1,6 +1,7 @@
-const Event = (type, payload) => ({
+const Event = (type, payload, corName) => ({
     type,
-    payload
+    payload,
+    corName
 });
 
 export default Event;

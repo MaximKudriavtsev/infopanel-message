@@ -53,7 +53,9 @@
     "resolve-storage-file":"^0.0.5",
     "resolve-query":"^0.0.5",
     "resolve-storage-mongo":"^0.0.5",
-    "mongodb":"^2.2.30"
+    "mongodb":"^2.2.30",
+    "cookie-parser":"^1.4.3",
+    "jsonwebtoken":"^7.4.1"
   },
   "dependencies": {
     "react": "15.3.1",
