@@ -19,13 +19,6 @@ delete window.__PRELOADED_STATE__;
 // Create Redux store with initial state
 const store = configureStore(preloadedState);
 
-
-// store.subscribe(() => {
-//     console.log('new client state', store.getState());
-//     //io.emit('state', store.getState().toJS());
-//   });
-//store.dispatch({ type: 'server/hello', data: 'Hello!' });
-
 render(
   <Provider store={store}>
     <App />

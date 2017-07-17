@@ -66,7 +66,8 @@ app.get('/', function (req, res) {
           .map(function(item) { return {name: item.name, surname: item.surname}; } )
           .toArray()
           .then((users) => {
-            let author = users[0].name + ' ' + users[0].surname;
+            let userList = getUsers(users),
+              author = userList[0];
             let serverState = {
               server: state,
               client: {
@@ -78,7 +79,7 @@ app.get('/', function (req, res) {
                 startDate: new Date(),
                 messageAuthor: 'Max',
                 messageDate: '',
-                authorList: users,
+                authorList: userList,
                 focusRow: '',
                 aggregateId: aggregateId,
                 dayRange: 0
@@ -86,6 +87,7 @@ app.get('/', function (req, res) {
             }
             var result = data.replace(/{{PRELOADED_STATE}}/g, JSON.stringify(serverState));
             res.send(result);
+          db.close();
           });
       });
     }).catch(err => {

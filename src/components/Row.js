@@ -9,7 +9,6 @@ export default class Row extends Component {
         let that  = this,
             data  = that.props.data;
 
-        console.log(this.props);
         return (
             <tr className={that.props.aggregateId == that.props.focusId ? 'viewBar_table_tr_focus' : 'viewBar_table_tr' }
               tabIndex='-1' onClick={::that.onRowClick}>

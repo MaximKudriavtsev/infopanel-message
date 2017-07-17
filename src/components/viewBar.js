@@ -28,7 +28,6 @@ export default class ViewBar extends Component {
             data = that.props.eventList,
             clientHeight = document.documentElement.clientHeight,
             height = clientHeight - 94;
-
         if (data.length) {
             template = data.map(({record: item, aggregateId: aggregateId }, index) => {
                 return (

@@ -21,7 +21,6 @@ export default class Buttons extends Component {
             id = client.aggregateId,
             currId = client.focusRow;
 
-            debugger;
         if (client.text && client.author && client.eventDate && client.startDate) {
             if(client.id < 0) {
                 actions.addRecord(id, {record: data });

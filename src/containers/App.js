@@ -16,7 +16,6 @@ class App extends Component {
       client  = props.client,
       server  = props.server,
       messageAuthor = client.messageAuthor;
-
     return <div className='App'>
         <TitleBar messageAuthor={messageAuthor}/>
         <EditBar client={client} actions={actions}/>
