@@ -49,11 +49,12 @@ function getUsers(data) {
 }
 
 app.get('/', function (req, res) {
-  let user;
+  let user = '';
   try {
      user = jwt.verify(req.cookies[`InfoPanel-token`], 'test-jwt-secret');
+     console.log('user ' + user);
   } catch(error) {
-     res.redirect(`/auth`);
+     res.redirect(`/Login`);
   }
   fs.readFile('./index.html', 'utf8', function (err, data) {
     if (err) {
@@ -106,8 +107,8 @@ app.get('/', function (req, res) {
               }
             }
             var result = data.replace(/{{PRELOADED_STATE}}/g, JSON.stringify(serverState));
+            db.close();
             res.send(result);
-          db.close();
           });
       });
     }).catch(err => {
@@ -117,6 +118,14 @@ app.get('/', function (req, res) {
   });
 });
 
+app.get('/ClearCookies', (req, res) => {
+  res.clearCookie(`InfoPanel-token`)
+  res.redirect(`/`);
+});
+
+app.get(`/Login`, (req, res) => {
+  res.sendFile(__dirname + '/login.html')
+})
 
 app.get(`/auth`, (req, res) => {
     const token = jwt.sign({

@@ -24,9 +24,21 @@ body{
 .app-titleBar-userName{
     
     float: right;
-    padding: 5px;
+    padding-top: 3px;
     padding-right: 20px;
 }
+.app-titleBar-userName-logOut {
+    color: white;
+    float: right;
+    padding: 5px;
+    padding-right: 20px;
+    text-decoration: none;
+}
+a:link, a:visited, a:hover, a:active {
+    color: white;
+    text-decoration: none;    
+}
+
 /*tittle bar end*/
 
 /*editBar START*/
@@ -40,6 +52,7 @@ body{
     width: 80%;
     box-sizing: border-box;
     padding: 24px 10px 0px 10px;
+    max-width: 766px;
 }
 
 /*text start*/
@@ -132,7 +145,7 @@ body{
     padding: 0px;
     min-width: 70px;    
 }
-.buttons-buttonSave:focus, .buttons-buttonDelete:focus, .buttons-buttonCancel:focus{
+.buttons-buttonSave:focus, .buttons-buttonDelete:focus, .buttons-buttonCancel:focus {
     outline:0;
 }
 .buttons-buttonCancel{
@@ -146,7 +159,7 @@ body{
     color: #cb3837;
     border: 1px solid #cb3837;
 }
-.buttons-buttonSave:hover  {
+.buttons-buttonSave:hover {
     background-color: #2faceb; 
     color: white;
     border: 1px solid #2faceb;
