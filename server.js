@@ -52,7 +52,6 @@ app.get('/', function (req, res) {
   let user = '';
   try {
      user = jwt.verify(req.cookies[`InfoPanel-token`], 'test-jwt-secret');
-     console.log('user ' + user);
   } catch(error) {
      res.redirect(`/Login`);
   }
@@ -65,6 +64,8 @@ app.get('/', function (req, res) {
       let aggregateId = 0,
         recordList = Immutable({ records: [] });
       for(var key = state.records.length - 1; key >= 0; key--){
+        console.log('upn ' + user.upn)
+        console.log(state.records[key].record.messageAuthor);
         if(state.records[key].record.messageAuthor == user.upn) {
           recordList = recordList.setIn(
             ['records'],
@@ -122,18 +123,19 @@ app.get('/ClearCookies', (req, res) => {
   res.clearCookie(`InfoPanel-token`)
   res.redirect(`/`);
 });
-
+/* for testing */
 app.get(`/Login`, (req, res) => {
   res.sendFile(__dirname + '/login.html')
-})
+});
 
 app.get(`/auth`, (req, res) => {
     const token = jwt.sign({
       upn: 'test@test.com',
+      //upn: 'Max',
       name: 'testName'
     }, 'test-jwt-secret')
     res.redirect(`/auth/callback?token=${token}`)
-})
+});
 
 app.get(`/auth/callback`, (req, res) => {
   res.cookie(`InfoPanel-token`, req.query.token, {
@@ -142,10 +144,11 @@ app.get(`/auth/callback`, (req, res) => {
   })
   res.redirect(`/`)
 });
-// app.get(`/azure-auth`, (req, res) => {
-//   console.log('auth');
+/**/
+/*for azura auth*/
+// app.get(`/auth`, (req, res) => {
 //   res.redirect(
-//     `172.22.6.135:9000/azure-auth/login?redirect=http://172.22.11.62:3000/auth/callback`
+//     `http://172.22.6.135:9000/login?redirect=http://172.22.11.62:3000/auth/callback`
 //   )
 // });
 // app.get(`/auth/callback`, (req, res) => {
@@ -155,7 +158,7 @@ app.get(`/auth/callback`, (req, res) => {
 //   })
 //   res.redirect(`/`)
 // });
-
+/**/
 app.get('/api/queries/:queryName', (req, res) => {
   console.log("get");
   executeQuery(req.params.queryName)
