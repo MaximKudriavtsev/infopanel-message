@@ -4,15 +4,12 @@ import '../styles/EventPage.css';
 
 export default class EventPage extends Component {
   resetPreview() {
-    debugger;
     this.props.actions.resetPreview();
   }
   render() {
-    if(this.props.preview){
-      debugger;
+    if(this.props.preview) {
       let that = this,
-          props = that.props,
-          data = props.preview.value,
+          data = that.props.preview.value,
           hours = data.correctEventDate.split(' ')[1],
           allMonth = [
             'января', 'февраля', 'марта', 'апреля',
@@ -25,9 +22,7 @@ export default class EventPage extends Component {
       return <div className={this.props.preview ? 'eventPage' : 'none'} onClick={::that.resetPreview}>
             <div className='eventPage_orange'>
               <div className='eventPage_orange_top'></div>
-              <div className='eventPage_orange_circle'>
-                {/*<img src='https://www.google.ru/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiRgP2No5LVAhXJHJoKHWM2AjoQjRwIBw&url=http%3A%2F%2Fwww.boredpanda.com%2Fcelebrity-faces-mix-combined-pedro-berg-johnsen-thatnordicguy%2F&psig=AFQjCNFwOkj6RdrYMMoyX-BkJU9VNFiHRg&ust=1500448154192679'></img>*/}
-              </div>
+              <div className='eventPage_orange_circle'></div>
               <div className='eventPage_orange_text'>{data.text}</div>
             </div>
             <div className='eventPage_white'>

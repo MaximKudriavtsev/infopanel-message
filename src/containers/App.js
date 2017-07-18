@@ -7,6 +7,7 @@ import actions from '../actions/actions';
 import EditBar from './EditBar';
 import TitleBar from '../components/TitleBar';
 import ViewBar from '../components/ViewBar';
+import EventPage from '../components/EventPage';
 
 class App extends Component {
   render() {
@@ -16,10 +17,14 @@ class App extends Component {
       client  = props.client,
       server  = props.server,
       messageAuthor = client.messageAuthor;
-    return <div className={!client.preview ? 'App' : 'none'}>
+      
+    return <div>
+      <div className={!client.preview ? 'App' : 'none'}>
         <TitleBar messageAuthor={messageAuthor}/>
         <EditBar client={client} actions={actions}/>
         <ViewBar eventList={server.records} focusRow={client.focusRow} actions={actions}/>
+      </div>
+        <EventPage preview={client.preview} actions={actions}/>
       </div>
   }
 }
