@@ -64,7 +64,7 @@ app.get('/', function (req, res) {
       //create client global id! new aggregate id
       let aggregateId = 0,
         recordList = Immutable({ records: [] });
-      for(var key in state.records) {
+      for(var key = state.records.length - 1; key >= 0; key--){
         if(state.records[key].record.messageAuthor == user.upn) {
           recordList = recordList.setIn(
             ['records'],
