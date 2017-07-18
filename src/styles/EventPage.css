@@ -1,4 +1,10 @@
+@font-face {
+  font-family: segoe-condensed-bold; /* Гарнитура шрифта */
+  src: url(segoe-condensed-bold.ttf); /* Путь к файлу со шрифтом */
+}
+
 .eventPage {
+  font-family: "segoe-condensed-bold";
   height: 100%;
   width: 100%;
   border: 30px solid black;
@@ -16,7 +22,7 @@ img {
   width: 100px;
 }
 .eventPage_orange_top {
-  height: 40px;
+  height: 50px;
 }
 .eventPage_orange_circle {
   margin: 0 auto;
@@ -31,8 +37,8 @@ img {
   background-size:cover;
 }
 .eventPage_orange_text {
-  padding: 2% 6% 0% 6%;
-  font-size: 110px;
+  padding: 0% 6% 0% 6%;
+  font-size: 140px;
   font-weight: bold;
   color: white;
   text-align: center;
@@ -41,46 +47,49 @@ img {
 .eventPage_white {
   height: 25%;
   background: white;
-  padding: 1% 2% 0 2%;
+  padding: 1% 3% 0 3%;
   box-sizing: border-box;
 }
 .eventPage_white_date {
   box-sizing: border-box;
   color: #fd760a;
-  font-size: 136px;
+  font-size: 170px;
   font-weight: bold;
-  float: right;
-  height: 100%;
+  float: left;
+  margin-right: 10px;
+  /*height: 100%;*/
   /*width: 10%;*/
 }
-.eventPage_white_textBlock {
+/*.eventPage_white_textBlock {
   float: right !important;
-  color: #fd760a;
-  font-size: 50px;
-  font-weight: bold;
   height: 100%;
   width: 90%;
-  padding: 1.3% 0% 0 2%;
+  padding: 1.3% 2% 0 2%;
+}*/
+.eventPage_white_textBlock_left, .eventPage_white_textBlock_right{
+  color: #fd760a;
+  font-size: 70px;
+  font-weight: bold;
   box-sizing: border-box;
+  margin: 1.2% 0 1% 0;
 }
-.eventPage_white_textBlock_top {
-  width: 100%;
+.eventPage_white_textBlock_left {
   float: left;
-  box-sizing: border-box;
 }
-.eventPage_white_textBlock_bottom {
-  width: 100%;
+.eventPage_white_textBlock_right {
   float: right;
-  box-sizing: border-box;
 }
 .eventPage_white_textBlock_top_right {
   color: #8f8f8f;
 }
 .eventPage_white_textBlock_top_right, .eventPage_white_textBlock_bottom_right {
   box-sizing: border-box;
-  float: right;
+  text-align: right;
+  block-size: 60px;  
+  /*float: right;*/
 }
 .eventPage_white_textBlock_top_left, .eventPage_white_textBlock_bottom_left {
   box-sizing: border-box;
-  float: left;
+  block-size: 60px;
+  /*float: left;*/
 }

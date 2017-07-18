@@ -26,17 +26,17 @@ export default class EventPage extends Component {
               <div className='eventPage_orange_text'>{data.text}</div>
             </div>
             <div className='eventPage_white'>
-              <div className='eventPage_white_textBlock'>
-                <div className='eventPage_white_textBlock_top'>
+              <div className='eventPage_white_date'>{eventDate.getDate()}</div>
+              {/*<div className='eventPage_white_textBlock'>*/}
+                <div className='eventPage_white_textBlock_left'>
                   <div className='eventPage_white_textBlock_top_left'>{month}</div>
-                  <div className='eventPage_white_textBlock_top_right'>{data.location? 'место' : ''}</div>
-                </div>
-                <div className='eventPage_white_textBlock_bottom'>
                   <div className='eventPage_white_textBlock_bottom_left'>начало в {hours}</div>
+                </div>
+                <div className='eventPage_white_textBlock_right'>
+                  <div className='eventPage_white_textBlock_top_right'>{data.location? 'место' : ''}</div>
                   <div className='eventPage_white_textBlock_bottom_right'>{data.location}</div>
                 </div>
-              </div>
-              <div className='eventPage_white_date'>{eventDate.getDate()}</div>
+              {/*</div>*/}
             </div>
           </div>
     } else {

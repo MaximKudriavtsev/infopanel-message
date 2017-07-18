@@ -14,7 +14,7 @@ export default class Text extends Component {
             DOM_input_text = ReactDOM.findDOMNode(refs.input_text),     
             DOM_input_text_warning = ReactDOM.findDOMNode(refs.input_text_warning);
 
-        DOM_input_text_warning.className = ((DOM_input_text.value.length == 30) ? 'warning-label' : 'none');
+        DOM_input_text_warning.className = ((DOM_input_text.value.length == 40) ? 'warning-label' : 'none');
     }
     changeText(e) {
         let text = e.target.value.trim(),
@@ -32,6 +32,7 @@ export default class Text extends Component {
 
         DOM_input_text.value = ((text === '') ? '' : text);
         (id == -1) ? that.validate('text') : that.validate(text);
+        this.warningMaxSize();
     }
 
     render() {
@@ -39,21 +40,21 @@ export default class Text extends Component {
 
         return <div className='text'>
                 <label className='text-label' htmlFor='input-text' 
-                unselectable='on' title='Maximum length is 30 symbol'>Text</label>
+                unselectable='on' title='Maximum length is 40 symbol'>Text</label>
                 <input id='input-text'
                     ref='input_text'
                     className='text-input'
                     placeholder='Enter message...'
                     onBlur={:: that.changeText}
                     onChange={:: that.warningMaxSize}
-                    maxLength='30'
-                    title='Maximum length is 30 symbol'
+                    maxLength='40'
+                    title='Maximum length is 40 symbol'
                 />
                 <label htmlFor='input-text' ref='input_text_error' className='none' unselectable='on'>
                     Please enter text message
                 </label>
                 <label htmlFor='input-text' ref='input_text_warning' className='none' unselectable='on'>
-                    Reached the maximum number(30) of characters
+                    Reached the maximum number(40) of characters
                 </label>
             </div>
     }
