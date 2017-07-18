@@ -40,6 +40,12 @@ export default function client(state = {}, action) {
         case 'VALIDATE_ERROR': {
             return { ...state, id: (action.value < 0 ? -2 : action.value) }
         }
+        case 'PREVIEW': {
+            return { ...state, preview:action.value }
+        }
+        case 'RESET_PREVIEW': {
+            return { ...state, preview:'' }
+        }
     }
     return state;
 }
