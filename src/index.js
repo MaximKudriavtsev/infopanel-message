@@ -21,7 +21,7 @@ const store = configureStore(preloadedState);
 
 render(
   <Provider store={store}>
-    <App />
+    <App/>
   </Provider>,
   document.getElementById('root')
 )

@@ -20,16 +20,16 @@ export default function client(state = {}, action) {
         }
         case 'CREATE_BUTTON': {
             let id = ++state.aggregateId;
-            return { ...state,aggregateId: id, dayRange: 0, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '' }
+            return { ...state,aggregateId: id, dayRange: 0, text: '', author: state.fullNameAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '' }
         }
         case 'UPDATE_BUTTON': {
-            return { ...state, text: '',dayRange: 0, author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '' }
+            return { ...state, text: '',dayRange: 0, author: state.fullNameAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '' }
         }
         case 'DELETE_BUTTON': {
-            return { ...state, dayRange: 0, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' }
+            return { ...state, dayRange: 0, id: -1, text: '', author: state.fullNameAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' }
         }
         case 'CANCEL_BUTTON': {
-            return { ...state, dayRange: 0, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '', dayRange: 0 };
+            return { ...state, dayRange: 0, id: -1, text: '', author: state.fullNameAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '', dayRange: 0 };
         }
         case 'EDIT_ROW_DATA': {
             return { ...state, text: action.value.text, author: action.value.author, location: action.value.location, eventDate: new Date(action.value.eventDate), startDate: new Date(action.value.startDate), id: action.value.id, focusRow: action.value.id }

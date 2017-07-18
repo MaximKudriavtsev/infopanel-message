@@ -9,7 +9,9 @@ export default class TitleBar extends Component {
                 InfoPanel Message Service
             </div>
             <div className='app-titleBar-userName'>
-                {this.props.messageAuthor}
+                <a className='app-titleBar-userName-logOut' 
+                href = '/ClearCookies'
+                title = 'Click to Log Out'>{this.props.messageAuthor}</a>
             </div>
         </div>
     }

@@ -4,11 +4,11 @@ var webpackHotMiddleware = require('webpack-hot-middleware');
 var config = require('./webpack.config');
 var bodyParser = require('body-parser');
 var fs = require('fs');
-
+var cookieParser = require('cookie-parser');
 var app = new (require('express'))();
 var server = require('http').Server(app);
 var io = new (require('socket.io'))(server);
-
+var jwt = require('jsonwebtoken');
 var port = 3000;
 
 var compiler = webpack(config);
@@ -17,6 +17,7 @@ app.use(webpackHotMiddleware(compiler));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 var MongoClient = require('mongodb').MongoClient,
   assert = require('assert');
@@ -27,6 +28,7 @@ var eventStore = event_store.eventStore;
 var config = require('./resolve.config.js');
 import commandHandler from 'resolve-command';
 import query from 'resolve-query';
+import Immutable from 'seamless-immutable';
 
 const executeQuery = query({
   eventStore,
@@ -47,37 +49,56 @@ function getUsers(data) {
 }
 
 app.get('/', function (req, res) {
+  let user = '';
+  try {
+     user = jwt.verify(req.cookies[`InfoPanel-token`], 'test-jwt-secret');
+     console.log('user ' + user);
+  } catch(error) {
+     res.redirect(`/Login`);
+  }
   fs.readFile('./index.html', 'utf8', function (err, data) {
     if (err) {
       return console.log(err);
     }
     executeQuery('records').then(state => {
-      let aggregateId = 0;
-        //create client global id! new aggregate id
+      //create client global id! new aggregate id
+      let aggregateId = 0,
+        recordList = Immutable({ records: [] });
       for(var key in state.records) {
-        if(state.records[key].aggregateId > aggregateId)
-          aggregateId = state.records[key].aggregateId;
+        if(state.records[key].record.messageAuthor == user.upn) {
+          recordList = recordList.setIn(
+            ['records'],
+            [{
+                aggregateId: state.records[key].aggregateId,
+                record: state.records[key].record
+            }].concat(recordList.records)
+          );
+          if(state.records[key].aggregateId > aggregateId){
+            aggregateId = state.records[key].aggregateId;
+          }
+        }
       }
       ++aggregateId;
       MongoClient.connect(config.storage.params.url, function (err, db) {
         assert.equal(null, err);
+        console.log("Connected correctly to server");
         db.collection('userList')
           .find({ corName: 'userList' })
           .map(function(item) { return {name: item.name, surname: item.surname}; } )
           .toArray()
           .then((users) => {
-            let userList = getUsers(users),
-              author = userList[0];
+            let userList = getUsers(users);
             let serverState = {
-              server: state,
+              server: recordList,
               client: {
                 id: -1,
                 text: '',
-                author: author,
+                author: user.name,
+                fullNameAuthor: user.name,
                 location: '',
                 eventDate: new Date(),
                 startDate: new Date(),
-                messageAuthor: 'Max',
+                messageAuthor: user.upn,
                 messageDate: '',
                 authorList: userList,
                 focusRow: '',
@@ -86,8 +107,8 @@ app.get('/', function (req, res) {
               }
             }
             var result = data.replace(/{{PRELOADED_STATE}}/g, JSON.stringify(serverState));
+            db.close();
             res.send(result);
-          db.close();
           });
       });
     }).catch(err => {
@@ -96,6 +117,44 @@ app.get('/', function (req, res) {
     });
   });
 });
+
+app.get('/ClearCookies', (req, res) => {
+  res.clearCookie(`InfoPanel-token`)
+  res.redirect(`/`);
+});
+
+app.get(`/Login`, (req, res) => {
+  res.sendFile(__dirname + '/login.html')
+})
+
+app.get(`/auth`, (req, res) => {
+    const token = jwt.sign({
+      upn: 'test@test.com',
+      name: 'testName'
+    }, 'test-jwt-secret')
+    res.redirect(`/auth/callback?token=${token}`)
+})
+
+app.get(`/auth/callback`, (req, res) => {
+  res.cookie(`InfoPanel-token`, req.query.token, {
+    maxAge: 86400000,
+    httpOnly: true
+  })
+  res.redirect(`/`)
+});
+// app.get(`/azure-auth`, (req, res) => {
+//   console.log('auth');
+//   res.redirect(
+//     `172.22.6.135:9000/azure-auth/login?redirect=http://172.22.11.62:3000/auth/callback`
+//   )
+// });
+// app.get(`/auth/callback`, (req, res) => {
+//   res.cookie(`InfoPanel-token`, req.query.token, {
+//     maxAge: 86400000,
+//     httpOnly: true
+//   })
+//   res.redirect(`/`)
+// });
 
 app.get('/api/queries/:queryName', (req, res) => {
   console.log("get");
