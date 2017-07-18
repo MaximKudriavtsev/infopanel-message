@@ -44,5 +44,12 @@ export default {
     validateError: (value) => ({
         type: 'VALIDATE_ERROR',
         value: value
+    }),
+    preview: (value) => ({
+        type: 'PREVIEW',
+        value: value
+    }),
+    resetPreview: () => ({
+        type: 'RESET_PREVIEW'
     })
 };

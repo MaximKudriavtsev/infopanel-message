@@ -4,11 +4,10 @@ import { bindActionCreators } from 'redux';
 
 import actions from '../actions/actions';
 
-import EditBar from './EditBar';
-import TitleBar from '../components/TitleBar';
-import ViewBar from '../components/ViewBar';
+import App from './App';
+import EventPage from '../components/EventPage';
 
-class App extends Component {
+class PreApp extends Component {
   render() {
     let that  = this,
       props   = that.props,
@@ -16,10 +15,12 @@ class App extends Component {
       client  = props.client,
       server  = props.server,
       messageAuthor = client.messageAuthor;
-    return <div className={!client.preview ? 'App' : 'none'}>
-        <TitleBar messageAuthor={messageAuthor}/>
+    return <div className='PreApp'>
+        {/*<TitleBar messageAuthor={messageAuthor}/>
         <EditBar client={client} actions={actions}/>
-        <ViewBar eventList={server.records} focusRow={client.focusRow} actions={actions}/>
+        <ViewBar eventList={server.records} focusRow={client.focusRow} actions={actions}/>*/}
+        <App />
+        <EventPage preview={client.preview} actions={actions}/>
       </div>
   }
 }
@@ -30,4 +31,4 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
   appActions: bindActionCreators(actions, dispatch)
 });
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(PreApp);

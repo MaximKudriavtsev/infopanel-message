@@ -6,7 +6,8 @@ import user from './reducers'
 import { createStore } from 'redux';
 
 import configureStore from './store/configureStore';
-import App from './containers/App';
+import PreApp from './containers/PreApp';
+//import EventPage from './components/EventPage';
 
 import './styles/app.css';
 
@@ -21,7 +22,7 @@ const store = configureStore(preloadedState);
 
 render(
   <Provider store={store}>
-    <App/>
+    <PreApp/>
   </Provider>,
   document.getElementById('root')
 )
