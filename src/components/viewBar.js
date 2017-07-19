@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 import Row from './Row.js'
 
 export default class ViewBar extends Component {
-    addScroll() {
+    addScroll = () => {
         let that = this,
             elemTable = ReactDOM.findDOMNode(that.refs['table']),
             isScroll, elemHead;
@@ -16,10 +16,10 @@ export default class ViewBar extends Component {
 
         isScroll ? elemHead.setAttribute('class', 'viewBar_head') : elemHead.setAttribute('class', '');
     }
-    componentDidMount() {
+    componentDidMount = () => {
         this.addScroll();
     }
-    componentDidUpdate() {
+    componentDidUpdate = () => {
         this.addScroll();
     }
     render() {
@@ -28,6 +28,7 @@ export default class ViewBar extends Component {
             data = that.props.eventList,
             clientHeight = document.documentElement.clientHeight,
             height = clientHeight - 94;
+            
         if (data.length) {
             template = data.map(({record: item, aggregateId: aggregateId }, index) => {
                 return (

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
 
 export default class Text extends Component {
-    validate(text){
+    validate = (text) => {
         let refs = this.refs,
             DOM_input_text_error = ReactDOM.findDOMNode(refs.input_text_error),
             DOM_input_text_warning = ReactDOM.findDOMNode(refs.input_text_warning);
@@ -23,7 +23,7 @@ export default class Text extends Component {
         that.validate(text);
         that.props.actions.changeText(text);
     }
-    componentDidUpdate() {
+    componentDidUpdate = () => {
         let that = this,
             text = that.props.text,
             id = that.props.id,
