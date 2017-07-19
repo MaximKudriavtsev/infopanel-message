@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
 
+import Globalize from 'globalize';
+import globalizeLocalizer from 'react-widgets/lib/localizers/globalize';
+
 import { DateTimePicker } from 'react-widgets';
 import 'react-widgets/lib/less/react-widgets.less';
 
-const Globalize = require('globalize');
-const globalizeLocalizer = require('react-widgets/lib/localizers/globalize');
 Globalize('ru');
 globalizeLocalizer(Globalize);
 

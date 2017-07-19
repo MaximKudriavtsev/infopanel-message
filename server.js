@@ -1,34 +1,37 @@
-var webpack = require('webpack');
-var webpackDevMiddleware = require('webpack-dev-middleware');
-var webpackHotMiddleware = require('webpack-hot-middleware');
-var config = require('./webpack.config');
-var bodyParser = require('body-parser');
-var fs = require('fs');
-var cookieParser = require('cookie-parser');
-var app = new (require('express'))();
-var server = require('http').Server(app);
-var io = new (require('socket.io'))(server);
-var jwt = require('jsonwebtoken');
+import webpack from 'webpack';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import config from './webpack.config';
+import bodyParser from 'body-parser';
+import fs from 'fs';
+import cookieParser  from 'cookie-parser';
+import express from 'express';
+import http from 'http';
+import socketIO from 'socket.io';
+import jwt from 'jsonwebtoken';
+import mongodb from 'mongodb';
+import assert from 'assert';
+import event_store from './src/store/event_store';
+import config from './resolve.config.js';
+import commandHandler from 'resolve-command';
+import query from 'resolve-query';
+import Immutable from 'seamless-immutable';
+
+var app = new express();
+var server = http.Server(app);
+var io = new socketIO(server);
+var compiler = webpack(config);
+var subscribe = event_store.subscribe;
+var eventStore = event_store.eventStore;
+var MongoClient = mongodb.MongoClient;
 var port = 3000;
 
-var compiler = webpack(config);
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
 app.use(webpackHotMiddleware(compiler));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-
-var MongoClient = require('mongodb').MongoClient,
-  assert = require('assert');
-
-var event_store = require('./src/store/event_store');
-var subscribe = event_store.subscribe;
-var eventStore = event_store.eventStore;
-var config = require('./resolve.config.js');
-import commandHandler from 'resolve-command';
-import query from 'resolve-query';
-import Immutable from 'seamless-immutable';
 
 const executeQuery = query({
   eventStore,
