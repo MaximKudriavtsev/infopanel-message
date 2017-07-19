@@ -16,6 +16,7 @@ import config from './resolve.config.js';
 import commandHandler from 'resolve-command';
 import query from 'resolve-query';
 import Immutable from 'seamless-immutable';
+import getUsers from './src/func/getUsers';
 
 var app = new express();
 var server = http.Server(app);
@@ -42,14 +43,6 @@ const executeCommand = commandHandler({
   eventStore,
   aggregates: config.aggregates
 });
-
-function getUsers(data) {
-  var usersList = [];
-  for (var key in data) {
-    usersList.push(data[key].name + ' ' + data[key].surname);
-  }
-  return usersList;
-}
 
 app.get('/', function (req, res) {
   let user = '';
