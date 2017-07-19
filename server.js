@@ -1,7 +1,7 @@
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-import config from './webpack.config';
+import configWP from './webpack.config';
 import bodyParser from 'body-parser';
 import fs from 'fs';
 import cookieParser  from 'cookie-parser';
@@ -20,13 +20,13 @@ import Immutable from 'seamless-immutable';
 var app = new express();
 var server = http.Server(app);
 var io = new socketIO(server);
-var compiler = webpack(config);
+var compiler = webpack(configWP);
 var subscribe = event_store.subscribe;
 var eventStore = event_store.eventStore;
 var MongoClient = mongodb.MongoClient;
 var port = 3000;
 
-app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
+app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: configWP.output.publicPath }));
 app.use(webpackHotMiddleware(compiler));
 
 app.use(bodyParser.json());
