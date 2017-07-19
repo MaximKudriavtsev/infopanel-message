@@ -16,7 +16,8 @@ export default class Buttons extends Component {
                 messageAuthor: client.messageAuthor,
                 messageDate: new Date(),
                 correctEventDate : getCorrectDate(client.eventDate),
-                correctStartDate : getCorrectDate(client.startDate)
+                correctStartDate : getCorrectDate(client.startDate),
+                eventType: client.eventType
             },
             id = client.aggregateId,
             currId = client.focusRow;

@@ -45,7 +45,7 @@ export default class StartDate extends Component {
         }
         return <div className='startDate'>
             <label className='startDate-label' unselectable='on'
-                title="Publish about your event from choosed date">Show message from date</label>
+                title="Publish about your event from choosed date">Show message since date</label>
             <SelectList
                 className="startDate-SelectList"
                 data={dates}

@@ -26,7 +26,7 @@ export default class Location extends Component {
 
         return <div className='location'>
             <label className='location-label' htmlFor='input-location'
-                unselectable='on' title='Maximum length is 25 symbol'>Location</label>
+                unselectable='on' title='Place where will be event'>Location</label>
             <input className='location-input'
                 id='input-location'
                 ref='input_location'
@@ -37,7 +37,7 @@ export default class Location extends Component {
                     title='Maximum length is 25 symbol'
                 />
                 <label htmlFor='input-text' ref='input_text_warning' className='none' unselectable='on'>
-                Reached the maximum number(25) of characters
+                    Reached the maximum number(25) of characters
                 </label>
         </div>
     }

@@ -20,7 +20,6 @@ export default class Text extends Component {
         let text = e.target.value.trim(),
             that = this;
 
-
         that.validate(text);
         that.props.actions.changeText(text);
     }
@@ -34,13 +33,12 @@ export default class Text extends Component {
         (id == -1) ? that.validate('text') : that.validate(text);
         this.warningMaxSize();
     }
-
     render() {
         let that = this;
 
         return <div className='text'>
                 <label className='text-label' htmlFor='input-text' 
-                unselectable='on' title='Maximum length is 40 symbol'>Text</label>
+                unselectable='on' title='Your message which display on info panel'>Text</label>
                 <input id='input-text'
                     ref='input_text'
                     className='text-input'

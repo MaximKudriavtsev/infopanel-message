@@ -14,4 +14,4 @@ const eventStore = createEventStore({ storage, bus });
 
 const subscribe = bus.onEvent;
 
-export { eventStore, subscribe };
+export default { eventStore, subscribe };

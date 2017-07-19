@@ -46,7 +46,7 @@ export default class ViewBar extends Component {
                                     <td className='viewBar_table_author' unselectable='on'>Author</td>
                                     <td className='viewBar_table_location' unselectable='on'>Location</td>
                                     <td className='viewBar_table_eventDate' unselectable='on'>Date</td>
-                                    <td className='viewBar_table_startDate' unselectable='on'>Publish date</td>
+                                    <td className='viewBar_table_startDate' unselectable='on'>Shown since</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -64,7 +64,7 @@ export default class ViewBar extends Component {
                                 <td className='viewBar_table_author'>Author</td>
                                 <td className='viewBar_table_location'>Location</td>
                                 <td className='viewBar_table_eventDate'>Date</td>
-                                <td className='viewBar_table_startDate'>Publish date</td>
+                                <td className='viewBar_table_startDate'>Shown since</td>
                             </tr>
                         </tbody>
                     </table>
