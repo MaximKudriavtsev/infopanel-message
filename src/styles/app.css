@@ -56,16 +56,16 @@ a:link, a:visited, a:hover, a:active {
 }
 
 /*text start*/
-.text, .author, .location, .eventDate, .startDate, .buttons {
+.text, .author, .location, .eventDate, .startDate, .buttons, .eventType {
     font-size: 20px;
     padding-left: 10px;
 }
-.text-label, .author-label, .location-label, .eventDate-label, .startDate-label {
+.text-label, .author-label, .location-label, .eventDate-label, .startDate-label, .eventType-label {
     font-size: 20px;
     padding: 15px 10px 10px 10px;
     display: block;
 }
-.text-input, .location-input {
+.text-input, .location-input, .author-input {
     box-sizing: border-box;
     padding-left: 10px;
     width: 100%;
@@ -76,18 +76,15 @@ a:link, a:visited, a:hover, a:active {
     color: #555555;
     outline:0;
 }
-.text-input:focus, .location-input:focus{
+.text-input:focus, .location-input:focus, .author-input:focus{
     box-shadow:inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
     border-color:#66afe9;
 }
-.text-input:hover, .location-input:hover{
-
-}
-.text-input:active, .location-input:active{
+.text-input:active, .location-input:active, .author-input:active{
     background-image:none;
     box-shadow:inset 0 3px 5px rgba(0,0,0,0.125)
 }
-.text-input::placeholder, .location-input::placeholder{
+.text-input::placeholder, .location-input::placeholder, .author-input::placeholder{
     color: #858585;
     font-size: 18px;
 }
@@ -125,7 +122,6 @@ a:link, a:visited, a:hover, a:active {
     border: 1px solid #2faceb !important;
     background: white !important;
 }
-
 /*end dropdownList*/
 .buttons{
     padding-top: 20px;
@@ -177,136 +173,7 @@ a:link, a:visited, a:hover, a:active {
 .buttons-buttonSave{
     float: right;
 }
-.buttons-buttonCancel{
-}
 /*text end*/
-/*editBar end*/
-
-/*griddle*/
-.griddle-table{
-    border-collapse: collapse;
-    margin: 5px 0px 5px 0px;
-    width: 100%;
-    border-bottom:1px solid hsla(0,0%,0%,0.12);
-    font-size:18px;
-}
-
-.griddle-div, .griddle-table-heading-cell {
-    text-align: left;
-    padding: 6px 16px 6px 2px;
-}
-.griddle-div{
-    height: 100%;
-}
-/*
-.griddle-page-select, .griddle-previous-button, .griddle-next-button{
-    font:18px "Open Sans" !important;
-    display: inline-block;
-    font-size: 18px;
-    margin: 20px 7px 7px 0px;
-    padding: 0px 10px 0px 10px;
-    color: #2faceb;
-    background: transparent;
-    border: 1px solid #2faceb;
-    height: 40px;
-    cursor: pointer;
-}
-
-.griddle-previous-button, .griddle-next-button {
-    -webkit-transition-duration: 0.4s; 
-    transition-duration: 0.4s;
-}
-
-.griddle-previous-button:hover, .griddle-next-button:hover {
-    background-color: #2faceb; 
-    color: white;
-    border: 1px solid #2faceb;
-}*/
-/*option:hover{
-    background-color: black !important; 
-}*/
-.griddle-filter{
-    box-sizing: border-box;
-    width: 100%;
-    padding-left: 10px;
-    height: 40px;
-    font-size: 18px;
-    border: #ccc 1px solid;
-    border-radius: 4px;
-    color: #555555;
-    outline:0;
-    margin: 5px 0px 5px 0px;
-}
-.griddle-filter:focus{
-    box-shadow:inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
-    border-color:#66afe9;
-}
-
-.griddle-filter:active{
-    background-image:none;
-    box-shadow:inset 0 3px 5px rgba(0,0,0,0.125);
-}
-.griddle-filter::placeholder {
-    color: #858585;
-}
-.griddle-table-heading-cell:hover{
-    cursor: pointer;
-    margin-bottom: 10px;
-}
-.griddle-row{
-    border-top: 2px solid hsla(0,0%,0%,0.12);
-    font-weight:normal;
-    border-left: 1px solid transparent;
-    border-right: 1px solid transparent;
-}
-.griddle-row:hover, .griddle-row-focus:hover{
-    border: 2px solid #2faceb !important;
-    background: #2faceb !important;
-    color: white !important;
-    outline:0;
-}
-.griddle-row-focus{
-    border: 2px solid #2faceb !important;
-    font-weight: bold;
-    color: black;
-    outline:0;
-}
-.griddle-table-heading, .griddle-table-body{
-    display: block;
-}
-.griddle-table-heading{
-    margin-right: 17px;
-}
-.griddle-table-body{
-    max-height: 500px;
-    overflow: auto;
-    overflow-x: hidden;
-}
-.griddle-table-heading-cell-Text{
-    width: 20%;
-    text-align: left;
-}
-.griddle-table-heading-cell-Author{
-    width: 10%;
-    text-align: left;
-}
-.griddle-table-heading-cell-Location{
-    width: 18%;
-    text-align: left;
-}
-.griddle-table-heading-cell-Date{
-    width: 8%;
-    text-align: left;
-}
-.griddle-table-heading-cell-Publish{
-    width: 10%;
-    text-align: left;
-}
-.griddle-div{
-    width: 100%;
-    height: 100%;
-    white-space: pre;
-}
 .error-label, .warning-label{
     color:red;
     font-size: 12px;
@@ -321,16 +188,8 @@ a:link, a:visited, a:hover, a:active {
 }
 .none{
     display: none;
-}
-/*.griddle-table-heading, .griddle-table-body{display: block; }
-.griddle-table-body{
-    height: 400px;      
-    overflow-y: auto;   
-    overflow-x: hidden;  
-
-}*/
-
-/*end griddle*/
+} 
+/*editBar end*/
 
 /*MEDIA start*/
 /*@media screen and (max-width: 770px) {
@@ -487,17 +346,10 @@ a:link, a:visited, a:hover, a:active {
 .startDate-label, .text-label, .app-titleBar-title, .viewBar_table_head,
 .error-label{
     -webkit-user-select: none;
-    /* user-select -- это нестандартное свойство */
-
     -moz-user-select: none;
-    /* поэтому нужны префиксы */
-
     -ms-user-select: none;
-
     cursor: context-menu;
-    
 }
-
 /*end none select element*/
 /*SelectList*/
 ul li label {

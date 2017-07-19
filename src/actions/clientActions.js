@@ -20,6 +20,10 @@ export default {
         day: day,
         dayRange: dayRange
     }),
+    changeEventType: (value) => ({
+        type: 'CHANGE_EVENT_TYPE',
+        value: value
+    }),
     updateButton: () => ({
         type: 'UPDATE_BUTTON'
     }),

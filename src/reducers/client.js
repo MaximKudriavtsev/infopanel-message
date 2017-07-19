@@ -18,6 +18,9 @@ export default function client(state = {}, action) {
         case 'CHANGE_STARTDATE': {
             return { ...state, startDate: action.day, dayRange: action.dayRange }
         }
+        case 'CHANGE_EVENT_TYPE': {
+            return { ...state, eventType: action.value }
+        }
         case 'CREATE_BUTTON': {
             let id = ++state.aggregateId;
             return { ...state,aggregateId: id, dayRange: 0, text: '', author: state.fullNameAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '' }

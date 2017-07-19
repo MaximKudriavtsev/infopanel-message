@@ -67,8 +67,6 @@ app.get('/', function (req, res) {
       let aggregateId = 0,
         recordList = Immutable({ records: [] });
       for(var key = state.records.length - 1; key >= 0; key--){
-        console.log('upn ' + user.upn)
-        console.log(state.records[key].record.messageAuthor);
         if(state.records[key].record.messageAuthor == user.upn) {
           recordList = recordList.setIn(
             ['records'],
@@ -107,7 +105,8 @@ app.get('/', function (req, res) {
                 authorList: userList,
                 focusRow: '',
                 aggregateId: aggregateId,
-                dayRange: 0
+                dayRange: 0,
+                eventType:''
               }
             }
             var result = data.replace(/{{PRELOADED_STATE}}/g, JSON.stringify(serverState));

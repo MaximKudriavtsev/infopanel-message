@@ -9,17 +9,16 @@ export default class Text extends Component {
                     
         DOM_input_text_error.className = ((text === '') ? 'error-label' : 'none');
     }
-    warningMaxSize(e){
+    warningMaxSize = (e) => {
         let refs = this.refs,
             DOM_input_text = ReactDOM.findDOMNode(refs.input_text),     
             DOM_input_text_warning = ReactDOM.findDOMNode(refs.input_text_warning);
 
         DOM_input_text_warning.className = ((DOM_input_text.value.length == 40) ? 'warning-label' : 'none');
     }
-    changeText(e) {
+    changeText = (e) => {
         let text = e.target.value.trim(),
             that = this;
-
 
         that.validate(text);
         that.props.actions.changeText(text);
@@ -34,19 +33,18 @@ export default class Text extends Component {
         (id == -1) ? that.validate('text') : that.validate(text);
         this.warningMaxSize();
     }
-
     render() {
         let that = this;
 
         return <div className='text'>
                 <label className='text-label' htmlFor='input-text' 
-                unselectable='on' title='Maximum length is 40 symbol'>Text</label>
+                unselectable='on' title='Your message which display on info panel'>Text</label>
                 <input id='input-text'
                     ref='input_text'
                     className='text-input'
                     placeholder='Enter message...'
-                    onBlur={:: that.changeText}
-                    onChange={:: that.warningMaxSize}
+                    onBlur={that.changeText}
+                    onChange={that.warningMaxSize}
                     maxLength='40'
                     title='Maximum length is 40 symbol'
                 />

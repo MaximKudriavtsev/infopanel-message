@@ -6,6 +6,7 @@ import Location from '../components/Location';
 import EventDate from '../components/EventDate';
 import StartDate from '../components/StartDate';
 import Buttons from '../components/Buttons';
+import EventType from '../components/EventType';
 
 export default class EditBar extends Component {
     render() {
@@ -15,8 +16,9 @@ export default class EditBar extends Component {
 
         return <div className='app-editBar'>
             <Text text={client.text} id={client.id} actions={actions}/>
-            <Author author={client.author} messageAuthor={client.messageAuthor} authorList={client.authorList} actions={actions}/>
+            <Author author={client.author} id={client.id} fullNameAuthor={client.fullNameAuthor} actions={actions}/>
             <Location location={client.location} actions={actions}/>
+            <EventType eventType={client.eventType} actions={actions}/>
             <EventDate eventDate={client.eventDate} actions={actions}/>
             <StartDate dayRange={client.dayRange} eventDate={client.eventDate} actions={actions}/>
             <Buttons client={client} actions={actions}/>
