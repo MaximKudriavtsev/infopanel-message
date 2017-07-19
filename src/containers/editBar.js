@@ -4,8 +4,8 @@ import Text from '../components/Text';
 import Author from '../components/Author';
 import Location from '../components/Location';
 import EventDate from '../components/EventDate';
-import StartDate from '../components/StartDate';
 import Buttons from '../components/Buttons';
+import StartDate from '../components/StartDate';
 
 export default class EditBar extends Component {
     render() {

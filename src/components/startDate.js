@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 import { SelectList } from 'react-widgets';
 
 export default class StartDate extends Component {
-    changeStartDate(value) {
+    changeStartDate = (value) => {
         let props = this.props,
             date = new Date(props.eventDate);
 
@@ -52,7 +52,7 @@ export default class StartDate extends Component {
                 valueField='id' textField='name'
                 disabled={dates.slice(0, countOfDisabled)}
                 value={{ id: that.props.dayRange, name: name }}
-                onChange={::that.changeStartDate}
+                onChange={that.changeStartDate}
                 />
             </div>
     }

@@ -3,17 +3,17 @@ import ReactDOM from 'react-dom'
 
 
 export default class Location extends Component {
-    warningMaxSize(e) {
+    warningMaxSize = (e) => {
         let refs = this.refs,
             DOM_input_location = ReactDOM.findDOMNode(refs.input_location),
             DOM_input_text_warning = ReactDOM.findDOMNode(refs.input_text_warning);
 
         DOM_input_text_warning.className = ((DOM_input_location.value.length == 25) ? 'warning-label' : 'none');
     }
-    changeLocation(e) {
+    changeLocation = (e) => {
         this.props.actions.changeLocation(e.target.value.trim());
     }
-    componentDidUpdate() {
+    componentDidUpdate = () => {
         let that = this,
             input_location = that.refs.input_location,
             location = that.props.location;

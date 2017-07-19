@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import getCorrectDate from './../func/validationTime';
 
 export default class Buttons extends Component {
-    onButtonSave() {
+    onButtonSave = () => {
         let that = this,
             client = that.props.client,
             actions = that.props.actions,
@@ -33,7 +33,7 @@ export default class Buttons extends Component {
             actions.validateError(client.id);
         }
     }
-    onButtonDelete(){
+    onButtonDelete = () => {
         let props = this.props, 
             client = props.client,
             id = client.focusRow;
@@ -41,7 +41,7 @@ export default class Buttons extends Component {
         props.actions.deleteRecord(id);
         props.actions.deleteButton();
     }
-    onButtonCancel() {
+    onButtonCancel = () => {
         this.props.actions.cancelButton();
     }
     render() {
@@ -51,17 +51,17 @@ export default class Buttons extends Component {
 
         return <div className='buttons'>
             <button className={idUser >= 0 ? 'buttons-buttonDelete' : 'none' }
-                onClick={:: that.onButtonDelete}
+                onClick={that.onButtonDelete}
                 unselectable='on'> 
                 Delete
             </button>
             <button className={idUser >= 0 ? 'buttons-buttonCancel' : 'none' }
-                onClick={:: that.onButtonCancel}
+                onClick={that.onButtonCancel}
                 unselectable='on'> 
                 Cancel
             </button>
             <button className='buttons-buttonSave' 
-                onClick={:: that.onButtonSave}
+                onClick={that.onButtonSave}
                 unselectable='on'> 
                 { idUser < 0 ? 'Create' : 'Save' }
             </button>

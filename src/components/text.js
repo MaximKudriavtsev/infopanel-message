@@ -2,21 +2,21 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
 
 export default class Text extends Component {
-    validate(text){
+    validate = (text) => {
         let refs = this.refs,
             DOM_input_text_error = ReactDOM.findDOMNode(refs.input_text_error),
             DOM_input_text_warning = ReactDOM.findDOMNode(refs.input_text_warning);
                     
         DOM_input_text_error.className = ((text === '') ? 'error-label' : 'none');
     }
-    warningMaxSize(e){
+    warningMaxSize = (e) => {
         let refs = this.refs,
             DOM_input_text = ReactDOM.findDOMNode(refs.input_text),     
             DOM_input_text_warning = ReactDOM.findDOMNode(refs.input_text_warning);
 
         DOM_input_text_warning.className = ((DOM_input_text.value.length == 40) ? 'warning-label' : 'none');
     }
-    changeText(e) {
+    changeText = (e) => {
         let text = e.target.value.trim(),
             that = this;
 
@@ -24,7 +24,7 @@ export default class Text extends Component {
         that.validate(text);
         that.props.actions.changeText(text);
     }
-    componentDidUpdate() {
+    componentDidUpdate = () => {
         let that = this,
             text = that.props.text,
             id = that.props.id,
@@ -45,8 +45,8 @@ export default class Text extends Component {
                     ref='input_text'
                     className='text-input'
                     placeholder='Enter message...'
-                    onBlur={:: that.changeText}
-                    onChange={:: that.warningMaxSize}
+                    onBlur={that.changeText}
+                    onChange={that.warningMaxSize}
                     maxLength='40'
                     title='Maximum length is 40 symbol'
                 />

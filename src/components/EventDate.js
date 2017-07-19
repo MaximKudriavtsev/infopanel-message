@@ -11,18 +11,18 @@ Globalize('ru');
 globalizeLocalizer(Globalize);
 
 export default class EventDate extends Component {
-    validate(e) {
+    validate = (e) => {
         let DOM_input_eventDate_error = ReactDOM.findDOMNode(this.refs.input_eventDate_error);
 
         DOM_input_eventDate_error.className = ((e == null) ? 'error-label' : 'none');
     }
-    changeEventDate(e) {
+    changeEventDate = (e) => {
         let that = this;
 
         that.validate(e);
         that.props.actions.changeEventDate(e);
     }
-    componentDidUpdate() {
+    componentDidUpdate = () => {
         let that = this;
         
         that.validate(that.props.eventDate);
@@ -38,7 +38,7 @@ export default class EventDate extends Component {
                 min={new Date()}
                 defaultValue={new Date()}
                 value={new Date(props.eventDate)}
-                onChange={::that.changeEventDate}
+                onChange={that.changeEventDate}
                     format={"dd.MM.yyyy HH:mm"}
                 timeFormat={"HH:mm"}
             />

@@ -4,7 +4,7 @@ import { DropdownList } from 'react-widgets';
 import 'react-widgets/lib/less/react-widgets.less';
 
 export default class Author extends Component {
-    changeAuthor(e) {
+    changeAuthor = (e) => {
         this.props.actions.changeAuthor(e);
     }
     render() {
@@ -21,7 +21,7 @@ export default class Author extends Component {
                 placeholder='Choose author...'
                 value={props.author}
                 defaultValue={props.messageAuthor}
-                onChange={::that.changeAuthor}
+                onChange={that.changeAuthor}
                 />
             </div>
     }
