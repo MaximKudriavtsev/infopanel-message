@@ -20,7 +20,7 @@ export default class EditBar extends Component {
             <Location location={client.location} actions={actions}/>
             <EventType eventType={client.eventType} actions={actions}/>
             <EventDate eventDate={client.eventDate} actions={actions}/>
-            <StartDate dayRange={client.dayRange} eventDate={client.eventDate} actions={actions}/>
+            <StartDate startDate={client.startDate} eventDate={client.eventDate} actions={actions}/>
             <Buttons client={client} actions={actions}/>
         </div>
     }

@@ -15,10 +15,9 @@ export default {
         type: 'CHANGE_EVENTDATE',
         value: value
     }),
-    changeStartDate: (day, dayRange) => ({
+    changeStartDate: (value) => ({
         type: 'CHANGE_STARTDATE',
-        day: day,
-        dayRange: dayRange
+        value: value
     }),
     changeEventType: (value) => ({
         type: 'CHANGE_EVENT_TYPE',

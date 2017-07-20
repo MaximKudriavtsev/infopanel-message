@@ -8,16 +8,19 @@ export default class Buttons extends Component {
         let that = this,
             client = that.props.client,
             actions = that.props.actions,
-            data = {
+            startDate = new Date(client.startDate);
+        startDate.setHours(7);
+        startDate.setMinutes(0);
+        let data = {
                 text: client.text,
                 author: client.author,
                 location: client.location,
                 eventDate: client.eventDate,
-                startDate: client.startDate,
+                startDate: startDate,
                 messageAuthor: client.messageAuthor,
                 messageDate: new Date(),
                 correctEventDate : getCorrectDate(client.eventDate),
-                correctStartDate : getCorrectDate(client.startDate),
+                correctStartDate : getCorrectDate(startDate),
                 eventType: client.eventType
             },
             currId = client.focusRow;

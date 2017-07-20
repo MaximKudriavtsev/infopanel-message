@@ -92,7 +92,6 @@ app.get('/', function (req, res) {
                 messageDate: '',
                 authorList: userList,
                 focusRow: '',
-                dayRange: 0,
                 eventType:''
               }
             }
