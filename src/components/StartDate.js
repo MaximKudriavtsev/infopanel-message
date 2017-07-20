@@ -6,18 +6,28 @@ import { SelectList } from 'react-widgets';
 export default class StartDate extends Component {
     changeStartDate = (value) => {
         let props = this.props,
-            date = new Date(props.eventDate);
+            date;
 
-        date.setHours(7);
-        date.setMinutes(0);
-        date.setDate(date.getDate() - value.id);
+        debugger;
+        if(value.id == 0) {
+            date = new Date();
+        } else {
+            date = new Date(props.eventDate);
+            date.setHours(7);
+            date.setMinutes(0);
+            date.setDate(date.getDate() - value.id);
+        }
 
         props.actions.changeStartDate(date, value.id);
     }
 
     render() {
+        debugger;
         let that = this,
-            props = that.props;
+            props = that.props,
+            dayRange = new Date(props.eventDate).getDay() - new Date(props.startDate).getDay();
+
+            console.log(dayRange);
 
         let dates = [
             { id: 30, name: 'Month' },

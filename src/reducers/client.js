@@ -34,7 +34,13 @@ export default function client(state = {}, action) {
             return { ...state, dayRange: 0, id: -1, text: '', author: state.fullNameAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '', dayRange: 0 };
         }
         case 'EDIT_ROW_DATA': {
-            return { ...state, text: action.value.text, author: action.value.author, location: action.value.location, eventDate: new Date(action.value.eventDate), startDate: new Date(action.value.startDate), id: 5, focusRow: action.value.id }
+            let value = action.value,
+                startDate = new Date(value.startDate).getDay(),
+                eventDate = new Date(value.eventDate).getDay(),
+                dayRange = eventDate - startDate;
+            console.log(dayRange);
+
+            return { ...state, dayRange: dayRange, text: value.text, author: value.author, location: value.location, eventDate: new Date(value.eventDate), startDate: new Date(value.startDate), id: 5, focusRow: value.id }
         }
         case 'SET_ROW_FOCUS': {
             return { ...state, focusRow: action.value };
