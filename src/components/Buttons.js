@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uuidv4 from 'uuid/v4';
 
 import getCorrectDate from './../func/validationTime';
 
@@ -19,12 +20,11 @@ export default class Buttons extends Component {
                 correctStartDate : getCorrectDate(client.startDate),
                 eventType: client.eventType
             },
-            id = client.aggregateId,
             currId = client.focusRow;
 
         if (client.text && client.author && client.eventDate && client.startDate) {
             if(client.id < 0) {
-                actions.addRecord(id, {record: data });
+                actions.addRecord(uuidv4(), {record: data });
                 actions.createButton();
             } else {
                 actions.updateRecord(currId, {record: data});
