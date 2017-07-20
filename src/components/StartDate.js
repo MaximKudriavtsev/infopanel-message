@@ -6,18 +6,21 @@ import { SelectList } from 'react-widgets';
 export default class StartDate extends Component {
     changeStartDate = (value) => {
         let props = this.props,
+            date;
+
+        if(value.id == 0) {
+            date = new Date();
+        } else {
             date = new Date(props.eventDate);
-
-        date.setHours(7);
-        date.setMinutes(0);
-        date.setDate(date.getDate() - value.id);
-
-        props.actions.changeStartDate(date, value.id);
+            date.setDate(date.getDate() - value.id);
+        }
+        props.actions.changeStartDate(date);
     }
 
     render() {
         let that = this,
-            props = that.props;
+            props = that.props,
+            dayRange = new Date(props.eventDate).getDay() - new Date(props.startDate).getDay();
 
         let dates = [
             { id: 30, name: 'Month' },
@@ -38,7 +41,7 @@ export default class StartDate extends Component {
             while (dates[countOfDisabled].id > days) countOfDisabled++;
         }
         for (var i = 0; i < dates.length; i++) {
-            if (dates[i].id == props.dayRange) {
+            if (dates[i].id == dayRange) {
                 name = dates[i].name;
                 break;
             }
@@ -51,7 +54,7 @@ export default class StartDate extends Component {
                 data={dates}
                 valueField='id' textField='name'
                 disabled={dates.slice(0, countOfDisabled)}
-                value={{ id: that.props.dayRange, name: name }}
+                value={{ id: dayRange, name: name }}
                 onChange={that.changeStartDate}
                 />
             </div>

@@ -56,9 +56,8 @@ app.get('/', function (req, res) {
       return console.log(err);
     }
     executeQuery('records').then(state => {
-      //create client global id! new aggregate id
-      let aggregateId = 0,
-        recordList = Immutable({ records: [] });
+      let recordList = Immutable({ records: [] });
+
       for(var key = state.records.length - 1; key >= 0; key--){
         if(state.records[key].record.messageAuthor == user.upn) {
           recordList = recordList.setIn(
@@ -68,12 +67,8 @@ app.get('/', function (req, res) {
                 record: state.records[key].record
             }].concat(recordList.records)
           );
-          if(state.records[key].aggregateId > aggregateId){
-            aggregateId = state.records[key].aggregateId;
-          }
         }
       }
-      ++aggregateId;
       MongoClient.connect(config.storage.params.url, function (err, db) {
         assert.equal(null, err);
         console.log("Connected correctly to server");
@@ -97,8 +92,6 @@ app.get('/', function (req, res) {
                 messageDate: '',
                 authorList: userList,
                 focusRow: '',
-                aggregateId: aggregateId,
-                dayRange: 0,
                 eventType:''
               }
             }
