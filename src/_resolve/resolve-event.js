@@ -1,4 +1,4 @@
-const Event = (type, payload, corName) => ({
+const Event = (type, payload) => ({
     type,
     payload
 });

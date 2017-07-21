@@ -25,18 +25,10 @@ export default class StartDate extends Component {
             today = new Date(),
             dayRange = 0;
 
-        eventDate.setHours(0);
-        eventDate.setMinutes(0);
-        eventDate.setSeconds(0);
-        eventDate.setMilliseconds(0);
-        startDate.setHours(0);
-        startDate.setMinutes(0);
-        startDate.setSeconds(0);
-        startDate.setMilliseconds(0);
-        today.setHours(0);
-        today.setMinutes(0);
-        today.setSeconds(0);
-        today.setMilliseconds(0);
+eventDate.setHours(0);          startDate.setHours(0);          today.setHours(0);
+eventDate.setMinutes(0);        startDate.setMinutes(0);        today.setMinutes(0);
+eventDate.setSeconds(0);        startDate.setSeconds(0);        today.setSeconds(0);
+eventDate.setMilliseconds(0);   startDate.setMilliseconds(0);   today.setMilliseconds(0);
 
         let dates = [
             { id: 30, name: 'Month' },

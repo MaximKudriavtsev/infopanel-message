@@ -1,38 +1,22 @@
 
 const events = {
-  RECORD_ADDED:    'infopanelRecordAdded',
-  RECORD_UPDATED:  'infopanelRecordUpdated',
-  RECORD_DELETED:  'infopanelRecordDeleted',
-  RECORD_COMPLETED:'infopanelRecordCompleted'
+  MESSAGE_ADDED:    'infopanelMessageAdded',
+  MESSAGE_UPDATED:  'infopanelMessageUpdated',
+  MESSAGE_DELETED:  'infopanelMessageDeleted'
 };
 
-export type RecordAdded = {
+export type MessageAdded = {
   aggregateId: string;
-  corName: string;
-  payload: {
-    record: object;
-  };
+  payload: object;
 };
 
-export type RecordUpdate = {
+export type MessageUpdate = {
   aggregateId: string;
-  corName: string;
-  payload: {
-    record: object;
-  };
+  payload: object;
 };
 
-export type RecordDeleted = {
+export type MessageDeleted = {
   aggregateId: string;
-  corName: string;
-};
-
-export type RecordCompleted = {
-  aggregateId: string;
-  corName: string;
-  payload: {
-    completed: boolean;
-  };
 };
 
 export default events;

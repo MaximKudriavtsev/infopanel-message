@@ -27,10 +27,10 @@ export default class Buttons extends Component {
 
         if (client.text && client.author && client.eventDate && client.startDate) {
             if(client.id < 0) {
-                actions.addRecord(uuidv4(), {record: data });
+                actions.addMessage(uuidv4(), data );
                 actions.createButton();
             } else {
-                actions.updateRecord(currId, {record: data});
+                actions.updateMessage(currId, data);
                 actions.updateButton();
             }
         } else {
@@ -42,7 +42,7 @@ export default class Buttons extends Component {
             client = props.client,
             id = client.focusRow;
 
-        props.actions.deleteRecord(id);
+        props.actions.deleteMessage(id);
         props.actions.deleteButton();
     }
     onButtonCancel = () => {

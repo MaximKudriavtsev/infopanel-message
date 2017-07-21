@@ -1,8 +1,8 @@
 import events from './record-events';
 import Event from '../../_resolve/resolve-event';
-import type { RecordAdded, RecordUpdate, RecordCompleted } from './record-events';
+import type { MessageAdded, MessageUpdate, MessageCompleted } from './record-events';
 
-const { RECORD_ADDED, RECORD_UPDATED, RECORD_DELETED, RECORD_COMPLETED } = events;
+const { MESSAGE_ADDED, MESSAGE_UPDATED, MESSAGE_DELETED, MESSAGE_COMPLETED } = events;
 
 const throwErrorIfNull = state => {
   if(state === null) {
@@ -13,42 +13,30 @@ const throwErrorIfNull = state => {
 const Aggregate = {
   name: 'record',
   initialState: {},
-  eventHandlers: {
-    [RECORD_ADDED]: (state: any, event: RecordAdded) => ({...event.payload}),
-    [RECORD_UPDATED]: (state: any, event: RecordUpdate) => {
-      state.text = event.payload.text;
-      return state;
-    },
-    [RECORD_DELETED]: (state: any) => null,
-    [RECORD_COMPLETED]: (state: any, event: RecordCompleted) => {
-      state.completed = event.payload.completed;
-      return state;
-    }
-  },
+  // eventHandlers: {
+  //   [RECORD_ADDED]: (state: any, event: RecordAdded) => ({...event.payload}),
+  //   [RECORD_UPDATED]: (state: any, event: RecordUpdate) => {
+  //     state.text = event.payload.text;
+  //     return state;
+  //   },
+  //   [RECORD_DELETED]: (state: any) => null,
+  //   [RECORD_COMPLETED]: (state: any, event: RecordCompleted) => {
+  //     state.completed = event.payload.completed;
+  //     return state;
+  //   }
+  // },
   commands: {
-    addRecord:(state: any, command: RecordAdded) => {
-      return new Event(RECORD_ADDED, {
-        record: command.payload.record 
-      })
+    addMessage:(state: any, command: MessageAdded) => {
+      return new Event(MESSAGE_ADDED, command.payload)
     },
-    updateRecord:(state: any, command: RecordUpdate) => {
+    updateMessage:(state: any, command: MessageUpdate) => {
       throwErrorIfNull(state);
-      return new Event(RECORD_UPDATED, {
-        record: command.payload.record,
-      });
+      return new Event(MESSAGE_UPDATED, command.payload);
     },
-    deleteRecord:(state: any) => {
+    deleteMessage:(state: any) => {
       throwErrorIfNull(state);
-      return new Event(RECORD_DELETED, {});
+      return new Event(MESSAGE_DELETED, {});
     },
-    completeRecord: (state: RecordCompleted, command: RecordCompleted) => {
-      throwErrorIfNull(state);
-      return state.completed === command.payload.completed
-        ? null
-        : new Event(RECORD_COMPLETED, {
-            completed: command.payload.completed
-          });
-    }
   }
 }
 
