@@ -1,7 +1,6 @@
 const Event = (type, payload, corName) => ({
     type,
-    payload,
-    corName
+    payload
 });
 
 export default Event;

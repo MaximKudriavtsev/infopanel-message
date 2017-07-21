@@ -34,7 +34,7 @@ export default class Buttons extends Component {
                 actions.updateButton();
             }
         } else {
-            actions.validateError(client.focusRow);
+            actions.validateError(client.id);
         }
     }
     onButtonDelete = () => {

@@ -8,7 +8,7 @@ export default class StartDate extends Component {
         let props = this.props,
             date;
 
-        if(value.id == 0) {
+        if (value.id == 0) {
             date = new Date();
         } else {
             date = new Date(props.eventDate);
@@ -20,7 +20,23 @@ export default class StartDate extends Component {
     render() {
         let that = this,
             props = that.props,
-            dayRange = new Date(props.eventDate).getDay() - new Date(props.startDate).getDay();
+            eventDate = new Date(props.eventDate),
+            startDate = new Date(props.startDate),
+            today = new Date(),
+            dayRange = 0;
+
+        eventDate.setHours(0);
+        eventDate.setMinutes(0);
+        eventDate.setSeconds(0);
+        eventDate.setMilliseconds(0);
+        startDate.setHours(0);
+        startDate.setMinutes(0);
+        startDate.setSeconds(0);
+        startDate.setMilliseconds(0);
+        today.setHours(0);
+        today.setMinutes(0);
+        today.setSeconds(0);
+        today.setMilliseconds(0);
 
         let dates = [
             { id: 30, name: 'Month' },
@@ -30,20 +46,20 @@ export default class StartDate extends Component {
             { id: 1, name: '1 days' },
             { id: 0, name: 'Now' }
         ],
-            name,
+            name = 'Now',
             countOfDisabled = 0,
-            days = Math.floor((new Date(props.eventDate).getTime() - new Date().getTime()) / 3600 / 1000 / 24);
+            days = Math.round((eventDate - today) / 3600 / 1000 / 24);
 
-        if (days < 0) {
-            countOfDisabled = dates.length - 1;
-            name = 'Now';
-        } else {
-            while (dates[countOfDisabled].id > days) countOfDisabled++;
-        }
-        for (var i = 0; i < dates.length; i++) {
-            if (dates[i].id == dayRange) {
-                name = dates[i].name;
-                break;
+        while (countOfDisabled < dates.length - 1 && dates[countOfDisabled].id >= days) countOfDisabled++;
+
+        if(today.toString() != startDate.toString()) {
+            dayRange = Math.round((eventDate - startDate) / 1000 / 60 / 60 / 24);
+
+            for (var i = 0; i < dates.length; i++) {
+                if (dates[i].id == dayRange) {
+                    name = dates[i].name;
+                    break;
+                }
             }
         }
         return <div className='startDate'>
@@ -56,7 +72,7 @@ export default class StartDate extends Component {
                 disabled={dates.slice(0, countOfDisabled)}
                 value={{ id: dayRange, name: name }}
                 onChange={that.changeStartDate}
-                />
-            </div>
+            />
+        </div>
     }
 }
