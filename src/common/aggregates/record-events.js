@@ -1,9 +1,9 @@
 
 const events = {
-  RECORD_ADDED:    'recordAdded',
-  RECORD_UPDATED:  'recordUpdated',
-  RECORD_DELETED:  'recordDeleted',
-  RECORD_COMPLETED:'recordCompleted'
+  RECORD_ADDED:    'infopanelRecordAdded',
+  RECORD_UPDATED:  'infopanelRecordUpdated',
+  RECORD_DELETED:  'infopanelRecordDeleted',
+  RECORD_COMPLETED:'infopanelRecordCompleted'
 };
 
 export type RecordAdded = {

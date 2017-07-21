@@ -29,17 +29,17 @@ const Aggregate = {
     addRecord:(state: any, command: RecordAdded) => {
       return new Event(RECORD_ADDED, {
         record: command.payload.record 
-      }, 'InfoPanel')
+      })
     },
     updateRecord:(state: any, command: RecordUpdate) => {
       throwErrorIfNull(state);
       return new Event(RECORD_UPDATED, {
         record: command.payload.record,
-      }, 'InfoPanel');
+      });
     },
     deleteRecord:(state: any) => {
       throwErrorIfNull(state);
-      return new Event(RECORD_DELETED, {}, 'InfoPanel');
+      return new Event(RECORD_DELETED, {});
     },
     completeRecord: (state: RecordCompleted, command: RecordCompleted) => {
       throwErrorIfNull(state);
@@ -47,7 +47,7 @@ const Aggregate = {
         ? null
         : new Event(RECORD_COMPLETED, {
             completed: command.payload.completed
-          }, 'InfoPanel');
+          });
     }
   }
 }
