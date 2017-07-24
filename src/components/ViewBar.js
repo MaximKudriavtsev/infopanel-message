@@ -23,7 +23,7 @@ export default class ViewBar extends Component {
         this.addScroll();
     }
     shouldComponentUpdate(nextProps, nextState) {
-        return this.props.eventList != nextProps.eventList;
+        return (this.props.eventList != nextProps.eventList) || (this.props.focusRow != nextProps.focusRow) ;
     }
     render() {
         let that = this,
