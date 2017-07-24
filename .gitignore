@@ -11,3 +11,5 @@ Thumbs.db
 node_modules
 npm-debug.log
 book_img
+resolve.config.js
+config.js

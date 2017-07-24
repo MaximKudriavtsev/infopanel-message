@@ -17,6 +17,12 @@ import commandHandler from 'resolve-command';
 import query from 'resolve-query';
 import Immutable from 'seamless-immutable';
 import getUsers from './src/func/getUsers';
+import { REDIRECT_HTTP, IP, LOCAL_MONGO, USERS_COLLECTION } from './config.js';
+import createEventStore from 'resolve-es';
+import createStorage from 'resolve-storage';
+import createBus from 'resolve-bus';
+import storageDriver from 'resolve-storage-mongo';
+import busDriver from 'resolve-bus-memory';
 
 var app = new express();
 var server = http.Server(app);
@@ -25,7 +31,7 @@ var compiler = webpack(configWP);
 var subscribe = event_store.subscribe;
 var eventStore = event_store.eventStore;
 var MongoClient = mongodb.MongoClient;
-var port = 3000;
+var port = 1000;
 
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: configWP.output.publicPath }));
 app.use(webpackHotMiddleware(compiler));
@@ -38,10 +44,56 @@ const executeQuery = query({
   eventStore,
   projections: config.queries
 });
-
 const executeCommand = commandHandler({
   eventStore,
   aggregates: config.aggregates
+});
+const usersEventStore = createEventStore({
+    storage: createStorage({
+        driver: storageDriver({
+            url: LOCAL_MONGO,
+            collection: USERS_COLLECTION
+        })
+    }),
+    bus: createBus({
+        driver: busDriver()
+    })
+});
+const usersProjection = {
+    name: 'users',
+    initialState: Immutable({}),
+
+    eventHandlers: {
+        UserCreated(state, event) {
+            const id = event.aggregateId;
+            return state.setIn([id], makeUserFromEvent(id, event.payload));
+        },
+
+        UserUpdated(state, event) {
+            const id = event.aggregateId;
+            return state[id]
+                ? state.merge(
+                    {
+                        [id]: makeUserFromEvent(id, event.payload)
+                    },
+                      { deep: true }
+                  )
+                : state;
+        },
+
+        UserDeleted(state, event) {
+            const id = event.aggregateId;
+            if (!state[id]) {
+                return state;
+            }
+
+            return state.without(id);
+        }
+    }
+};
+const executeUsers = query({
+  usersEventStore,
+  projections: [usersProjection]
 });
 
 app.get('/', function (req, res) {
@@ -95,8 +147,8 @@ app.get('/', function (req, res) {
                 eventType:''
               }
             }
+            db.close();            
             var result = data.replace(/{{PRELOADED_STATE}}/g, JSON.stringify(serverState));
-            db.close();
             res.send(result);
           });
       });
@@ -111,7 +163,7 @@ app.get('/ClearCookies', (req, res) => {
   res.clearCookie(`InfoPanel-token`)
   res.redirect(`/`);
 });
-/* for testing */
+// /* for testing */
 app.get(`/Login`, (req, res) => {
   res.sendFile(__dirname + '/login.html')
 });
@@ -136,7 +188,7 @@ app.get(`/auth/callback`, (req, res) => {
 /*for azura auth*/
 // app.get(`/auth`, (req, res) => {
 //   res.redirect(
-//     `http://172.22.6.135:9000/login?redirect=http://172.22.11.62:3000/auth/callback`
+//     `${REDIRECT_HTTP}/login?redirect=http://${IP}:${port}/auth/callback`
 //   )
 // });
 // app.get(`/auth/callback`, (req, res) => {
