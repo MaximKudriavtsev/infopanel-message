@@ -22,7 +22,7 @@ class App extends Component {
       <div className={!client.preview ? 'App' : 'none'}>
         <TitleBar messageAuthor={messageAuthor}/>
         <EditBar client={client} actions={actions}/>
-        <ViewBar eventList={server.records} focusRow={client.focusRow} actions={actions}/>
+        <ViewBar eventList={server.records} focusRow={client.focusRow} messageAuthor={messageAuthor} actions={actions}/>
       </div>
         <EventPage preview={client.preview} actions={actions}/>
       </div>

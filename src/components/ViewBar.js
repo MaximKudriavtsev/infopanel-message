@@ -22,12 +22,22 @@ export default class ViewBar extends Component {
     componentDidUpdate = () => {
         this.addScroll();
     }
+    shouldComponentUpdate(nextProps, nextState) {
+        return this.props.eventList != nextProps.eventList;
+    }
     render() {
         let that = this,
             template,
-            data = that.props.eventList,
+            allData = that.props.eventList,
+            data = [],
             clientHeight = document.documentElement.clientHeight,
             height = clientHeight - 94;
+
+        for(var key in allData) {
+            if (allData[key].record.messageAuthor == that.props.messageAuthor) {
+                data.push(allData[key]);
+            }
+        }
             
         if (data.length) {
             template = data.map(({record: item, aggregateId: aggregateId }, index) => {

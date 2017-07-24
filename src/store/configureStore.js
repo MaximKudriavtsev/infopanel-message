@@ -2,13 +2,10 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import reducers from '../reducers';
 import thunk from 'redux-thunk';
 import Immutable from 'seamless-immutable';
-//import createSocketIoMiddleware from 'redux-socket.io';
 import socketIOClient from 'socket.io-client';
 
 import axios from 'axios';
 import { sendCommandMiddleware } from 'resolve-redux';
-
-//let socket = io('http://localhost:3000');
 
 const CRITICAL_LEVEL = 100;
 let socketIOFailCount = 0;
@@ -17,7 +14,6 @@ function initSocketIO(store) {
   const socketIO = socketIOClient({
     path: '/infopanel-message/soket.io'
   });
-  //let socketIoMiddleware = createSocketIoMiddleware(socketIO, 'server/');
 
   socketIO.on('event', event => {
     store.dispatch(JSON.parse(event))
