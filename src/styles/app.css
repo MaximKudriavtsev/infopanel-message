@@ -104,7 +104,7 @@ a:link, a:visited, a:hover, a:active {
     color: #858585;
 }
 .rw-list-option{
-    outline:0
+    outline:0;
 }
 .rw-list-option:hover, .rw-calendar-grid .rw-btn:hover{
     background: #2faceb !important;

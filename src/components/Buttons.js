@@ -11,9 +11,12 @@ export default class Buttons extends Component {
             startDate = new Date(client.startDate);
         startDate.setHours(7);
         startDate.setMinutes(0);
+        startDate.setSeconds(0); 
+        startDate.setMilliseconds(0);
         let data = {
                 text: client.text,
                 author: client.author,
+                displayName: client.displayName,
                 location: client.location,
                 eventDate: client.eventDate,
                 startDate: startDate,

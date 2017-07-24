@@ -66,13 +66,21 @@ app.get('/', function (req, res) {
       executeUsers('users')
     ]).then(([records, users]) => {
         const usersList = Object.keys(users).map(key => users[key]);
+        let userName = 'Test Name';
+        for(var key in usersList) {
+          if (usersList[key].email == user.upn){
+            userName = usersList[key].displayName;
+            break;
+          }
+        }
         let serverState = {
           server: records,
           client: {
             id: -1,
             text: '',
-            author: user.name,
-            fullNameAuthor: user.name,
+            author: user.upn,
+            fullNameAuthor: userName,
+            displayName: userName,
             location: '',
             eventDate: new Date(),
             startDate: new Date(),

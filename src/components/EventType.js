@@ -8,6 +8,7 @@ export default class Author extends Component {
     changeEventType = (e) => {
         this.props.actions.changeEventType(e);
     }
+    // for validate
     // componentDidUpdate() {
     //     let that = this,
     //         text = that.props.eventType,
@@ -40,7 +41,8 @@ export default class Author extends Component {
                 />
             </div>
     }
-}           // for validate
+}           
+            // for validate
             // <label htmlFor='input-eventType' ref='input_eventType_error' className='none' unselectable='on'>
             //     Please choose type of event
             // </label>
