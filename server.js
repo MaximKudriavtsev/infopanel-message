@@ -11,25 +11,21 @@ import socketIO from 'socket.io';
 import jwt from 'jsonwebtoken';
 import mongodb from 'mongodb';
 import assert from 'assert';
-import event_store from './src/store/event_store';
+import recordsStore from './src/store/recordsStore';
+import usersStore from './src/store/usersStore';
 import config from './resolve.config.js';
 import commandHandler from 'resolve-command';
 import query from 'resolve-query';
 import Immutable from 'seamless-immutable';
 import getUsers from './src/func/getUsers';
-import { REDIRECT_HTTP, IP, LOCAL_MONGO, USERS_COLLECTION } from './config.js';
-import createEventStore from 'resolve-es';
-import createStorage from 'resolve-storage';
-import createBus from 'resolve-bus';
-import storageDriver from 'resolve-storage-mongo';
-import busDriver from 'resolve-bus-memory';
+import { REDIRECT_HTTP, IP } from './config.js';
 
 var app = new express();
 var server = http.Server(app);
 var io = new socketIO(server);
 var compiler = webpack(configWP);
-var subscribe = event_store.subscribe;
-var eventStore = event_store.eventStore;
+var subscribe = recordsStore.subscribe;
+var eventStore = recordsStore.eventStore;
 var MongoClient = mongodb.MongoClient;
 var port = 1000;
 
@@ -48,52 +44,10 @@ const executeCommand = commandHandler({
   eventStore,
   aggregates: config.aggregates
 });
-const usersEventStore = createEventStore({
-    storage: createStorage({
-        driver: storageDriver({
-            url: LOCAL_MONGO,
-            collection: USERS_COLLECTION
-        })
-    }),
-    bus: createBus({
-        driver: busDriver()
-    })
-});
-const usersProjection = {
-    name: 'users',
-    initialState: Immutable({}),
 
-    eventHandlers: {
-        UserCreated(state, event) {
-            const id = event.aggregateId;
-            return state.setIn([id], makeUserFromEvent(id, event.payload));
-        },
-
-        UserUpdated(state, event) {
-            const id = event.aggregateId;
-            return state[id]
-                ? state.merge(
-                    {
-                        [id]: makeUserFromEvent(id, event.payload)
-                    },
-                      { deep: true }
-                  )
-                : state;
-        },
-
-        UserDeleted(state, event) {
-            const id = event.aggregateId;
-            if (!state[id]) {
-                return state;
-            }
-
-            return state.without(id);
-        }
-    }
-};
 const executeUsers = query({
-  usersEventStore,
-  projections: [usersProjection]
+  eventStore: usersStore.usersEventStore,
+  projections: [usersStore.usersProjection]
 });
 
 app.get('/', function (req, res) {
@@ -107,51 +61,30 @@ app.get('/', function (req, res) {
     if (err) {
       return console.log(err);
     }
-    executeQuery('records').then(state => {
-      let recordList = Immutable({ records: [] });
-
-      for(var key = state.records.length - 1; key >= 0; key--){
-        if(state.records[key].record.messageAuthor == user.upn) {
-          recordList = recordList.setIn(
-            ['records'],
-            [{
-                aggregateId: state.records[key].aggregateId,
-                record: state.records[key].record
-            }].concat(recordList.records)
-          );
+    Promise.all([
+      executeQuery('records'),
+      executeUsers('users')
+    ]).then(([records, users]) => {
+        const usersList = Object.keys(users).map(key => users[key]);
+        let serverState = {
+          server: records,
+          client: {
+            id: -1,
+            text: '',
+            author: user.name,
+            fullNameAuthor: user.name,
+            location: '',
+            eventDate: new Date(),
+            startDate: new Date(),
+            messageAuthor: user.upn,
+            messageDate: '',
+            authorList: usersList,
+            focusRow: '',
+            eventType:''
+          }
         }
-      }
-      MongoClient.connect(config.storage.params.url, function (err, db) {
-        assert.equal(null, err);
-        console.log("Connected correctly to server");
-        db.collection('userList')
-          .find({ corName: 'userList' })
-          .map(function(item) { return {name: item.name, surname: item.surname}; } )
-          .toArray()
-          .then((users) => {
-            let userList = getUsers(users);
-            let serverState = {
-              server: recordList,
-              client: {
-                id: -1,
-                text: '',
-                author: user.name,
-                fullNameAuthor: user.name,
-                location: '',
-                eventDate: new Date(),
-                startDate: new Date(),
-                messageAuthor: user.upn,
-                messageDate: '',
-                authorList: userList,
-                focusRow: '',
-                eventType:''
-              }
-            }
-            db.close();            
-            var result = data.replace(/{{PRELOADED_STATE}}/g, JSON.stringify(serverState));
-            res.send(result);
-          });
-      });
+        var result = data.replace(/{{PRELOADED_STATE}}/g, JSON.stringify(serverState));
+        res.send(result);
     }).catch(err => {
       console.log('Query error: ' + err.message);
       console.log(err);
