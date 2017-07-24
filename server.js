@@ -9,16 +9,12 @@ import express from 'express';
 import http from 'http';
 import socketIO from 'socket.io';
 import jwt from 'jsonwebtoken';
-import mongodb from 'mongodb';
-import assert from 'assert';
 import recordsStore from './src/store/recordsStore';
 import usersStore from './src/store/usersStore';
 import config from './resolve.config.js';
+import { REDIRECT_HTTP, IP, APPLICATION_NAME } from './config.js';
 import commandHandler from 'resolve-command';
 import query from 'resolve-query';
-import Immutable from 'seamless-immutable';
-import getUsers from './src/func/getUsers';
-import { REDIRECT_HTTP, IP, APPLICATION_NAME } from './config.js';
 
 var appName = APPLICATION_NAME;
 var app = new express();
@@ -29,7 +25,6 @@ var io = new socketIO(server, {
 var compiler = webpack(configWP);
 var subscribe = recordsStore.subscribe;
 var eventStore = recordsStore.eventStore;
-var MongoClient = mongodb.MongoClient;
 var port = 1000;
 
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: configWP.output.publicPath }));
@@ -57,10 +52,8 @@ app.get(`/${appName}/`, function (req, res) {
   let user = '';
   try {
     user = jwt.verify(req.cookies[`InfoPanel-token`], 'test-jwt-secret');
-    console.log(user);
 
     fs.readFile('./index.html', 'utf8', function (err, data) {
-      console.log('preload');
       if (err) {
         return console.log(err);
       }
@@ -69,14 +62,18 @@ app.get(`/${appName}/`, function (req, res) {
         executeUsers('users')
       ]).then(([records, users]) => {
           const usersList = Object.keys(users).map(key => users[key]);
-          let userName = 'Test Name';
-
-          for(var key in usersList) {
-            if (usersList[key].email == user.upn){
-              userName = usersList[key].displayName;
-              break;
+          let userName;
+          if(user.displayName){
+            userName = user.displayName.split(' (')[0];
+          } else {
+            for(var key in usersList) {
+              if (usersList[key].email == user.upn){
+                userName = usersList[key].displayName;
+                break;
+              }
             }
           }
+
           let serverState = {
             server: records,
             client: {
@@ -118,9 +115,9 @@ app.get(`/infopanel-message/login`, (req, res) => {
 
 app.get(`/infopanel-message/auth`, (req, res) => {
     const token = jwt.sign({
-      upn: 'test@test.com',
-      //upn: 'Max',
-      name: 'testName'
+      //upn: 'test@test.com',
+      upn: 'Max',
+      displayName: 'testName'
     }, 'test-jwt-secret')
     res.redirect(`/infopanel-message/auth/callback?token=${token}`)
 });
@@ -146,9 +143,9 @@ app.get(`/infopanel-message/auth/callback`, (req, res) => {
 //   })
 //   res.redirect(`/${appName}/`)
 // });
+
 /*END for azura auth*/
 app.get(`/${appName}/api/queries/:queryName`, (req, res) => {
-  console.log("get");
   executeQuery(req.params.queryName)
     .then(state => { console.log(req.params.queryName); res.status(200).json(state) })
     .catch(err => {
@@ -158,7 +155,6 @@ app.get(`/${appName}/api/queries/:queryName`, (req, res) => {
 });
 
 app.post(`/${appName}/api/commands`, function (req, res) {
-  console.log("post");
   executeCommand(req.body)
     .then(function () {
       res.status(200).send('ok');
