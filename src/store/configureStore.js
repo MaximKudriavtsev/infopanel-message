@@ -14,7 +14,9 @@ const CRITICAL_LEVEL = 100;
 let socketIOFailCount = 0;
 
 function initSocketIO(store) {
-  const socketIO = socketIOClient('/');
+  const socketIO = socketIOClient({
+    path: '/infopanel-message/soket.io'
+  });
   //let socketIoMiddleware = createSocketIoMiddleware(socketIO, 'server/');
 
   socketIO.on('event', event => {
@@ -35,7 +37,7 @@ export default initialState => {
   }
 
   const middleware = [sendCommandMiddleware({
-    sendCommand: async command => axios.post('/api/commands', command)
+    sendCommand: async command => axios.post('/infopanel-message/api/commands', command)
   })];
 
   const composeEnhancers = typeof window === 'object' &&

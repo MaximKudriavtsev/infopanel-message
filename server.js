@@ -22,7 +22,9 @@ import { REDIRECT_HTTP, IP } from './config.js';
 
 var app = new express();
 var server = http.Server(app);
-var io = new socketIO(server);
+var io = new socketIO(server, {
+  path: '/infopanel-message/soket.io'
+});
 var compiler = webpack(configWP);
 var subscribe = recordsStore.subscribe;
 var eventStore = recordsStore.eventStore;
@@ -50,12 +52,12 @@ const executeUsers = query({
   projections: [usersStore.usersProjection]
 });
 
-app.get('/', function (req, res) {
+app.get('/infopanel-message/', function (req, res) {
   let user = '';
   try {
      user = jwt.verify(req.cookies[`InfoPanel-token`], 'test-jwt-secret');
   } catch(error) {
-     res.redirect(`/Login`);
+     res.redirect(`/infopanel-message/login`);
   }
   fs.readFile('./index.html', 'utf8', function (err, data) {
     if (err) {
@@ -100,47 +102,47 @@ app.get('/', function (req, res) {
   });
 });
 
-app.get('/ClearCookies', (req, res) => {
+app.get('/infopanel-message/clearCookies', (req, res) => {
   res.clearCookie(`InfoPanel-token`)
-  res.redirect(`/`);
+  res.redirect(`/infopanel-message/`);
 });
 // /* for testing */
-app.get(`/Login`, (req, res) => {
+app.get(`/infopanel-message/login`, (req, res) => {
   res.sendFile(__dirname + '/login.html')
 });
 
-app.get(`/auth`, (req, res) => {
+app.get(`/infopanel-message/auth`, (req, res) => {
     const token = jwt.sign({
       upn: 'test@test.com',
       //upn: 'Max',
       name: 'testName'
     }, 'test-jwt-secret')
-    res.redirect(`/auth/callback?token=${token}`)
+    res.redirect(`/infopanel-message/auth/callback?token=${token}`)
 });
 
-app.get(`/auth/callback`, (req, res) => {
+app.get(`/infopanel-message/auth/callback`, (req, res) => {
   res.cookie(`InfoPanel-token`, req.query.token, {
     maxAge: 86400000,
     httpOnly: true
   })
-  res.redirect(`/`)
+  res.redirect(`/infopanel-message/`)
 });
 /**/
 /*for azura auth*/
-// app.get(`/auth`, (req, res) => {
+// app.get(`/infopanel-message/auth`, (req, res) => {
 //   res.redirect(
-//     `${REDIRECT_HTTP}/login?redirect=http://${IP}:${port}/auth/callback`
+//     `${REDIRECT_HTTP}/login?redirect=http://${IP}:${port}/infopanel-message/auth/callback`
 //   )
 // });
-// app.get(`/auth/callback`, (req, res) => {
+// app.get(`/infopanel-message/auth/callback`, (req, res) => {
 //   res.cookie(`InfoPanel-token`, req.query.token, {
 //     maxAge: 86400000,
 //     httpOnly: true
 //   })
-//   res.redirect(`/`)
+//   res.redirect(`/infopanel-message/`)
 // });
 /**/
-app.get('/api/queries/:queryName', (req, res) => {
+app.get('/infopanel-message/api/queries/:queryName', (req, res) => {
   console.log("get");
   executeQuery(req.params.queryName)
     .then(state => { console.log(req.params.queryName); res.status(200).json(state) })
@@ -150,7 +152,7 @@ app.get('/api/queries/:queryName', (req, res) => {
     });
 });
 
-app.post('/api/commands', function (req, res) {
+app.post('/infopanel-message/api/commands', function (req, res) {
   console.log("post");
   executeCommand(req.body)
     .then(function () {

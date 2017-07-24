@@ -11,7 +11,7 @@ export default class TitleBar extends Component {
             <div className='app-titleBar-userName'>
                 <a className='app-titleBar-userName-logOut'
                   title = 'Click to Log Out'
-                  href = '/ClearCookies'>
+                  href = '/infopanel-message/clearCookies'>
                   {this.props.messageAuthor}
                 </a>
             </div>
