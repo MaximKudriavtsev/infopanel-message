@@ -26,7 +26,9 @@ import busDriver from 'resolve-bus-memory';
 
 var app = new express();
 var server = http.Server(app);
-var io = new socketIO(server);
+var io = new socketIO(server, {
+  path: '/infopanel-message/soket.io'
+});
 var compiler = webpack(configWP);
 var subscribe = event_store.subscribe;
 var eventStore = event_store.eventStore;
