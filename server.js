@@ -18,8 +18,9 @@ import commandHandler from 'resolve-command';
 import query from 'resolve-query';
 import Immutable from 'seamless-immutable';
 import getUsers from './src/func/getUsers';
-import { REDIRECT_HTTP, IP } from './config.js';
+import { REDIRECT_HTTP, IP, APPLICATION_NAME } from './config.js';
 
+var appName = APPLICATION_NAME;
 var app = new express();
 var server = http.Server(app);
 var io = new socketIO(server, {
@@ -52,61 +53,65 @@ const executeUsers = query({
   projections: [usersStore.usersProjection]
 });
 
-app.get('/infopanel-message/', function (req, res) {
+app.get(`/${appName}/`, function (req, res) {
   let user = '';
   try {
-     user = jwt.verify(req.cookies[`InfoPanel-token`], 'test-jwt-secret');
-  } catch(error) {
-     res.redirect(`/infopanel-message/login`);
-  }
-  fs.readFile('./index.html', 'utf8', function (err, data) {
-    if (err) {
-      return console.log(err);
-    }
-    Promise.all([
-      executeQuery('records'),
-      executeUsers('users')
-    ]).then(([records, users]) => {
-        const usersList = Object.keys(users).map(key => users[key]);
-        let userName = 'Test Name';
-        for(var key in usersList) {
-          if (usersList[key].email == user.upn){
-            userName = usersList[key].displayName;
-            break;
+    user = jwt.verify(req.cookies[`InfoPanel-token`], 'test-jwt-secret');
+    console.log(user);
+
+    fs.readFile('./index.html', 'utf8', function (err, data) {
+      console.log('preload');
+      if (err) {
+        return console.log(err);
+      }
+      Promise.all([
+        executeQuery('records'),
+        executeUsers('users')
+      ]).then(([records, users]) => {
+          const usersList = Object.keys(users).map(key => users[key]);
+          let userName = 'Test Name';
+
+          for(var key in usersList) {
+            if (usersList[key].email == user.upn){
+              userName = usersList[key].displayName;
+              break;
+            }
           }
-        }
-        let serverState = {
-          server: records,
-          client: {
-            id: -1,
-            text: '',
-            author: user.upn,
-            fullNameAuthor: userName,
-            displayName: userName,
-            location: '',
-            eventDate: new Date(),
-            startDate: new Date(),
-            messageAuthor: user.upn,
-            messageDate: '',
-            authorList: usersList,
-            focusRow: '',
-            eventType:''
+          let serverState = {
+            server: records,
+            client: {
+              id: -1,
+              text: '',
+              author: user.upn,
+              fullNameAuthor: userName,
+              displayName: userName,
+              location: '',
+              eventDate: new Date(),
+              startDate: new Date(),
+              messageAuthor: user.upn,
+              messageDate: '',
+              authorList: usersList,
+              focusRow: '',
+              eventType:''
+            }
           }
-        }
-        var result = data.replace(/{{PRELOADED_STATE}}/g, JSON.stringify(serverState));
-        res.send(result);
-    }).catch(err => {
-      console.log('Query error: ' + err.message);
-      console.log(err);
+          var result = data.replace(/{{PRELOADED_STATE}}/g, JSON.stringify(serverState));
+          res.send(result);
+      }).catch(err => {
+        console.log('Query error: ' + err.message);
+        console.log(err);
+      });
     });
-  });
+   } catch(error) {
+     res.redirect(`/${appName}/auth`);
+  }
 });
 
-app.get('/infopanel-message/clearCookies', (req, res) => {
+app.get(`/${appName}/clearCookies`, (req, res) => {
   res.clearCookie(`InfoPanel-token`)
-  res.redirect(`/infopanel-message/`);
+  res.redirect(`/${appName}/`);
 });
-// /* for testing */
+/* for testing */
 app.get(`/infopanel-message/login`, (req, res) => {
   res.sendFile(__dirname + '/login.html')
 });
@@ -127,22 +132,22 @@ app.get(`/infopanel-message/auth/callback`, (req, res) => {
   })
   res.redirect(`/infopanel-message/`)
 });
-/**/
+/*END for testing*/
 /*for azura auth*/
-// app.get(`/infopanel-message/auth`, (req, res) => {
+// app.get(`/${appName}/auth`, (req, res) => {
 //   res.redirect(
-//     `${REDIRECT_HTTP}/login?redirect=http://${IP}:${port}/infopanel-message/auth/callback`
+//     `${REDIRECT_HTTP}/login?redirect=http://${IP}:${port}/${appName}/auth/callback`
 //   )
 // });
-// app.get(`/infopanel-message/auth/callback`, (req, res) => {
+// app.get(`/${appName}/auth/callback`, (req, res) => {
 //   res.cookie(`InfoPanel-token`, req.query.token, {
 //     maxAge: 86400000,
 //     httpOnly: true
 //   })
-//   res.redirect(`/infopanel-message/`)
+//   res.redirect(`/${appName}/`)
 // });
-/**/
-app.get('/infopanel-message/api/queries/:queryName', (req, res) => {
+/*END for azura auth*/
+app.get(`/${appName}/api/queries/:queryName`, (req, res) => {
   console.log("get");
   executeQuery(req.params.queryName)
     .then(state => { console.log(req.params.queryName); res.status(200).json(state) })
@@ -152,7 +157,7 @@ app.get('/infopanel-message/api/queries/:queryName', (req, res) => {
     });
 });
 
-app.post('/infopanel-message/api/commands', function (req, res) {
+app.post(`/${appName}/api/commands`, function (req, res) {
   console.log("post");
   executeCommand(req.body)
     .then(function () {

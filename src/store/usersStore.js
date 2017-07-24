@@ -25,6 +25,9 @@ function makeUserFromEvent(_, payload) {
         'lastName',
         'email',
     ];
+    if (payload.displayName) {
+        payload.displayName = payload.displayName.split(' (')[0];
+    }
 
     return fields.reduce((acc, key) => {
         if (key in payload) {
