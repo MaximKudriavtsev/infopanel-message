@@ -1,42 +1,41 @@
+@font-face {
+  font-family: segoe-condensed-bold; 
+  src: url(segoe-condensed-bold.ttf); 
+}
+
 body{
     margin: 0;
-    font-family: "Open Sans";
+    font-family: "segoe-condensed-bold";
 }
 
 .app {
     width: 100%;
     height: 100%;
+    background: #e6e6e6;
 }
 
 /*TitleBar START*/
 .app-titleBar {
-    font-size: 20px;
+    font-size: 18px;
     color: white;
     width: 100%;
     height: 40px;
-    background: #2faceb;
+    background: #e6e6e6;
 }
 .app-titleBar-title{
     float: left;
     padding: 5px;
     padding-left: 20px;
-}
-.app-titleBar-userName{
-    
-    float: right;
-    padding-top: 3px;
-    padding-right: 20px;
+    color: #fd760a;
 }
 .app-titleBar-userName-logOut {
-    color: white;
+    color: #3f3f3f !important;
     float: right;
     padding: 5px;
     padding-right: 20px;
-    text-decoration: none;
 }
 a:link, a:visited, a:hover, a:active {
     color: white;
-    text-decoration: none;    
 }
 
 /*tittle bar end*/
