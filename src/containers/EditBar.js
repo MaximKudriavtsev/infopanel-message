@@ -12,9 +12,14 @@ export default class EditBar extends Component {
     render() {
         let that = this,
           actions = that.props.actions,
-          client = that.props.client;
+          client = that.props.client,
+          type;
+        type = client.id < 0 ? 'New message' : 'Update message';
 
         return <div className='app-editBar'>
+            <div className='app-editBar-typeMessage' >
+                {type}
+            </div>
             <Text text={client.text} id={client.id} actions={actions}/>
             <Author author={client.author} id={client.id} fullNameAuthor={client.fullNameAuthor} actions={actions} authorList={client.authorList}/>
             <Location location={client.location} actions={actions}/>

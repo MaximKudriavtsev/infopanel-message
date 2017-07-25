@@ -42,10 +42,25 @@ a:link, a:visited, a:hover, a:active {
 /*tittle bar end*/
 
 /*editBar START*/
-.app-editBar {
-    float: left;
-    width: 20%;
+.EditBar {
+    width: 100%;
     height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    box-sizing: border-box;
+    padding: 10% 12% 10% 12%;
+}
+.app-editBar {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: white;
+    min-height: 500px;
+    overflow: auto;
+    box-sizing: border-box;
+    padding: 2%;
 }
 .app-viewBar {
     float: left;
@@ -54,16 +69,20 @@ a:link, a:visited, a:hover, a:active {
     padding: 24px 10px 0px 10px;
     max-width: 766px;
 }
-
+.app-editBar-typeMessage{
+    font:bold;
+    margin-bottom: 15px; 
+}
 /*text start*/
 .text, .author, .location, .eventDate, .startDate, .buttons, .eventType {
     font-size: 20px;
     padding-left: 10px;
+    display: block;
 }
 .text-label, .author-label, .location-label, .eventDate-label, .startDate-label, .eventType-label {
-    font-size: 20px;
+    font-size: 15px;
     padding: 15px 10px 10px 10px;
-    display: block;
+    color: #adadad;
 }
 .text-input, .location-input, .author-input {
     box-sizing: border-box;
