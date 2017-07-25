@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import actions from '../actions/actions';
 
 import EditBar from '../components/EditBar';
-import TitleBar from '../components/TitleBar';
 import ViewBar from '../components/ViewBar';
 import EventPage from '../components/EventPage';
 
@@ -18,13 +17,9 @@ class App extends Component {
       server  = props.server,
       messageAuthor = client.messageAuthor;
       
-    return <div>
-      <div className={!client.preview ? 'app' : 'none'}>
-        <TitleBar messageAuthor={messageAuthor}/>
+    return <div className={!client.preview ? 'app' : 'none'}>
+        <ViewBar client={client} messageAuthor={messageAuthor} eventList={server.records} focusRow={client.focusRow} messageAuthor={messageAuthor} actions={actions}/>
         <EditBar client={client} actions={actions}/>
-        <ViewBar eventList={server.records} focusRow={client.focusRow} messageAuthor={messageAuthor} actions={actions}/>
-      </div>
-        <EventPage preview={client.preview} actions={actions}/>
       </div>
   }
 }

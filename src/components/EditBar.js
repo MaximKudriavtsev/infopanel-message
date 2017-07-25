@@ -14,7 +14,7 @@ export default class EditBar extends Component {
           actions = that.props.actions,
           client = that.props.client;
 
-        return <div className='app-editBar'>
+        return <div className='app-editBar none'>
             <Text text={client.text} id={client.id} actions={actions}/>
             <Author author={client.author} id={client.id} fullNameAuthor={client.fullNameAuthor} actions={actions} authorList={client.authorList}/>
             <Location location={client.location} actions={actions}/>

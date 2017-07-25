@@ -1,5 +1,5 @@
 @font-face {
-  font-family: segoe-condensed-bold; 
+  font-family: segoe-condensed-bold;
   src: url(segoe-condensed-bold.ttf); 
 }
 
@@ -19,19 +19,19 @@ body{
     font-size: 18px;
     color: white;
     width: 100%;
-    height: 40px;
+    height: 60px;
     background: #e6e6e6;
 }
 .app-titleBar-title{
     float: left;
-    padding: 5px;
+    padding-top: 20px;
     padding-left: 20px;
     color: #fd760a;
 }
 .app-titleBar-userName-logOut {
     color: #3f3f3f !important;
     float: right;
-    padding: 5px;
+    padding-top: 20px;
     padding-right: 20px;
 }
 a:link, a:visited, a:hover, a:active {
@@ -41,18 +41,6 @@ a:link, a:visited, a:hover, a:active {
 /*tittle bar end*/
 
 /*editBar START*/
-.app-editBar {
-    float: left;
-    width: 20%;
-    height: 100%;
-}
-.app-viewBar {
-    float: left;
-    width: 80%;
-    box-sizing: border-box;
-    padding: 24px 10px 0px 10px;
-    max-width: 766px;
-}
 
 /*text start*/
 .text, .author, .location, .eventDate, .startDate, .buttons, .eventType {
@@ -191,22 +179,6 @@ a:link, a:visited, a:hover, a:active {
 /*editBar end*/
 
 /*MEDIA start*/
-/*@media screen and (max-width: 770px) {
-    .app-editBar {
-        width: 100%;
-    }
-    .app-viewBar {
-        display: none;
-    }
-}*/
-/*@media screen and (max-width: 375px) {
-    .app-editBar {
-        width: 100%;
-    }
-    .app-viewBar {
-        display: none;
-    }
-}*/
 @media only screen and (max-device-width: 667px) {
     body{
         height: 100% !important;
@@ -248,27 +220,25 @@ a:link, a:visited, a:hover, a:active {
         font-size: 32px;
     }
 }
-/*@media screen and (max-width: 375px) {
-    .app-editBar {
-        width: 100%;
-    }
-    .app-viewBar {
-        display: none;
-    }
-    .app-titleBar {
-        height: 100px !important;
-        font-size: 40px;
-    }
-}*/
 /*media end*/
 
 /*viewBar-table START*/
 .viewBar {
-    float: left;
-    width: 80%;
-    box-sizing: border-box;
-    padding: 0 10px 0 10px;
+    position: absolute;
+    width: 100%;
     height: 100%;
+    background: #e6e6e6;
+}
+.viewBar_nothingToDisplay {
+    margin-top: 13%;
+    text-align: center;
+    color: #838383;
+    font-size: 40px;
+}
+.viewBar_createRecordText {
+    text-align: center;
+    color: #838383;
+    font-size: 20px;
 }
 .table {
     overflow: auto;
@@ -339,6 +309,34 @@ a:link, a:visited, a:hover, a:active {
     border-bottom: 1px solid gray;
 }
 /*viewBar-table end*/
+
+/*ButtonCreate Start*/
+.buttonCreate {
+    margin: 0 auto;
+    height: 60px;
+    width: 240px;
+    margin-top: 70px;
+}
+.buttonCreate_create {
+    height: 60px;
+    width: 240px;
+    background: #fd760a;
+    color: white;
+    font-size: 22px;
+    border: 0px;
+    border-radius: 7px;
+    font-family: segoe-condensed-bold;
+}
+.buttonCreate_create:focus {
+    outline: none;
+}
+.buttonCreate_create:hover {
+    background: #be7235;
+}
+.buttonCreate_create:active {
+    color: black;
+}
+/*ButtonCreate end*/
 
 /*none select element*/
 .author-label, .buttons, .eventDate-label, .location-label,

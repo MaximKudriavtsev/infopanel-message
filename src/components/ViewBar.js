@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
 
+import TitleBar from './TitleBar';
+import ButtonCreate from './ButtonCreate';
+
 import Row from './Row.js'
 
 export default class ViewBar extends Component {
@@ -47,21 +50,11 @@ export default class ViewBar extends Component {
             });
         } else {
             return (
-                <div className='viewBar' >
-                    <div className='' ref='viewBar_head'>
-                        <table className='viewBar_table' ref='viewBar_table'>
-                            <tbody>
-                                <tr className='viewBar_table_head'>
-                                    <td className='viewBar_table_text' unselectable='on'>Text</td>
-                                    <td className='viewBar_table_author' unselectable='on'>Author</td>
-                                    <td className='viewBar_table_location' unselectable='on'>Location</td>
-                                    <td className='viewBar_table_eventDate' unselectable='on'>Date</td>
-                                    <td className='viewBar_table_startDate' unselectable='on'>Shown since</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>No data for view</div>
+                <div className='viewBar'>
+                    <TitleBar messageAuthor={this.props.messageAuthor}/>
+                    <div className='viewBar_nothingToDisplay'>В данный момент нет никаких анонсов.</div>
+                    <div className='viewBar_createRecordText'>Чтобы создать новый анонс, нажмите на кнопку ниже.</div>
+                    <ButtonCreate client={that.props.client}/>
                 </div>)
         }
         return (
