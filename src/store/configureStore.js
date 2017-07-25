@@ -1,6 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import reducers from '../reducers';
-import thunk from 'redux-thunk';
 import Immutable from 'seamless-immutable';
 import socketIOClient from 'socket.io-client';
 
