@@ -7,7 +7,7 @@
     "start": "babel-node server.js",
     "docker-build": "docker build -t infopanel_message .",
     "docker-stop": "docker stop infopanel_message && docker rm infopanel_message || true",
-    "docker-run": "npm run docker-stop && docker run --name infopanel_message --net=host -p 8957:1000 --restart=always infopanel_message",
+    "docker-run": "npm run docker-stop && docker run --name infopanel_message --network=dxapp_network_prod -p 8957:1000 --restart=always infopanel_message",
     "docker": "npm run docker-build && npm run docker-run"
   },
   "author": "Maxim Kudryavtsev, Dmitry Koshkin, Tatyana Ryzh <3",
