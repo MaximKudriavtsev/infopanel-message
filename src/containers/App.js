@@ -5,8 +5,8 @@ import { bindActionCreators } from 'redux';
 import actions from '../actions/actions';
 
 import EditBar from '../components/EditBar';
-// import ViewBar from '../components/ViewBar';
-import MessageComponent from '../components/MessageComponent';
+import ViewBar from '../components/ViewBar';
+// import MessageComponent from '../components/MessageComponent';
 import '../styles/MessageComponent.css';
 
 class App extends Component {
@@ -44,11 +44,11 @@ class App extends Component {
       }];
 
     return <div className={!client.preview ? 'app' : 'none'}>
-      {/* <ViewBar client={client} messageAuthor={messageAuthor} eventList={server.records} focusRow={client.focusRow} messageAuthor={messageAuthor} actions={actions}/> */}
+       <ViewBar client={client} messageAuthor={messageAuthor} eventList={server.records} focusRow={client.focusRow} messageAuthor={messageAuthor} actions={actions}/> 
       <EditBar client={client} actions={actions} />
-      <div className='forMessageComponent'>
+      {/* <div className='forMessageComponent'>
         <MessageComponent data={data}  index={0}/>
-      </div>
+      </div> */}
     </div>
   }
 }

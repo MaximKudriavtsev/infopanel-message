@@ -342,7 +342,9 @@ a:link, a:visited, a:hover, a:active {
 /*messageTemplate START*/
 .messageBox {
     height: 200px;
-    width: 100px;
+    width: 350px;
+    float: left;
+    padding-left: 10%;
 }
 /*messageTemplate END*/
 

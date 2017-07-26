@@ -70,9 +70,12 @@ export default class ViewBar extends Component {
 
         if (data.length) {
             template = data.map((item, index) => {
+                    const onMessageClick = () => {
+                        console.log(item);
+                    }
                 return (
                     <div className='messageBox' key={index}>
-                        <MessageComponent  data={data} index={index}/>
+                        <MessageComponent  data={item} onMessageClick={onMessageClick}/>
                     </div>)
             });
         } else {

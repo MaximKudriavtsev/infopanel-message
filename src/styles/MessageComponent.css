@@ -7,6 +7,7 @@
   height: 100%;
   width: 100%;  
   background: #fd760a;
+  cursor: pointer;
 }
 .eventPage_orange {
   height: 75%;
@@ -21,12 +22,9 @@
   height: 25vh;
   width: 25vh;
   border-radius: 50%;
-  background: black;
   border: 1vh solid white;
   box-sizing: border-box;
   background-position: center center;
-  background-image: url('http://static.boredpanda.com/blog/wp-content/uploads/2015/08/celebrity-actor-faces-mix-morph-pedro-berg-johnsen-thatnordicguy-8.jpg');
-  background-size:cover;
 }
 .eventPage_orange_text {
   padding: 0% 6vh 0% 6vh;
@@ -50,7 +48,6 @@
   float: left;
   margin-right: 0.5vh;
 }
-
 .eventPage_white_textBlock_left, .eventPage_white_textBlock_right{
   color: #fd760a;
   font-size: 7vh;
@@ -77,8 +74,9 @@
   block-size: 6vh;
 }
 
-
-.forMessageComponent {
-  width: 500px;
-  height: 200px;
+/*for root component*/
+.rootMessageComponent {
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
