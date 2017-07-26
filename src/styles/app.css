@@ -324,7 +324,7 @@ a:link, a:visited, a:hover, a:active {
     color: white;
     font-size: 3vh;
     border: 0px;
-    border-radius: 7px;
+    border-radius: 1vh;
     font-family: segoe-condensed-bold;
     cursor: pointer;
 }
