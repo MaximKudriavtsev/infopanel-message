@@ -339,6 +339,13 @@ a:link, a:visited, a:hover, a:active {
 }
 /*ButtonCreate end*/
 
+/*messageTemplate START*/
+.messageBox {
+    height: 200px;
+    width: 100px;
+}
+/*messageTemplate END*/
+
 /*none select element*/
 .author-label, .buttons, .eventDate-label, .location-label,
 .startDate-label, .text-label, .app-titleBar-title, .viewBar_table_head,

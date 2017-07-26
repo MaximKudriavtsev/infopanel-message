@@ -57,7 +57,8 @@
     "webpack": "^1.12.12",
     "webpack-dev-middleware": "^1.5.1",
     "webpack-hot-middleware": "^2.6.4",
-    "uuid": "3.1.0"
+    "uuid": "3.1.0",
+    "react-sizeme": "2.3.4"
   },
   "dependencies": {
     "react": "15.3.1",

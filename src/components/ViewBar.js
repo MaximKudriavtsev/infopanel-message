@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 
 import TitleBar from './TitleBar';
 import ButtonCreate from './ButtonCreate';
+import MessageComponent from './MessageComponent';
 
 import Row from './Row.js'
 
@@ -26,60 +27,70 @@ export default class ViewBar extends Component {
         this.addScroll();
     }
     shouldComponentUpdate(nextProps, nextState) {
-        return (this.props.eventList != nextProps.eventList) || (this.props.focusRow != nextProps.focusRow) ;
+        return (this.props.eventList != nextProps.eventList) || (this.props.focusRow != nextProps.focusRow);
     }
     render() {
         let that = this,
             template,
             allData = that.props.eventList,
-            data = [],
+            data = [{
+                text: "First record",
+                author: "Maxim",
+                location: "Some place",
+                eventDate: "2017-07-13T12:53:49.241Z",
+                startDate: "2017-07-13T12:53:49.241Z",
+                messageAuthor: "Max",
+                messageDate: "123",
+                correctEventDate: '28.05.17',
+                correctStartDate : '28.04.17',
+                eventType: 'Event',
+                displayName: 'Maxim Kudryavtsev'
+            },{
+                text: "Second record",
+                author: "Max",
+                location: "Kitchen",
+                eventDate: "2017-07-13T12:53:49.241Z",
+                startDate: "2017-07-13T12:53:49.241Z",
+                messageAuthor: "Max",
+                messageDate: "123",
+                correctEventDate: '28.05.17',
+                correctStartDate : '28.04.17',
+                eventType: 'Event',
+                displayName: 'Maxim Kudryavtsev'
+            }],
             clientHeight = document.documentElement.clientHeight,
             height = clientHeight - 94;
 
-        for(var key in allData) {
-            if (allData[key].record.messageAuthor == that.props.messageAuthor) {
-                data.push(allData[key]);
-            }
-        }
-            
+        //filter!
+        // for (var key in allData) {
+        //     if (allData[key].record.messageAuthor == that.props.messageAuthor) {
+        //         data.push(allData[key]);
+        //     }
+        // }
+
         if (data.length) {
-            template = data.map(({record: item, aggregateId: aggregateId }, index) => {
+            template = data.map((item, index) => {
                 return (
-                    <Row data={item} key={index} aggregateId={aggregateId} focusId={that.props.focusRow} actions={that.props.actions}/>
-                )
+                    <div className='messageBox' key={index}>
+                        <MessageComponent  data={data} index={index}/>
+                    </div>)
             });
         } else {
             return (
                 <div className='viewBar'>
-                    <TitleBar messageAuthor={this.props.messageAuthor}/>
+                    <TitleBar messageAuthor={this.props.messageAuthor} />
                     <div className='viewBar_nothingToDisplay'>В данный момент нет никаких анонсов.</div>
                     <div className='viewBar_createRecordText'>Чтобы создать новый анонс, нажмите на кнопку ниже.</div>
-                    <ButtonCreate client={that.props.client}/>
+                    <ButtonCreate client={that.props.client} />
                 </div>)
         }
         return (
             <div className='viewBar'>
-                <div className='' ref='viewBar_head'>
-                    <table className='viewBar_table'>
-                        <tbody>
-                            <tr className='viewBar_table_head'>
-                                <td className='viewBar_table_text'>Text</td>
-                                <td className='viewBar_table_author'>Author</td>
-                                <td className='viewBar_table_location'>Location</td>
-                                <td className='viewBar_table_eventDate'>Date</td>
-                                <td className='viewBar_table_startDate'>Shown since</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <TitleBar messageAuthor={this.props.messageAuthor} />
+                <div className='messageTemplate'>
+                  {template}
                 </div>
-                <div className='table' ref='table' style={{ height: height }}>
-                    <table className='viewBar_table_'>
-                        <tbody className='viewBar_tbody'>
-                            {template}
-                        </tbody>
-                    </table>
-                </div>
-            </div >
-        )
+                <ButtonCreate client={that.props.client} />
+            </div>)
     }
 }

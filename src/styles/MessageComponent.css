@@ -5,11 +5,8 @@
 .eventPage {
   font-family: "segoe-condensed-bold";
   height: 100%;
-  width: 100%;
-  border: 3vh solid black;
+  width: 100%;  
   background: #fd760a;
-  position: absolute;
-  box-sizing: border-box;
 }
 .eventPage_orange {
   height: 75%;
@@ -78,4 +75,10 @@
 .eventPage_white_textBlock_top_left, .eventPage_white_textBlock_bottom_left {
   box-sizing: border-box;
   block-size: 6vh;
+}
+
+
+.forMessageComponent {
+  width: 500px;
+  height: 200px;
 }
