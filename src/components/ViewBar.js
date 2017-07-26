@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 import TitleBar from './TitleBar';
 import ButtonCreate from './ButtonCreate';
 import MessageComponent from './MessageComponent';
+import ButtonAdd from './ButtonAdd';
 
 import Row from './Row.js'
 
@@ -33,28 +34,42 @@ export default class ViewBar extends Component {
         let that = this,
             template,
             allData = that.props.eventList,
+            templateStyle,
+            boxStyle,
             data = [{
-                text: "First record",
-                author: "Maxim",
-                location: "Some place",
-                eventDate: "2017-07-13T12:53:49.241Z",
-                startDate: "2017-07-13T12:53:49.241Z",
-                messageAuthor: "Max",
-                messageDate: "123",
+                text: 'First record',
+                author: 'Maxim',
+                location: 'Some place',
+                eventDate: '2017-07-13T12:53:49.241Z',
+                startDate: '2017-07-13T12:53:49.241Z',
+                messageAuthor: 'Max',
+                messageDate: '123',
                 correctEventDate: '28.05.17',
-                correctStartDate : '28.04.17',
+                correctStartDate: '28.04.17',
+                eventType: 'Event',
+                displayName: 'Maxim Kudryavtsev'
+            }, {
+                text: 'Second record',
+                author: 'Max',
+                location: 'Kitchen',
+                eventDate: '2017-07-13T12:53:49.241Z',
+                startDate: '2017-07-13T12:53:49.241Z',
+                messageAuthor: 'Max',
+                messageDate: '123',
+                correctEventDate: '28.05.17',
+                correctStartDate: '28.04.17',
                 eventType: 'Event',
                 displayName: 'Maxim Kudryavtsev'
             },{
-                text: "Second record",
-                author: "Max",
-                location: "Kitchen",
-                eventDate: "2017-07-13T12:53:49.241Z",
-                startDate: "2017-07-13T12:53:49.241Z",
-                messageAuthor: "Max",
-                messageDate: "123",
+                text: 'Third record',
+                author: 'Max',
+                location: 'Tula',
+                eventDate: '2017-07-13T12:53:49.241Z',
+                startDate: '2017-07-13T12:53:49.241Z',
+                messageAuthor: 'Max',
+                messageDate: '123',
                 correctEventDate: '28.05.17',
-                correctStartDate : '28.04.17',
+                correctStartDate: '28.04.17',
                 eventType: 'Event',
                 displayName: 'Maxim Kudryavtsev'
             }],
@@ -68,14 +83,24 @@ export default class ViewBar extends Component {
         //     }
         // }
 
+        // data = [];
+        
+        if (data.length < 7)
+            templateStyle = 'messageTemplate6';
+        if (data.length < 4) 
+            templateStyle = 'messageTemplate3';
+        if (data.length == 1)
+            templateStyle = 'messageTemplate1';
+        
+
         if (data.length) {
             template = data.map((item, index) => {
-                    const onMessageClick = () => {
-                        console.log(item);
-                    }
+                const onMessageClick = () => {
+                    console.log(item);
+                }
                 return (
                     <div className='messageBox' key={index}>
-                        <MessageComponent  data={item} onMessageClick={onMessageClick}/>
+                        <MessageComponent data={item} onMessageClick={onMessageClick} />
                     </div>)
             });
         } else {
@@ -90,10 +115,14 @@ export default class ViewBar extends Component {
         return (
             <div className='viewBar'>
                 <TitleBar messageAuthor={this.props.messageAuthor} />
-                <div className='messageTemplate'>
-                  {template}
+                <div className={templateStyle}>
+                    <div className='messageTemplate_'>
+                        {template}
+                    </div>
                 </div>
-                <ButtonCreate client={that.props.client} />
+                <div className='buttonAdd_root'>
+                    <ButtonAdd client={that.props.client} />
+                </div>
             </div>)
     }
 }
