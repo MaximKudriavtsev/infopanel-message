@@ -25,7 +25,17 @@
   border: 1vh solid white;
   box-sizing: border-box;
   background-position: center center;
-  background-size: cover;
+  /* background-image: url('../img/Empty.png');   */
+  background-size:cover;
+}
+.eventPage_orange_circle > .img {
+  border: none;
+  height: 100%;
+  width: 100%; 
+  border-radius: 50%;  
+  background-position: center center;
+  background-size:cover;
+  box-sizing: border-box;
 }
 .eventPage_orange_text {
   padding: 3% 6vh 0% 6vh;
