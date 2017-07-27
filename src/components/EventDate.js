@@ -32,7 +32,9 @@ export default class EventDate extends Component {
     render() {
         let that = this,
             props = that.props;
-        
+        let today = new Date();
+        today.setHours(0);
+        today.setMinutes(0);
 
         return <div className='eventDate'>
             <label className='eventDate-label' unselectable='on'
@@ -40,8 +42,8 @@ export default class EventDate extends Component {
             <DateTimePicker
                 className='timePicker'
                 calendar={false}
-                min={new Date()}
-                defaultValue={new Date()}
+                min={today}
+                defaultValue={today}
                 step={30}
                 value={new Date(props.eventDate)}
                 onChange={that.changeEventDate}
@@ -50,8 +52,8 @@ export default class EventDate extends Component {
             />
             <Calendar 
                 className='calendarPicker'
-                min={new Date()}
-                defaultValue={new Date()}
+                min={today}
+                defaultValue={today}
                 value={new Date(props.eventDate)}
                 onChange={that.changeEventDate}
             />

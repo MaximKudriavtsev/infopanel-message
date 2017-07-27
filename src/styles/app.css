@@ -1,5 +1,5 @@
 @font-face {
-  font-family: segoe-condensed-bold;
+  font-family: segoe;
   src: url(segoe-condensed-bold.ttf); 
 }
 
@@ -51,9 +51,7 @@ a:link, a:visited, a:hover, a:active {
     background: rgba(0, 0, 0, 0.7);
     position: fixed;
     box-sizing: border-box;
-    overflow: auto;
-    /* min-width: 1250px;
-    min-height: 690px; */
+    overflow: auto;        
 }
 .app-editBar {
     -webkit-transition-duration: 0.4s; 
@@ -61,17 +59,9 @@ a:link, a:visited, a:hover, a:active {
     display: block;
     background: white;
     overflow: auto;
-    box-sizing: border-box;
     padding: 30px;
-    min-width: 915px;
-    margin: 10% 19% 10% 19%;
-    /* width: 100%;
-    height: 100%; */
-    /* width: 1100px; */
-    /* min-height: 500px;
-    min-height: 100%
-    height: 590px;
-    max-height: 700px; */
+    min-width: 990px;
+    margin: 10% 17% 0% 17%;
 }
 .app-viewBar {
     float: left;
@@ -97,6 +87,7 @@ a:link, a:visited, a:hover, a:active {
     display: block;
     margin-bottom: 28px;
     width: 60%;
+    min-width: 580px;
 }
 .buttons {
     width: 100%;
@@ -104,7 +95,6 @@ a:link, a:visited, a:hover, a:active {
 .eventDate {
     display: inline-block;
     float: right;
-    padding-left: 15px;
     box-sizing: border-box;
 }
 .text-label, .author-label, .location-label, .eventDate-label, .startDate-label, .eventType-label {
@@ -169,6 +159,8 @@ a:link, a:visited, a:hover, a:active {
     outline:0;
 }
 .rw-list-option:hover, .rw-calendar-grid .rw-btn:hover{
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
     background: #fd760a !important;
     color: white;
     border: 1px solid #fd760a !important;
@@ -272,7 +264,9 @@ input {
     padding: 0px !important;
 }
 .calendarPicker .rw-btn {
-    height: 30px;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    height: 35px;
     width: 40px;
     padding: 0px !important;
     margin: 0px !important;
@@ -310,17 +304,20 @@ input {
 }
 .buttons-buttonSave{
     float: right;
-    margin-left: 1%;    
+    margin-left: 1%;
+    min-width: 120px;
 }
 .buttons-buttonCancel{
     float: right;
     color: #adadad;
     border: 1px solid #adadad;
+    min-width: 93px;
 }
 .buttons-buttonDelete{
     float: left;
     color: #adadad;
     border: 1px solid #adadad;
+    min-width: 98px;
 }
 .buttons-buttonSave:hover {
     background-color: #fd760a; 
@@ -357,12 +354,17 @@ input {
 
 /*MEDIA start*/
 @media only screen and (max-width: 1250px) {
+    .EditBar {
+        overflow: auto;        
+    }
     .app-editBar {
         -webkit-transition-duration: 0.4s; 
         transition-duration: 0.4s;
         min-width: inherit;
-        margin-left: 25%;
+        margin-left: 20%;
+        margin: 0 15% 0 15%;
         min-width: 500px;
+        overflow: auto;
     }
     .eventDate {
         position: absolute;
@@ -370,6 +372,7 @@ input {
     }
     .text, .author, .location, .startDate {
         width: 100%;
+        min-width: inherit;
     }
     .startDate {
         margin-top: 380px;
@@ -377,8 +380,13 @@ input {
     .eventDate {
         padding-left: 0;
     }
-
+    .startDate-SelectList > ul > li {
+        border: 1px solid #adadad !important;
+        box-sizing: border-box;
+        margin-right: 3% !important; 
+    }
 }
+
 @media only screen and (max-device-width: 667px) {
     .app {
         width: auto;
