@@ -285,19 +285,17 @@ input {
     min-width: 70px;
 }
 .buttons-buttonSave, .buttons-buttonDelete, .buttons-buttonCancel {
-    -webkit-transition-duration: 0.4s; 
-    transition-duration: 0.4s;
-    font:20px "Open Sans" !important;
     width: 17%;
-    height: 50px;
-    font-size: 16px;
+    height: 45px;
+    font-size: 18px;
     background-color:white;
-    border: 1px solid #fd760a;
-    border-radius: 10px;
+    border: 2px solid #fd760a;
+    border-radius: 7px;
     color:#fd760a;
     padding: 0px;
     min-width: 70px;   
     font-weight: bold !important;
+    cursor: pointer;
 }
 .buttons-buttonSave:focus, .buttons-buttonDelete:focus, .buttons-buttonCancel:focus {
     outline:0;
@@ -306,8 +304,13 @@ input {
     float: right;
     margin-left: 1%;
     min-width: 120px;
+    background-color: #fd760a;
+    color: white;
 }
-.buttons-buttonCancel{
+.buttons-buttonSave:active {
+    color: #fe9847;
+}
+.buttons-buttonCancel, .buttons-buttonDelete{
     float: right;
     color: #adadad;
     border: 1px solid #adadad;
@@ -327,12 +330,14 @@ input {
 .buttons-buttonCancel:hover{
     background-color: #adadad; 
     color: black;
-    border: 1px solid #adadad;
+    border: 2px solid #adadad;
 }
-.buttons-buttonDelete:hover{
-    background-color: #cb3837;
-    color: white;
-    border: 1px solid #cb3837;
+.buttons-buttonDelete{
+    float: left !important;
+}
+.buttons-buttonCancel:active, .buttons-buttonDelete:active{
+    color: #838383;
+    border: 2px solid #838383;
 }
 /*text end*/
 .error-label, .warning-label{

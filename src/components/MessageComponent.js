@@ -30,8 +30,8 @@ function MessageComponent(props) {
     const month = allMonth[eventDate.getMonth()];
     // images download
     // const imageUrl = buildImageUrl(data.author, pagesConfig.messages.images.size);
-    const imageUrl = 'someUrl';
     const vh = props.size.height / 100;
+    const author = data.author;
 
     return (
         <div className="eventPage" onClick={props.onMessageClick}>
@@ -40,9 +40,10 @@ function MessageComponent(props) {
                 <div className="eventPage_orange_circle" style={{
                     height: 25 * vh,
                     width: 25 * vh,
-                    border: vh + 'px solid white'
+                    border: vh + 'px solid white',
+                    backgroundImage: `url("https://internal.devexpress.com/resolve-orgstruct/avatars/${author}")`,
                 }}>
-                    <div className="img" style={{ backgroundImage: `url('${imageUrl}')` }} />
+                     {/* <div className="img" style={{ backgroundImage: `url("https://internal.devexpress.com/resolve-orgstruct/avatars/${author}")` }} />  */}
                 </div>
                 <div className="eventPage_orange_text" style={{
                     fontSize: 14 * vh + 'px',
