@@ -77,7 +77,7 @@ app.get(`/${appName}/`, function (req, res) {
           let serverState = {
             server: records,
             client: {
-              id: -1,
+              id: 0,
               text: '',
               author: user.upn,
               fullNameAuthor: userName,

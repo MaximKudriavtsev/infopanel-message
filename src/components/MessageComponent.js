@@ -8,7 +8,7 @@ import '../styles/MessageComponent.css';
 
 function MessageComponent(props) {
     //const data = props.data[props.index];
-    const data = props.data;
+    const data = props.data.record;
     if (!data) return null;
 
     const hours = data.correctEventDate.split(' ')[1];

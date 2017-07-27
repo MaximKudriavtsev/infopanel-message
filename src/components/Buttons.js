@@ -62,7 +62,7 @@ export default class Buttons extends Component {
                 unselectable='on'> 
                 { idUser < 0 ? 'CREATE' : 'SAVE' }
             </button>
-            <button className={idUser >= 0 ? 'buttons-buttonCancel' : 'none' }
+            <button className='buttons-buttonCancel'
                 onClick={that.onButtonCancel}
                 unselectable='on'> 
                 CANCEL
