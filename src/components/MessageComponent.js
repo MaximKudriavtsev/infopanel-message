@@ -45,8 +45,8 @@ function MessageComponent(props) {
                     <div className="img" style={{ backgroundImage: `url('${imageUrl}')` }} />
                 </div>
                 <div className="eventPage_orange_text" style={{
-                    fontSize: +14 * vh + 'px',
-                    paddingTop: 0,
+                    fontSize: 14 * vh + 'px',
+                    paddingTop: 3 * vh + 'px',
                     paddingRight: 6 * vh,
                     paddingBottom: 0,
                     paddingLeft: 6 * vh

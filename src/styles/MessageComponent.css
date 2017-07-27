@@ -27,12 +27,15 @@
   background-position: center center;
 }
 .eventPage_orange_text {
-  padding: 0% 6vh 0% 6vh;
+  padding: 3% 6vh 0% 6vh;
   font-size: 14vh;
   font-weight: bold;
   color: white;
-  text-align: center;
-  box-sizing: border-box;
+  text-align: center !important;
+  box-sizing: border-box;  
+  display: block;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 .eventPage_white {
   height: 25%;

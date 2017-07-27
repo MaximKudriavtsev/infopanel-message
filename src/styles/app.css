@@ -7,6 +7,7 @@ body{
     margin: 0;
     font-size: 14px;
     font-family: "segoe-condensed-bold";
+    background: #e6e6e6;
 }
 
 .app {
@@ -519,6 +520,7 @@ input {
 .buttonAdd9 {
     display: inline-block;
     margin-top: 2.5vh;
+    margin-bottom: 3vh;
 } 
 .buttonAdd_add {
     margin: 0 auto;
@@ -575,6 +577,7 @@ input {
     margin: 0.5vw;
     display: inline-block;
     box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+    vertical-align: top;
 }
 .messageBox1 {
     height: 42vh;
@@ -586,6 +589,7 @@ input {
     margin: 0.7vw;
     display: inline-block;
     box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+    vertical-align: top;
 }
 .messageBox9 {
     height: 24vh;
@@ -593,6 +597,7 @@ input {
     margin: 0.5vw;
     display: inline-block;
     box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+    vertical-align: top;
 }
 
 /*messageTemplate END*/
