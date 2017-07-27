@@ -14,17 +14,18 @@ export default class EditBar extends Component {
           actions = that.props.actions,
           client = that.props.client,
           type;
-        type = client.id < 0 ? 'New message' : 'Update message';
+        type = client.id < 0 ? 'NEW MESSAGE' : 'UPDATE MESSAGE';
 
         return <div className='app-editBar'>
-            <div className='app-editBar-typeMessage' >
-                {type}
+            <div className='app-editBar-typeMessage' unselectable='on' >
+                <label className='app-editBar-typeMessage-label'
+                unselectable='on'>{type}</label>
             </div>
+            <EventDate eventDate={client.eventDate} actions={actions}/>
             <Text text={client.text} id={client.id} actions={actions}/>
             <Author author={client.author} id={client.id} fullNameAuthor={client.fullNameAuthor} actions={actions} authorList={client.authorList}/>
             <Location location={client.location} actions={actions}/>
             {/* <EventType eventType={client.eventType} actions={actions}/> */}
-            <EventDate eventDate={client.eventDate} actions={actions}/>
             <StartDate startDate={client.startDate} eventDate={client.eventDate} actions={actions}/>
             <Buttons client={client} actions={actions}/>
         </div>

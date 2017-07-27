@@ -1,6 +1,7 @@
 body{
     margin: 0;
     font-family: "Open Sans";
+    font-size: 14px;
 }
 
 .app {
@@ -10,7 +11,7 @@ body{
 
 /*TitleBar START*/
 .app-titleBar {
-    font-size: 20px;
+    font-size: 14px;
     color: white;
     width: 100%;
     height: 40px;
@@ -50,17 +51,24 @@ a:link, a:visited, a:hover, a:active {
     background: rgba(0, 0, 0, 0.7);
     position: absolute;
     box-sizing: border-box;
-    padding: 10% 12% 10% 12%;
+    padding: 8% 20% 7% 20%;
+    min-width: 1250px;
+    min-height: 690px;
 }
 .app-editBar {
     width: 100%;
     height: 100%;
     display: block;
     background: white;
-    min-height: 500px;
     overflow: auto;
     box-sizing: border-box;
-    padding: 2%;
+    padding: 3%;
+    /* min-height: 500px;
+    min-height: 100% */
+    min-width: 1000px;
+    height: 590px;
+    max-width: 1600px;
+    max-height: 700px;
 }
 .app-viewBar {
     float: left;
@@ -70,54 +78,84 @@ a:link, a:visited, a:hover, a:active {
     max-width: 766px;
 }
 .app-editBar-typeMessage{
-    font:bold;
-    margin-bottom: 15px; 
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: #fd760a;
+    font-size: 20px;
 }
 /*text start*/
 .text, .author, .location, .eventDate, .startDate, .buttons, .eventType {
-    font-size: 20px;
-    padding-left: 10px;
-    display: block;
+    /* font-size: 20px; */
+    display: inline-block;
+    
+}
+.text, .author, .location, .startDate {
+    margin-bottom: 28px;
+    width: 60%;
+}
+.buttons {
+    width: 100%;
+}
+.eventDate {
+    display: inline-block;
+    float: right;
+    padding-left: 15px;
+    box-sizing: border-box;
 }
 .text-label, .author-label, .location-label, .eventDate-label, .startDate-label, .eventType-label {
-    font-size: 15px;
-    padding: 15px 10px 10px 10px;
+    /* font-size: 15px; */
+    padding: 15px 10px 10px 0px;
     color: #adadad;
 }
 .text-input, .location-input, .author-input {
+    display: block;
     box-sizing: border-box;
     padding-left: 10px;
-    width: 100%;
     height: 40px;
-    font-size: 18px;
-    border: #ccc 1px solid;
-    border-radius: 4px;
+    /* font-size: 18px; */
+    border: #adadad 1px solid;
+    /* border-radius: 4px; */
     color: #555555;
     outline:0;
+    margin-top: 5px;
+}
+.text-input{
+    width: 100%;
+}
+.location-input, .author-dropdownList {
+    margin-top: 5px;
+    width: 50%;
 }
 .text-input:focus, .location-input:focus, .author-input:focus{
-    box-shadow:inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
-    border-color:#66afe9;
+    box-shadow:inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(173, 173, 173, 0.6);
+    border-color:#fd760a;
 }
 .text-input:active, .location-input:active, .author-input:active{
     background-image:none;
     box-shadow:inset 0 3px 5px rgba(0,0,0,0.125)
 }
 .text-input::placeholder, .location-input::placeholder, .author-input::placeholder{
-    color: #858585;
-    font-size: 18px;
+    color: #adadad;
+    /* font-size: 18px; */
 }
-/*dropdownList*/
+/*dropdownList and calendar*/
 .rw-widget{
-    text-align: start;  
+    text-align: start;
+    border-color: #adadad;
+    border-radius: 0px;
 }
 .rw-widget:hover{
-    border-color: #ccc;
+    border-color: #adadad;
     background: white;
 }
 .rw-input{
     padding-left: 10px;
-    font-size: 18px;
+    /* font-size: 18px; */
+}
+.rw-state-focus{
+    border-color: #fd760a !important;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(173, 173, 173, 0.6) !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(173, 173, 173, 0.6) !important;
 }
 .rw-placeholder{
     color: #858585;
@@ -126,71 +164,173 @@ a:link, a:visited, a:hover, a:active {
     outline:0;
 }
 .rw-list-option:hover, .rw-calendar-grid .rw-btn:hover{
-    background: #2faceb !important;
+    background: #fd760a !important;
     color: white;
-    border: 1px solid #2faceb !important;
+    border: 1px solid #fd760a !important;
 }
 .rw-state-selected{
-    background: #2faceb !important;
+    background: #fd760a !important;
     color: white;
 }
 .rw-calendar-grid .rw-state-focus{
-    border: 1px solid #2faceb !important;
+    border: 1px solid #fd760a !important;
+    outline: 0;
 }
 .rw-list .rw-state-focus{
-    border: 1px solid #2faceb !important;
+    border: 1px solid #fd760a !important;
     background: white !important;
 }
-/*end dropdownList*/
+/*end dropdownList and calendar*/
+
+.author-dropdownList {
+    height: 40px !important;
+}
+.rw-dropdownlist > .rw-input{
+    height: 100%;
+    padding: 3px 0px 0px 10px;
+}
+input {
+    height: 40px !important;
+}
+
+/*rw-selectlist*/
+.startDate-SelectList{
+    border: none;
+    margin-top: 5px;
+}
+.startDate-SelectList .rw-list {
+    display: flex;
+}
+.startDate-SelectList > ul > li.rw-list-option > label > input {
+    display: none;
+}
+.radio-input-div {
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    text-align: center;
+    padding: 5px 16px 5px 16px;
+}
+.radio-input-text{
+    display: inline-grid;
+    align-items: center;
+}
+.startDate-SelectList > ul > li.rw-list-option > label > input:checked + .radio-input-div {
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    background-color: #ededed;
+}
+.startDate-SelectList > ul > li {
+    border: 1px solid #adadad !important;
+    box-sizing: border-box;
+    margin-right: 20px !important; 
+}
+.startDate-SelectList > ul > li > label, .startDate-SelectList > ul > li > label > .radio-input-div,
+.startDate-SelectList > ul > li > label > .radio-input-div > .radio-input-text {
+    height: 100%;
+}
+.startDate-SelectList > ul > li.rw-list-option > label, .startDate-SelectList, 
+.startDate-SelectList > ul, .startDate-SelectList > ul > li.rw-list-option {
+    padding: 0px;
+    border-radius: 0px;
+}
+.startDate-SelectList > ul > li.rw-list-option:hover {
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    background: #ededed !important;
+    color: black;
+    border: 1px solid #adadad !important;
+}
+.startDate-SelectList > ul > li.rw-state-disabled > label > .radio-input-div > .radio-input-text {
+    color: #adadad;
+    cursor: not-allowed;
+}
+.startDate-SelectList > ul > li.rw-state-disabled:hover {
+    background: white !important;
+    color: #adadad;
+    border: 1px solid #adadad !important;
+}
+.startDate-SelectList > ul > .rw-state-focus {
+    border-color: #adadad !important;
+}
+/*END rw-selectlist*/
+/*calendarPicker */
+.calendarPicker {
+    margin-top: 0;
+    border-top: 0;
+    height: 266px;
+}
+.rw-calendar thead > tr > th {
+    width: 10px !important; 
+    height: 15px;
+    text-align: center;
+    font-size: 14px;
+    padding: 0px !important;
+}
+.calendarPicker .rw-btn {
+    height: 30px;
+    width: 40px;
+    padding: 0px !important;
+    margin: 0px !important;
+}
+.timePicker {
+    margin-top: 4px;
+    box-sizing: border-box;
+}
+.calendarPicker, .timePicker {
+    width: 350px;
+}
+/*END calendarPicker */
 .buttons{
-    padding-top: 20px;
-    height: 42px;
+    padding-top: 30px;
+    min-height: 55px;    
     min-width: 70px;
 }
 .buttons-buttonSave, .buttons-buttonDelete, .buttons-buttonCancel {
     -webkit-transition-duration: 0.4s; 
     transition-duration: 0.4s;
     font:20px "Open Sans" !important;
-    width: 30%;
-    height: 40px;
-    font-size: 18px;
+    width: 17%;
+    height: 50px;
+    font-size: 16px;
     background-color:white;
-    border: 1px solid #2faceb;
-    color:#2faceb;
+    border: 1px solid #fd760a;
+    border-radius: 10px;
+    color:#fd760a;
     padding: 0px;
-    min-width: 70px;    
+    min-width: 70px;   
+    font-weight: bold !important;
 }
 .buttons-buttonSave:focus, .buttons-buttonDelete:focus, .buttons-buttonCancel:focus {
     outline:0;
 }
+.buttons-buttonSave{
+    float: right;
+    margin-left: 1%;    
+}
 .buttons-buttonCancel{
-    float: left;
-    margin-left: 5%;
-    color: #f0c36d;
-    border: 1px solid #f0c36d;
+    float: right;
+    color: #adadad;
+    border: 1px solid #adadad;
 }
 .buttons-buttonDelete{
     float: left;
-    color: #cb3837;
-    border: 1px solid #cb3837;
+    color: #adadad;
+    border: 1px solid #adadad;
 }
 .buttons-buttonSave:hover {
-    background-color: #2faceb; 
+    background-color: #fd760a; 
     color: white;
-    border: 1px solid #2faceb;
+    border: 1px solid #fd760a;
 }
 .buttons-buttonCancel:hover{
-    background-color: #f0c36d; 
-    color: white;
-    border: 1px solid #f0c36d;
+    background-color: #adadad; 
+    color: black;
+    border: 1px solid #adadad;
 }
 .buttons-buttonDelete:hover{
     background-color: #cb3837;
     color: white;
     border: 1px solid #cb3837;
-}
-.buttons-buttonSave{
-    float: right;
 }
 /*text end*/
 .error-label, .warning-label{
@@ -232,8 +372,13 @@ a:link, a:visited, a:hover, a:active {
         height: 100% !important;
         width: 100% !important;
     }
+    .EditBar {
+        padding: 0;
+    }
     .app-editBar {
         width: 100%;
+        height: 100%;
+        max-height: inherit;
     }
     .viewBar {
         display: none;
@@ -363,7 +508,7 @@ a:link, a:visited, a:hover, a:active {
 /*none select element*/
 .author-label, .buttons, .eventDate-label, .location-label,
 .startDate-label, .text-label, .app-titleBar-title, .viewBar_table_head,
-.error-label{
+.error-label, .app-editBar-typeMessage-label{
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
