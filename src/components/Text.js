@@ -14,7 +14,7 @@ export default class Text extends Component {
             DOM_input_text = ReactDOM.findDOMNode(refs.input_text),     
             DOM_input_text_warning = ReactDOM.findDOMNode(refs.input_text_warning);
 
-        DOM_input_text_warning.className = ((DOM_input_text.value.length == 40) ? 'warning-label' : 'none');
+        DOM_input_text_warning.className = ((DOM_input_text.value.length == 50) ? 'warning-label' : 'none');
     }
     changeText = (e) => {
         let text = e.target.value.trim(),
@@ -38,21 +38,21 @@ export default class Text extends Component {
 
         return <div className='text'>
                 <label className='text-label' htmlFor='input-text' 
-                unselectable='on' title='Your message which display on info panel'>Text</label>
+                unselectable='on' title='Сообщение которое будет публиковаться на info panel'>Тема мероприятия</label>
                 <input id='input-text'
                     ref='input_text'
                     className='text-input'
-                    placeholder='Enter message...'
+                    placeholder='Введите тему мероприятия...'
                     onBlur={that.changeText}
                     onChange={that.warningMaxSize}
-                    maxLength='40'
-                    title='Maximum length is 40 symbol'
+                    maxLength='50'
+                    title='Сообщение которое будет публиковаться на info panel'
                 />
                 <label htmlFor='input-text' ref='input_text_error' className='none' unselectable='on'>
-                    Please enter text message
+                    Введите тему мероприятия
                 </label>
                 <label htmlFor='input-text' ref='input_text_warning' className='none' unselectable='on'>
-                    Reached the maximum number(40) of characters
+                    Reached the maximum number(50) of characters
                 </label>
             </div>
     }

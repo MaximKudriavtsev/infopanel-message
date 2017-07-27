@@ -5,7 +5,7 @@
 
 body{
     margin: 0;
-    font-size: 14px;
+    font-size: 16px;
     font-family: "segoe-condensed-bold";
 }
 
@@ -48,26 +48,29 @@ a:link, a:visited, a:hover, a:active {
     top: 0;
     left: 0;
     background: rgba(0, 0, 0, 0.7);
-    position: absolute;
+    position: fixed;
     box-sizing: border-box;
-    padding: 8% 20% 7% 20%;
-    min-width: 1250px;
-    min-height: 690px;
+    overflow: auto;
+    /* min-width: 1250px;
+    min-height: 690px; */
 }
 .app-editBar {
-    width: 100%;
-    height: 100%;
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
     display: block;
     background: white;
     overflow: auto;
     box-sizing: border-box;
-    padding: 3%;
+    padding: 30px;
+    min-width: 915px;
+    margin: 10% 19% 10% 19%;
+    /* width: 100%;
+    height: 100%; */
+    /* width: 1100px; */
     /* min-height: 500px;
-    min-height: 100% */
-    min-width: 1000px;
+    min-height: 100%
     height: 590px;
-    max-width: 1600px;
-    max-height: 700px;
+    max-height: 700px; */
 }
 .app-viewBar {
     float: left;
@@ -90,8 +93,9 @@ a:link, a:visited, a:hover, a:active {
     
 }
 .text, .author, .location, .startDate {
+    display: block;
     margin-bottom: 28px;
-    width: 60%;
+    width: 50%;
 }
 .buttons {
     width: 100%;
@@ -217,7 +221,7 @@ input {
 .startDate-SelectList > ul > li.rw-list-option > label > input:checked + .radio-input-div {
     -webkit-transition-duration: 0.4s; 
     transition-duration: 0.4s;
-    background-color: #ededed;
+    background-color: #adadad;
 }
 .startDate-SelectList > ul > li {
     border: 1px solid #adadad !important;
@@ -351,6 +355,29 @@ input {
 /*editBar end*/
 
 /*MEDIA start*/
+@media only screen and (max-width: 1250px) {
+    .app-editBar {
+        -webkit-transition-duration: 0.4s; 
+        transition-duration: 0.4s;
+        min-width: inherit;
+        margin-left: 25%;
+        min-width: 500px;
+    }
+    .eventDate {
+        position: absolute;
+        margin-top: 275px;
+    }
+    .text, .author, .location, .startDate {
+        width: 100%;
+    }
+    .startDate {
+        margin-top: 380px;
+    }
+    .eventDate {
+        padding-left: 0;
+    }
+
+}
 @media only screen and (max-device-width: 667px) {
     .app {
         width: auto;
@@ -368,8 +395,6 @@ input {
     .app-titleBar {
         height: 100px !important;
         font-size: 40px !important;
-    }
-    .app-titleBar-title, .app-titleBar-userName-logOut {
     }
     .messageBox {
         height: 25vh !important;
