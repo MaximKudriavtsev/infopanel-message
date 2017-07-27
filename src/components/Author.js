@@ -12,13 +12,13 @@ export default class Author extends Component {
             props = that.props;
         return <div className='author'>
             <label className='author-label' unselectable='on'
-                title='Event organizer'>Author</label>
+                title='Организатор мероприятия'>Докладчик</label>
             <DropdownList
                 className='author-dropdownList'
                 data={props.authorList}
                 valueField='email' textField='displayName'
                 filter='contains'
-                placeholder='Choose author...'
+                title='Организатор мероприятия'
                 value={{email: props.author, displayName: props.fullNameAuthor }}
                 defaultValue={{email: props.messageAuthor, displayName: props.displayName}}
                 onChange={that.changeAuthor}
