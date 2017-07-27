@@ -43,12 +43,15 @@ export default class EventDate extends Component {
                 defaultValue={new Date()}
                 value={new Date(props.eventDate)}
                 onChange={that.changeEventDate}
-                    format={"dd.MM.yyyy HH:mm"}
+                format={"dd.MM.yyyy HH:mm"}
                 timeFormat={"HH:mm"}
             />
             <Calendar 
                 className='calendarPicker'
+                min={new Date()}
                 defaultValue={new Date()}
+                value={new Date(props.eventDate)}
+                onChange={that.changeEventDate}
             />
                 <label ref='input_eventDate_error' className='none' unselectable='on'>
                     Please choose event date

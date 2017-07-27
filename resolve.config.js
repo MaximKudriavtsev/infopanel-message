@@ -5,7 +5,6 @@ const aggregates = require('./src/common/aggregates').default;
 const events = require('./src/common/aggregates/record-events').default;
 const queries = require('./src/common/read-models').default;
 const config = require('./config.js');
-//console.log(fileDriver());
 
 module.exports = {
   bus: { driver: busDriver },

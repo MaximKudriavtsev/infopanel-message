@@ -6,16 +6,13 @@ import { SelectList } from 'react-widgets';
 export default class StartDate extends Component {
     custom = (text) => {
         let data = text.item;
-        console.log(data);
         return (
             <div className='radio-input-div'>
                 <div className='radio-input-text' >{data.name}</div>
             </div>
         );
     }
-        // <div className='input-div'>
-        //     <label>{data.name}</label>
-        // </div>
+
     changeStartDate = (value) => {
         let props = this.props,
             date;

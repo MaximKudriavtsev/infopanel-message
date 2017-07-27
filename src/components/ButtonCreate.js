@@ -9,9 +9,8 @@ export default class Buttons extends Component {
     }
     render() {
         let that = this,
-            client = that.props.client,
-            idUser = client.id;
-
+            client = that.props.client;
+            
         return <div className='buttonCreate'>
             <button className='buttonCreate_create' 
                 onClick={that.onButtonSave}
