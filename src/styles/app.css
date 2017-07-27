@@ -361,7 +361,6 @@ input {
         -webkit-transition-duration: 0.4s; 
         transition-duration: 0.4s;
         min-width: inherit;
-        margin-left: 20%;
         margin: 0 15% 0 15%;
         min-width: 500px;
         overflow: auto;
@@ -397,9 +396,15 @@ input {
         padding: 0;
     }
     .app-editBar {
+        min-width: inherit;
+        margin: 0;
+        min-width: 500px;
+        overflow: auto;
         width: 100%;
         height: 100%;
         max-height: inherit;
+        padding: 30px;
+        
     }
     .app-titleBar {
         height: 100px !important;
