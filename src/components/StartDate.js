@@ -4,6 +4,18 @@ import ReactDOM from 'react-dom'
 import { SelectList } from 'react-widgets';
 
 export default class StartDate extends Component {
+    custom = (text) => {
+        let data = text.item;
+        console.log(data);
+        return (
+            <div className='radio-input-div'>
+                <div className='radio-input-text' >{data.name}</div>
+            </div>
+        );
+    }
+        // <div className='input-div'>
+        //     <label>{data.name}</label>
+        // </div>
     changeStartDate = (value) => {
         let props = this.props,
             date;
@@ -64,6 +76,7 @@ eventDate.setMilliseconds(0);   startDate.setMilliseconds(0);   today.setMillise
                 disabled={dates.slice(0, countOfDisabled)}
                 value={{ id: dayRange, name: name }}
                 onChange={that.changeStartDate}
+                itemComponent={that.custom}
             />
         </div>
     }

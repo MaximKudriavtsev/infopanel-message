@@ -57,20 +57,20 @@ export default class Buttons extends Component {
             idUser = client.id;
 
         return <div className='buttons'>
-            <button className={idUser >= 0 ? 'buttons-buttonDelete' : 'none' }
-                onClick={that.onButtonDelete}
+            <button className='buttons-buttonSave' 
+                onClick={that.onButtonSave}
                 unselectable='on'> 
-                Delete
+                { idUser < 0 ? 'CREATE' : 'SAVE' }
             </button>
             <button className={idUser >= 0 ? 'buttons-buttonCancel' : 'none' }
                 onClick={that.onButtonCancel}
                 unselectable='on'> 
-                Cancel
+                CANCEL
             </button>
-            <button className='buttons-buttonSave' 
-                onClick={that.onButtonSave}
+            <button className={idUser >= 0 ? 'buttons-buttonDelete' : 'none' }
+                onClick={that.onButtonDelete}
                 unselectable='on'> 
-                { idUser < 0 ? 'Create' : 'Save' }
+                DELETE
             </button>
         </div>
     }
