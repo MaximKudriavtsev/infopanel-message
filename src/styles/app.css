@@ -335,6 +335,10 @@ a:link, a:visited, a:hover, a:active {
     display: inline-block;
     margin-top: 11vh;
 }
+.buttonAdd6 {
+    display: inline-block;
+    margin-top: 5vh;
+} 
 .buttonAdd9 {
     display: inline-block;
     margin-top: 2.5vh;
@@ -380,38 +384,40 @@ a:link, a:visited, a:hover, a:active {
 }
 .messageTemplate6 {
     margin-top: 4vh;
-    text-align: center;
+    margin-left: 3.5vw;
+    /* text-align: center; */
 }
 .messageTemplate9 {
     margin-top: 1vh;
-    text-align: center;
+    margin-left: 9.5vw;
+    /* text-align: center; */
 }
 .messageBox {
-    height: 29vh;
-    width: 27vw;
-    min-width: 240px;
+    height: 32vh;
+    width: 30vw;
+    /* min-width: 240px;
     min-height: 180px;
     max-width: 350px;
-    max-height: 200px;
-    margin: 0.7vw;
+    max-height: 200px; */
+    margin: 0.5vw;
     display: inline-block;
     box-shadow: 0 2px 2px rgba(0,0,0,0.2);
 }
 .messageBox1 {
     height: 42vh;
     width: 36vw;
-    min-width: 400px;
+    /* min-width: 400px;
     min-height: 300px;
     max-width: 500px;
-    max-height: 370px;
+    max-height: 370px; */
     margin: 0.7vw;
     display: inline-block;
     box-shadow: 0 2px 2px rgba(0,0,0,0.2);
 }
 .messageBox9 {
-    height: 23vh;
-    width: 24vw;
-    margin: 0.7vw;
+    height: 24vh;
+    width: 26vw;
+    margin: 0.5vw;
     display: inline-block;
     box-shadow: 0 2px 2px rgba(0,0,0,0.2);
 }

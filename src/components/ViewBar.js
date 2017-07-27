@@ -50,39 +50,99 @@ export default class ViewBar extends Component {
                 correctStartDate: '28.04.17 10:25',
                 eventType: 'Event',
                 displayName: 'Maxim Kudryavtsev'
-            }, {
-                text: 'Second record',
-                author: 'Max',
-                location: 'Kitchen',
+            },{
+                text: 'First record',
+                author: 'Maxim',
+                location: 'Some place',
                 eventDate: '2017-07-13T12:53:49.241Z',
                 startDate: '2017-07-13T12:53:49.241Z',
                 messageAuthor: 'Max',
                 messageDate: '123',
-                correctEventDate: '28.05.17 14:15',
+                correctEventDate: '28.05.17 11:15',
                 correctStartDate: '28.04.17 10:25',
                 eventType: 'Event',
                 displayName: 'Maxim Kudryavtsev'
             },{
-                text: 'Third record',
-                author: 'Max',
-                location: 'Tula',
+                text: 'First record',
+                author: 'Maxim',
+                location: 'Some place',
                 eventDate: '2017-07-13T12:53:49.241Z',
                 startDate: '2017-07-13T12:53:49.241Z',
                 messageAuthor: 'Max',
                 messageDate: '123',
-                correctEventDate: '28.05.17 16:15',
+                correctEventDate: '28.05.17 11:15',
                 correctStartDate: '28.04.17 10:25',
                 eventType: 'Event',
                 displayName: 'Maxim Kudryavtsev'
             },{
-                text: 'Third record',
-                author: 'Max',
-                location: 'Tula',
+                text: 'First record',
+                author: 'Maxim',
+                location: 'Some place',
                 eventDate: '2017-07-13T12:53:49.241Z',
                 startDate: '2017-07-13T12:53:49.241Z',
                 messageAuthor: 'Max',
                 messageDate: '123',
-                correctEventDate: '28.05.17 16:15',
+                correctEventDate: '28.05.17 11:15',
+                correctStartDate: '28.04.17 10:25',
+                eventType: 'Event',
+                displayName: 'Maxim Kudryavtsev'
+            },{
+                text: 'First record',
+                author: 'Maxim',
+                location: 'Some place',
+                eventDate: '2017-07-13T12:53:49.241Z',
+                startDate: '2017-07-13T12:53:49.241Z',
+                messageAuthor: 'Max',
+                messageDate: '123',
+                correctEventDate: '28.05.17 11:15',
+                correctStartDate: '28.04.17 10:25',
+                eventType: 'Event',
+                displayName: 'Maxim Kudryavtsev'
+            },{
+                text: 'First record',
+                author: 'Maxim',
+                location: 'Some place',
+                eventDate: '2017-07-13T12:53:49.241Z',
+                startDate: '2017-07-13T12:53:49.241Z',
+                messageAuthor: 'Max',
+                messageDate: '123',
+                correctEventDate: '28.05.17 11:15',
+                correctStartDate: '28.04.17 10:25',
+                eventType: 'Event',
+                displayName: 'Maxim Kudryavtsev'
+            },{
+                text: 'First record',
+                author: 'Maxim',
+                location: 'Some place',
+                eventDate: '2017-07-13T12:53:49.241Z',
+                startDate: '2017-07-13T12:53:49.241Z',
+                messageAuthor: 'Max',
+                messageDate: '123',
+                correctEventDate: '28.05.17 11:15',
+                correctStartDate: '28.04.17 10:25',
+                eventType: 'Event',
+                displayName: 'Maxim Kudryavtsev'
+            },{
+                text: 'First record',
+                author: 'Maxim',
+                location: 'Some place',
+                eventDate: '2017-07-13T12:53:49.241Z',
+                startDate: '2017-07-13T12:53:49.241Z',
+                messageAuthor: 'Max',
+                messageDate: '123',
+                correctEventDate: '28.05.17 11:15',
+                correctStartDate: '28.04.17 10:25',
+                eventType: 'Event',
+                displayName: 'Maxim Kudryavtsev'
+            },{
+                text: 'First record',
+                author: 'Maxim',
+                location: 'Some place',
+                eventDate: '2017-07-13T12:53:49.241Z',
+                startDate: '2017-07-13T12:53:49.241Z',
+                messageAuthor: 'Max',
+                messageDate: '123',
+                correctEventDate: '28.05.17 11:15',
                 correctStartDate: '28.04.17 10:25',
                 eventType: 'Event',
                 displayName: 'Maxim Kudryavtsev'
@@ -102,7 +162,7 @@ export default class ViewBar extends Component {
         if (data.length < 7) {
             templateStyle = 'messageTemplate6';
             boxStyle = 'messageBox';
-            buttonStyle = 'buttonAdd';
+            buttonStyle = 'buttonAdd6';
         }
         if (data.length < 4) {
             templateStyle = 'messageTemplate3';
