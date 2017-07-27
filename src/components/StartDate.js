@@ -40,14 +40,13 @@ eventDate.setSeconds(0);        startDate.setSeconds(0);        today.setSeconds
 eventDate.setMilliseconds(0);   startDate.setMilliseconds(0);   today.setMilliseconds(0);
 
         let dates = [
-            { id: 30, name: 'Month' },
-            { id: 14, name: '2 weeks' },
-            { id: 7, name: '1 week' },
-            { id: 3, name: '3 days' },
-            { id: 1, name: '1 days' },
-            { id: 0, name: 'Now' }
+            { id: 30, name: 'за месяц' },
+            { id: 7, name: 'за неделю' },
+            { id: 3, name: 'за три дня' },
+            { id: 1, name: 'за день' },
+            { id: 0, name: 'прямо сейчас' }
         ],
-            name = 'Now',
+            name = 'прямо сейчас',
             countOfDisabled = 0,
             days = Math.round((eventDate - today) / 3600 / 1000 / 24);
 
@@ -65,7 +64,7 @@ eventDate.setMilliseconds(0);   startDate.setMilliseconds(0);   today.setMillise
         }
         return <div className='startDate'>
             <label className='startDate-label' unselectable='on'
-                title="Publish about your event from choosed date">Show message since date</label>
+                title="С какого момента мероприятие будет публиковаться на info panel">Начало показа</label>
             <SelectList
                 className="startDate-SelectList"
                 data={dates}

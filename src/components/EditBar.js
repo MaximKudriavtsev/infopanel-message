@@ -7,14 +7,14 @@ import EventDate from '../components/EventDate';
 import Buttons from '../components/Buttons';
 import StartDate from '../components/StartDate';
 // import EventType from '../components/EventType';
+import ReactDOM from 'react-dom'
 
 export default class EditBar extends Component {
     render() {
         let that = this,
           actions = that.props.actions,
           client = that.props.client,
-          type;
-        type = client.id < 0 ? 'NEW MESSAGE' : 'UPDATE MESSAGE';
+          type = client.id < 0 ? 'НОВЫЙ АНОНС' : 'РЕДАКТИРОВАНИЕ';
 
         return <div className='app-editBar'>
             <div className='app-editBar-typeMessage' unselectable='on' >

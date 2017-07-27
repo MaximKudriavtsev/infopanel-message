@@ -32,15 +32,17 @@ export default class EventDate extends Component {
     render() {
         let that = this,
             props = that.props;
+        
 
         return <div className='eventDate'>
             <label className='eventDate-label' unselectable='on'
-                title="Select the date when event will be">Date of event</label>
+                title="Выберите в какой день будет мероприятие">Дата проведения</label>
             <DateTimePicker
                 className='timePicker'
                 calendar={false}
                 min={new Date()}
                 defaultValue={new Date()}
+                step={30}
                 value={new Date(props.eventDate)}
                 onChange={that.changeEventDate}
                 format={"dd.MM.yyyy HH:mm"}

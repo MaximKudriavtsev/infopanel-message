@@ -60,17 +60,17 @@ export default class Buttons extends Component {
             <button className='buttons-buttonSave' 
                 onClick={that.onButtonSave}
                 unselectable='on'> 
-                { idUser < 0 ? 'CREATE' : 'SAVE' }
+                { idUser < 0 ? 'СОЗДАТЬ' : 'СОХРАНИТЬ' }
             </button>
             <button className='buttons-buttonCancel'
                 onClick={that.onButtonCancel}
                 unselectable='on'> 
-                CANCEL
+                ОТМЕНА
             </button>
             <button className={idUser >= 0 ? 'buttons-buttonDelete' : 'none' }
                 onClick={that.onButtonDelete}
                 unselectable='on'> 
-                DELETE
+                УДАЛИТЬ
             </button>
         </div>
     }
