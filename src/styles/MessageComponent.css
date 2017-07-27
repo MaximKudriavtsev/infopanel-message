@@ -25,6 +25,7 @@
   border: 1vh solid white;
   box-sizing: border-box;
   background-position: center center;
+  background-size: cover;
 }
 .eventPage_orange_text {
   padding: 3% 6vh 0% 6vh;
