@@ -10,6 +10,14 @@ import StartDate from '../components/StartDate';
 import ReactDOM from 'react-dom'
 
 export default class EditBar extends Component {
+    componentDidUpdate() {
+        let viewBar = document.getElementsByClassName('viewBar');
+        if(this.props.client.id != 0){
+            viewBar[0].style.overflow = 'hidden';
+        } else {
+            viewBar[0].style.overflow = 'auto';
+        }
+    }
     render() {
         let that = this,
           actions = that.props.actions,

@@ -96,7 +96,7 @@ a:link, a:visited, a:hover, a:active {
 .text, .author, .location, .startDate {
     display: block;
     margin-bottom: 28px;
-    width: 50%;
+    width: 60%;
 }
 .buttons {
     width: 100%;
@@ -262,7 +262,7 @@ input {
 .calendarPicker {
     margin-top: 0;
     border-top: 0;
-    height: 266px;
+    height: 270px;
 }
 .rw-calendar thead > tr > th {
     width: 10px !important; 
