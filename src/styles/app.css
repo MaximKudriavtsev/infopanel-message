@@ -1,12 +1,15 @@
 @font-face {
-  font-family: segoe;
+  font-family: 'segoe-condensed';
   src: url(segoe-condensed-bold.ttf); 
 }
-
+@font-face {
+  font-family: 'segoe-condensed-bold';
+  src: url(segoe-condensed-bold.ttf); 
+}
 body{
     margin: 0;
     font-size: 16px;
-    font-family: "segoe-condensed-bold";
+    font-family: "segoe-condensed" !important;
     background: #e6e6e6;
 }
 
@@ -71,7 +74,7 @@ a:link, a:visited, a:hover, a:active {
     max-width: 766px;
 }
 .app-editBar-typeMessage{
-    font-weight: bold;
+    font-family: 'segoe-condensed-bold';    
     margin-bottom: 25px;
     color: #fd760a;
     font-size: 20px;
@@ -103,6 +106,7 @@ a:link, a:visited, a:hover, a:active {
     color: #adadad;
 }
 .text-input, .location-input, .author-input {
+    font: 'segoe-condensed';
     display: block;
     box-sizing: border-box;
     padding-left: 10px;
@@ -285,6 +289,7 @@ input {
     min-width: 70px;
 }
 .buttons-buttonSave, .buttons-buttonDelete, .buttons-buttonCancel {
+    font-family: segoe-condensed-bold;    
     width: 17%;
     height: 45px;
     font-size: 18px;
@@ -321,16 +326,6 @@ input {
     color: #adadad;
     border: 1px solid #adadad;
     min-width: 98px;
-}
-.buttons-buttonSave:hover {
-    background-color: #fd760a; 
-    color: white;
-    border: 1px solid #fd760a;
-}
-.buttons-buttonCancel:hover{
-    background-color: #adadad; 
-    color: black;
-    border: 2px solid #adadad;
 }
 .buttons-buttonDelete{
     float: left !important;
@@ -546,7 +541,7 @@ input {
     font-size: 20px;
     border: 0px;
     border-radius: 1vh;
-    font-family: segoe-condensed-bold;
+    font-family: 'segoe-condensed-bold';
     cursor: pointer;
 }
 .buttonAdd_root {
@@ -574,7 +569,7 @@ input {
     font-size: 14px;
     border: 2px solid #c4c4c4;
     border-radius: 1vh;
-    font-family: segoe-condensed-bold;
+    font-family: 'segoe-condensed-bold';
     cursor: pointer;
 }
 .buttonCreate_create:focus, .buttonAdd_add:focus {
