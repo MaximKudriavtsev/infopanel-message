@@ -36,6 +36,9 @@ export default {
     cancelButton: () => ({
         type: 'CANCEL_BUTTON'
     }),
+    addButton: () => ({
+        type: 'ADD_BUTTON',
+    }),
     editRowData: (value) => ({
         type: 'EDIT_ROW_DATA',
         value: value

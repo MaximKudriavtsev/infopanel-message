@@ -1,6 +1,7 @@
 //id = -1 default
 //id = -2 validate error for new element
 //id = -3 validate error for edit 
+//id > 0 edit messages
 export default function client(state = {}, action) {
     switch (action.type) {
         case 'CHANGE_TEXT': {
@@ -36,7 +37,7 @@ export default function client(state = {}, action) {
         case 'EDIT_ROW_DATA': {
             let value = action.value;
 
-            return { ...state, text: value.text, author: value.author, location: value.location, eventDate: new Date(value.eventDate), startDate: new Date(value.startDate), id: 5, focusRow: value.id, displayName: value.displayName }
+            return { ...state, text: value.text, author: value.author, location: value.location, eventDate: new Date(value.eventDate), startDate: new Date(value.startDate), id: 1, focusRow: value.id, displayName: value.displayName }
         }
         case 'SET_ROW_FOCUS': {
             return { ...state, focusRow: action.value };
@@ -49,6 +50,9 @@ export default function client(state = {}, action) {
         }
         case 'RESET_PREVIEW': {
             return { ...state, preview:'' }
+        }
+        case 'ADD_BUTTON': {
+            return { ...state, id: 1}
         }
     }
     return state;

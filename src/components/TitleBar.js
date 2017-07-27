@@ -6,7 +6,7 @@ export default class TitleBar extends Component {
     render() {
         return <div className='app-titleBar'>
             <div className='app-titleBar-title' unselectable='on'>
-                InfoPanel Message Service
+                MESSAGE SERVICE
             </div>
             <div className='app-titleBar-userName'>
                 <a className='app-titleBar-userName-logOut'
