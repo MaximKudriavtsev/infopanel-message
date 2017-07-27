@@ -180,44 +180,44 @@ a:link, a:visited, a:hover, a:active {
 
 /*MEDIA start*/
 @media only screen and (max-device-width: 667px) {
-    body{
-        height: 100% !important;
-        width: 100% !important;
+    .app {
+        width: auto;
+        height: auto;
+        background: #e6e6e6;
     }
     .app-editBar {
         width: 100%;
-    }
-    .viewBar {
-        display: none;
     }
     .app-titleBar {
         height: 100px !important;
         font-size: 40px !important;
     }
-    .app-titleBar-title, .app-titleBar-userName {
-        padding-top: 20px;
+    .app-titleBar-title, .app-titleBar-userName-logOut {
     }
-    .text {
-        padding-top: 10px !important;
+    .messageBox {
+        height: 25vh !important;
+        width: 80vw !important;
+        margin: 2vw;
+        display: inline-block;
+        box-shadow: 0 2px 2px rgba(0,0,0,0.2);
     }
-    .text, .author, .location, .eventDate, .startDate {
-        font-size: 40px !important;
-        padding-top: 40px !important;
+    .messageBox1 {
+        height: 25vh !important;
+        width: 80vw !important;
+        margin: 2vw;
+        /* min-width: 400px;
+        min-height: 300px;
+        max-width: 500px;
+        max-height: 370px; */
+        display: inline-block;
+        box-shadow: 0 2px 2px rgba(0,0,0,0.2);
     }
-    .text-input, .location-input, .rw-input, .text-input::placeholder, .location-input::placeholder {
-        height: 150px;
-        font-size: 40px;
-    }
-    .text-label, .location-label, .startDate-label, .eventDate-label, .author-label {
-        font-size: 50px;
-    }
-    .buttons-buttonSave {
-        height: 120px;
-        width: 340px;
-        font-size: 50px !important;
-    }
-    .error-label {
-        font-size: 32px;
+    .messageBox9 {
+        height: 25vh !important;
+        width: 80vw !important;
+        margin: 2vw !important;
+        display: inline-block;
+        box-shadow: 0 2px 2px rgba(0,0,0,0.2);
     }
 }
 /*media end*/
@@ -395,10 +395,6 @@ a:link, a:visited, a:hover, a:active {
 .messageBox {
     height: 32vh;
     width: 30vw;
-    /* min-width: 240px;
-    min-height: 180px;
-    max-width: 350px;
-    max-height: 200px; */
     margin: 0.5vw;
     display: inline-block;
     box-shadow: 0 2px 2px rgba(0,0,0,0.2);
