@@ -77,7 +77,7 @@ app.get(`/${appName}/`, function (req, res) {
           let serverState = {
             server: records,
             client: {
-              id: -1,
+              id: 0,
               text: '',
               author: user.upn,
               fullNameAuthor: userName,
@@ -109,40 +109,40 @@ app.get(`/${appName}/clearCookies`, (req, res) => {
   res.redirect(`/${appName}/`);
 });
 /* for testing */
-// app.get(`/infopanel-message/login`, (req, res) => {
-//   res.sendFile(__dirname + '/login.html')
-// });
-
-// app.get(`/infopanel-message/auth`, (req, res) => {
-//     const token = jwt.sign({
-//       //upn: 'test@test.com',
-//       upn: 'Max',
-//       displayName: 'testName'
-//     }, 'test-jwt-secret')
-//     res.redirect(`/infopanel-message/auth/callback?token=${token}`)
-// });
-
-// app.get(`/infopanel-message/auth/callback`, (req, res) => {
-//   res.cookie(`InfoPanel-token`, req.query.token, {
-//     maxAge: 86400000,
-//     httpOnly: true
-//   })
-//   res.redirect(`/infopanel-message/`)
-// });
-/*END for testing*/
-/*for azura auth*/
-app.get(`/${appName}/auth`, (req, res) => {
-  res.redirect(
-    `${REDIRECT_HTTP}/login?redirect=http://${IP}:${port}/${appName}/auth/callback`
-  )
+app.get(`/infopanel-message/login`, (req, res) => {
+  res.sendFile(__dirname + '/login.html')
 });
-app.get(`/${appName}/auth/callback`, (req, res) => {
+
+app.get(`/infopanel-message/auth`, (req, res) => {
+    const token = jwt.sign({
+      //upn: 'test@test.com',
+      upn: 'Max',
+      displayName: 'testName'
+    }, 'test-jwt-secret')
+    res.redirect(`/infopanel-message/auth/callback?token=${token}`)
+});
+
+app.get(`/infopanel-message/auth/callback`, (req, res) => {
   res.cookie(`InfoPanel-token`, req.query.token, {
     maxAge: 86400000,
     httpOnly: true
   })
-  res.redirect(`/${appName}/`)
+  res.redirect(`/infopanel-message/`)
 });
+/*END for testing*/
+/*for azura auth*/
+// app.get(`/${appName}/auth`, (req, res) => {
+//   res.redirect(
+//     `${REDIRECT_HTTP}/login?redirect=http://${IP}:${port}/${appName}/auth/callback`
+//   )
+// });
+// app.get(`/${appName}/auth/callback`, (req, res) => {
+//   res.cookie(`InfoPanel-token`, req.query.token, {
+//     maxAge: 86400000,
+//     httpOnly: true
+//   })
+//   res.redirect(`/${appName}/`)
+// });
 
 /*END for azura auth*/
 app.get(`/${appName}/api/queries/:queryName`, (req, res) => {

@@ -1,6 +1,7 @@
-//id = -1 default
+//id = 0 default
+//id = 1 edit messages
+//id = -1 new record
 //id = -2 validate error for new element
-//id = -3 validate error for edit 
 export default function client(state = {}, action) {
     switch (action.type) {
         case 'CHANGE_TEXT': {
@@ -22,21 +23,22 @@ export default function client(state = {}, action) {
             return { ...state, eventType: action.value }
         }
         case 'CREATE_BUTTON': {
-            return { ...state, displayName: state.fullNameAuthor, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '' }
+            return { ...state, displayName: state.fullNameAuthor, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: 0, focusRow: '' }
         }
         case 'UPDATE_BUTTON': {
-            return { ...state, displayName: state.fullNameAuthor, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: -1, focusRow: '' }
+            return { ...state, displayName: state.fullNameAuthor, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), id: 0, focusRow: '' }
         }
         case 'DELETE_BUTTON': {
-            return { ...state, displayName: state.fullNameAuthor, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' }
+            return { ...state, displayName: state.fullNameAuthor, id: 0, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' }
         }
         case 'CANCEL_BUTTON': {
-            return { ...state, displayName: state.fullNameAuthor, id: -1, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' };
+            return { ...state, displayName: state.fullNameAuthor, id: 0, text: '', author: state.messageAuthor, location: '', eventDate: new Date(), startDate: new Date(), focusRow: '' };
         }
         case 'EDIT_ROW_DATA': {
-            let value = action.value;
+            let value = action.value.record,
+                id = action.value.aggregateId;
 
-            return { ...state, text: value.text, author: value.author, location: value.location, eventDate: new Date(value.eventDate), startDate: new Date(value.startDate), id: 5, focusRow: value.id, displayName: value.displayName }
+            return { ...state, text: value.text, author: value.author, location: value.location, eventDate: new Date(value.eventDate), startDate: new Date(value.startDate), id: 1, focusRow: id, displayName: value.displayName }
         }
         case 'SET_ROW_FOCUS': {
             return { ...state, focusRow: action.value };
@@ -49,6 +51,9 @@ export default function client(state = {}, action) {
         }
         case 'RESET_PREVIEW': {
             return { ...state, preview:'' }
+        }
+        case 'ADD_BUTTON': {
+            return { ...state, id: -1 }
         }
     }
     return state;

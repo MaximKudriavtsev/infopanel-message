@@ -1,92 +1,103 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
 
+import TitleBar from './TitleBar';
+import ButtonCreate from './ButtonCreate';
+import MessageComponent from './MessageComponent';
+import ButtonAdd from './ButtonAdd';
+
 import Row from './Row.js'
 
 export default class ViewBar extends Component {
-    addScroll = () => {
-        let that = this,
-            elemTable = ReactDOM.findDOMNode(that.refs['table']),
-            isScroll, elemHead;
+    // addScroll = () => {
+    //     let that = this,
+    //         elemTable = ReactDOM.findDOMNode(that.refs['table']),
+    //         isScroll, elemHead;
 
-        if (!elemTable) return;
+    //     if (!elemTable) return;
 
-        isScroll = elemTable.offsetWidth > elemTable.scrollWidth;
-        elemHead = ReactDOM.findDOMNode(that.refs['viewBar_head']);
+    //     isScroll = elemTable.offsetWidth > elemTable.scrollWidth;
+    //     elemHead = ReactDOM.findDOMNode(that.refs['viewBar_head']);
 
-        isScroll ? elemHead.setAttribute('class', 'viewBar_head') : elemHead.setAttribute('class', '');
-    }
-    componentDidMount = () => {
-        this.addScroll();
-    }
-    componentDidUpdate = () => {
-        this.addScroll();
-    }
+    //     isScroll ? elemHead.setAttribute('class', 'viewBar_head') : elemHead.setAttribute('class', '');
+    // }
+    // componentDidMount = () => {
+    //     this.addScroll();
+    // }
+    // componentDidUpdate = () => {
+    //     this.addScroll();
+    // }
     shouldComponentUpdate(nextProps, nextState) {
-        return (this.props.eventList != nextProps.eventList) || (this.props.focusRow != nextProps.focusRow) ;
+        return (this.props.eventList != nextProps.eventList) || (this.props.focusRow != nextProps.focusRow);
     }
     render() {
         let that = this,
             template,
+            actions = that.props.actions,
             allData = that.props.eventList,
-            data = [],
+            templateStyle = 'messageTemplate9',
+            boxStyle = 'messageBox9',
+            buttonStyle = 'buttonAdd9',
+            data = allData,
             clientHeight = document.documentElement.clientHeight,
             height = clientHeight - 94;
 
-        for(var key in allData) {
-            if (allData[key].record.messageAuthor == that.props.messageAuthor) {
-                data.push(allData[key]);
-            }
+        //filter!
+        // for (var key in allData) {
+        //     if (allData[key].record.messageAuthor == that.props.messageAuthor) {
+        //         data.push(allData[key]);
+        //     }
+        // }
+
+        // data = [];
+        
+        if (data.length < 7) {
+            templateStyle = 'messageTemplate6';
+            boxStyle = 'messageBox';
+            buttonStyle = 'buttonAdd6';
         }
-            
+        if (data.length < 4) {
+            templateStyle = 'messageTemplate3';
+            boxStyle = 'messageBox';
+            buttonStyle = 'buttonAdd';
+        }
+        if (data.length == 1) {
+            templateStyle = 'messageTemplate1';
+            boxStyle = 'messageBox1';
+            buttonStyle = 'buttonAdd';
+        }
+        
+
         if (data.length) {
-            template = data.map(({record: item, aggregateId: aggregateId }, index) => {
+            template = data.map((item, index) => {
+                const onMessageClick = () => {
+                    actions.editRowData(item);
+                }
                 return (
-                    <Row data={item} key={index} aggregateId={aggregateId} focusId={that.props.focusRow} actions={that.props.actions}/>
-                )
+                    <div className={boxStyle} key={index}>
+                        <MessageComponent data={item} onMessageClick={onMessageClick} />
+                    </div>)
             });
         } else {
             return (
-                <div className='viewBar' >
-                    <div className='' ref='viewBar_head'>
-                        <table className='viewBar_table' ref='viewBar_table'>
-                            <tbody>
-                                <tr className='viewBar_table_head'>
-                                    <td className='viewBar_table_text' unselectable='on'>Text</td>
-                                    <td className='viewBar_table_author' unselectable='on'>Author</td>
-                                    <td className='viewBar_table_location' unselectable='on'>Location</td>
-                                    <td className='viewBar_table_eventDate' unselectable='on'>Date</td>
-                                    <td className='viewBar_table_startDate' unselectable='on'>Shown since</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>No data for view</div>
+                <div className='viewBar'>
+                    <TitleBar messageAuthor={this.props.messageAuthor} />
+                    <div className='viewBar_nothingToDisplay'>В данный момент нет никаких анонсов.</div>
+                    <div className='viewBar_createRecordText'>Чтобы создать новый анонс, нажмите на кнопку ниже.</div>
+                    <ButtonCreate client={that.props.client} actions={actions} />
                 </div>)
         }
         return (
             <div className='viewBar'>
-                <div className='' ref='viewBar_head'>
-                    <table className='viewBar_table'>
-                        <tbody>
-                            <tr className='viewBar_table_head'>
-                                <td className='viewBar_table_text'>Text</td>
-                                <td className='viewBar_table_author'>Author</td>
-                                <td className='viewBar_table_location'>Location</td>
-                                <td className='viewBar_table_eventDate'>Date</td>
-                                <td className='viewBar_table_startDate'>Shown since</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <TitleBar messageAuthor={this.props.messageAuthor} />
+                <div className={templateStyle}>
+                    <div className='messageTemplate_'>
+                        {template}
+                    </div>
                 </div>
-                <div className='table' ref='table' style={{ height: height }}>
-                    <table className='viewBar_table_'>
-                        <tbody className='viewBar_tbody'>
-                            {template}
-                        </tbody>
-                    </table>
+                <div className='buttonAdd_root'>
+                    <ButtonAdd client={that.props.client} buttonStyle={buttonStyle} actions={actions}/>
                 </div>
-            </div >
-        )
+            </div>)
     }
 }
