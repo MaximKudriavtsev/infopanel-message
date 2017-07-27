@@ -5,7 +5,7 @@ import getCorrectDate from './../func/validationTime';
 
 export default class Buttons extends Component {
     onButtonSave = () => {
-        console.log('buttonCreat clicked');
+        this.props.actions.addButton();
     }
     render() {
         let that = this,

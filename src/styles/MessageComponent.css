@@ -71,6 +71,7 @@
 }
 .eventPage_white_textBlock_top_left, .eventPage_white_textBlock_bottom_left {
   box-sizing: border-box;
+  text-align: left;
   block-size: 6vh;
 }
 

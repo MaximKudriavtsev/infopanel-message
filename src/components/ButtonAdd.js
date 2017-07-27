@@ -5,14 +5,14 @@ import getCorrectDate from './../func/validationTime';
 
 export default class Buttons extends Component {
     onButtonSave = () => {
-        console.log('buttonCreat clicked');
+        this.props.actions.addButton();
     }
     render() {
         let that = this,
             client = that.props.client,
             idUser = client.id;
 
-        return <div className='buttonAdd'>
+        return <div className={that.props.buttonStyle}>
             <button className='buttonAdd_add' 
                 onClick={that.onButtonSave}
                 unselectable='on'> 

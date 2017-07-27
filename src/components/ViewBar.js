@@ -9,33 +9,35 @@ import ButtonAdd from './ButtonAdd';
 import Row from './Row.js'
 
 export default class ViewBar extends Component {
-    addScroll = () => {
-        let that = this,
-            elemTable = ReactDOM.findDOMNode(that.refs['table']),
-            isScroll, elemHead;
+    // addScroll = () => {
+    //     let that = this,
+    //         elemTable = ReactDOM.findDOMNode(that.refs['table']),
+    //         isScroll, elemHead;
 
-        if (!elemTable) return;
+    //     if (!elemTable) return;
 
-        isScroll = elemTable.offsetWidth > elemTable.scrollWidth;
-        elemHead = ReactDOM.findDOMNode(that.refs['viewBar_head']);
+    //     isScroll = elemTable.offsetWidth > elemTable.scrollWidth;
+    //     elemHead = ReactDOM.findDOMNode(that.refs['viewBar_head']);
 
-        isScroll ? elemHead.setAttribute('class', 'viewBar_head') : elemHead.setAttribute('class', '');
-    }
-    componentDidMount = () => {
-        this.addScroll();
-    }
-    componentDidUpdate = () => {
-        this.addScroll();
-    }
+    //     isScroll ? elemHead.setAttribute('class', 'viewBar_head') : elemHead.setAttribute('class', '');
+    // }
+    // componentDidMount = () => {
+    //     this.addScroll();
+    // }
+    // componentDidUpdate = () => {
+    //     this.addScroll();
+    // }
     shouldComponentUpdate(nextProps, nextState) {
         return (this.props.eventList != nextProps.eventList) || (this.props.focusRow != nextProps.focusRow);
     }
     render() {
         let that = this,
             template,
+            actions = that.props.actions,
             allData = that.props.eventList,
-            templateStyle,
-            boxStyle,
+            templateStyle = 'messageTemplate9',
+            boxStyle = 'messageBox9',
+            buttonStyle = 'buttonAdd9',
             data = [{
                 text: 'First record',
                 author: 'Maxim',
@@ -44,8 +46,8 @@ export default class ViewBar extends Component {
                 startDate: '2017-07-13T12:53:49.241Z',
                 messageAuthor: 'Max',
                 messageDate: '123',
-                correctEventDate: '28.05.17',
-                correctStartDate: '28.04.17',
+                correctEventDate: '28.05.17 11:15',
+                correctStartDate: '28.04.17 10:25',
                 eventType: 'Event',
                 displayName: 'Maxim Kudryavtsev'
             }, {
@@ -56,8 +58,8 @@ export default class ViewBar extends Component {
                 startDate: '2017-07-13T12:53:49.241Z',
                 messageAuthor: 'Max',
                 messageDate: '123',
-                correctEventDate: '28.05.17',
-                correctStartDate: '28.04.17',
+                correctEventDate: '28.05.17 14:15',
+                correctStartDate: '28.04.17 10:25',
                 eventType: 'Event',
                 displayName: 'Maxim Kudryavtsev'
             },{
@@ -68,8 +70,20 @@ export default class ViewBar extends Component {
                 startDate: '2017-07-13T12:53:49.241Z',
                 messageAuthor: 'Max',
                 messageDate: '123',
-                correctEventDate: '28.05.17',
-                correctStartDate: '28.04.17',
+                correctEventDate: '28.05.17 16:15',
+                correctStartDate: '28.04.17 10:25',
+                eventType: 'Event',
+                displayName: 'Maxim Kudryavtsev'
+            },{
+                text: 'Third record',
+                author: 'Max',
+                location: 'Tula',
+                eventDate: '2017-07-13T12:53:49.241Z',
+                startDate: '2017-07-13T12:53:49.241Z',
+                messageAuthor: 'Max',
+                messageDate: '123',
+                correctEventDate: '28.05.17 16:15',
+                correctStartDate: '28.04.17 10:25',
                 eventType: 'Event',
                 displayName: 'Maxim Kudryavtsev'
             }],
@@ -85,21 +99,30 @@ export default class ViewBar extends Component {
 
         // data = [];
         
-        if (data.length < 7)
+        if (data.length < 7) {
             templateStyle = 'messageTemplate6';
-        if (data.length < 4) 
+            boxStyle = 'messageBox';
+            buttonStyle = 'buttonAdd';
+        }
+        if (data.length < 4) {
             templateStyle = 'messageTemplate3';
-        if (data.length == 1)
+            boxStyle = 'messageBox';
+            buttonStyle = 'buttonAdd';
+        }
+        if (data.length == 1) {
             templateStyle = 'messageTemplate1';
+            boxStyle = 'messageBox1';
+            buttonStyle = 'buttonAdd';
+        }
         
 
         if (data.length) {
             template = data.map((item, index) => {
                 const onMessageClick = () => {
-                    console.log(item);
+                    actions.editRowData(item);
                 }
                 return (
-                    <div className='messageBox' key={index}>
+                    <div className={boxStyle} key={index}>
                         <MessageComponent data={item} onMessageClick={onMessageClick} />
                     </div>)
             });
@@ -109,7 +132,7 @@ export default class ViewBar extends Component {
                     <TitleBar messageAuthor={this.props.messageAuthor} />
                     <div className='viewBar_nothingToDisplay'>В данный момент нет никаких анонсов.</div>
                     <div className='viewBar_createRecordText'>Чтобы создать новый анонс, нажмите на кнопку ниже.</div>
-                    <ButtonCreate client={that.props.client} />
+                    <ButtonCreate client={that.props.client} actions={actions} />
                 </div>)
         }
         return (
@@ -121,7 +144,7 @@ export default class ViewBar extends Component {
                     </div>
                 </div>
                 <div className='buttonAdd_root'>
-                    <ButtonAdd client={that.props.client} />
+                    <ButtonAdd client={that.props.client} buttonStyle={buttonStyle} actions={actions}/>
                 </div>
             </div>)
     }
