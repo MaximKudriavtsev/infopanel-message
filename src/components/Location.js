@@ -8,7 +8,10 @@ export default class Location extends Component {
             DOM_input_location = ReactDOM.findDOMNode(refs.input_location),
             DOM_input_text_warning = ReactDOM.findDOMNode(refs.input_text_warning);
 
-        DOM_input_text_warning.className = ((DOM_input_location.value.length == 20) ? 'warning-label' : 'none');
+        DOM_input_text_warning.className = ((DOM_input_location.value.length >= 20) ? 'warning-label' : 'none');
+        if(DOM_input_location.value.length > 20){
+            DOM_input_location.value = DOM_input_location.value.slice(0, 20);
+        }
     }
     changeLocation = (e) => {
         this.props.actions.changeLocation(e.target.value.trim());
@@ -19,6 +22,7 @@ export default class Location extends Component {
             location = that.props.location;
 
         ReactDOM.findDOMNode(input_location).value = ((location === '') ? '' : location);
+        this.warningMaxSize('a');
     }
 
     render() {

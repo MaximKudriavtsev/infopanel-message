@@ -337,7 +337,7 @@ input {
 /*text end*/
 .error-label, .warning-label{
     color:red;
-    font-size: 12px;
+    font-size: 14px;
     position: absolute;
     display: block;
 }
@@ -351,92 +351,6 @@ input {
     display: none;
 } 
 /*editBar end*/
-
-/*MEDIA start*/
-@media only screen and (max-width: 1250px) {
-    .EditBar {
-        overflow: auto;        
-    }
-    .app-editBar {
-        -webkit-transition-duration: 0.4s; 
-        transition-duration: 0.4s;
-        min-width: inherit;
-        margin: 0 15% 0 15%;
-        min-width: 500px;
-        overflow: auto;
-    }
-    .eventDate {
-        position: absolute;
-        margin-top: 275px;
-    }
-    .text, .author, .location, .startDate {
-        width: 100%;
-        min-width: inherit;
-    }
-    .startDate {
-        margin-top: 380px;
-    }
-    .eventDate {
-        padding-left: 0;
-    }
-    .startDate-SelectList > ul > li {
-        border: 1px solid #adadad !important;
-        box-sizing: border-box;
-        margin-right: 3% !important; 
-    }
-}
-
-@media only screen and (max-device-width: 667px) {
-    .app {
-        width: auto;
-        height: auto;
-        background: #e6e6e6;
-    }
-    .EditBar {
-        padding: 0;
-    }
-    .app-editBar {
-        min-width: inherit;
-        margin: 0;
-        min-width: 500px;
-        overflow: auto;
-        width: 100%;
-        height: 100%;
-        max-height: inherit;
-        padding: 30px;
-        
-    }
-    .app-titleBar {
-        height: 100px !important;
-        font-size: 40px !important;
-    }
-    .messageBox {
-        height: 25vh !important;
-        width: 80vw !important;
-        margin: 2vw;
-        display: inline-block;
-        box-shadow: 0 2px 2px rgba(0,0,0,0.2);
-    }
-    .messageBox1 {
-        height: 25vh !important;
-        width: 80vw !important;
-        margin: 2vw;
-        /* min-width: 400px;
-        min-height: 300px;
-        max-width: 500px;
-        max-height: 370px; */
-        display: inline-block;
-        box-shadow: 0 2px 2px rgba(0,0,0,0.2);
-    }
-    .messageBox9 {
-        height: 25vh !important;
-        width: 80vw !important;
-        margin: 2vw !important;
-        display: inline-block;
-        box-shadow: 0 2px 2px rgba(0,0,0,0.2);
-    }
-}
-/*media end*/
 
 /*viewBar-table START*/
 .viewBar {
@@ -532,6 +446,7 @@ input {
     height: 7vh;
     width: 28vh;
     margin-top: 11vh;
+    text-align: center;
 }
 .buttonCreate_create {
     height: 60px;
@@ -643,7 +558,7 @@ input {
 /*none select element*/
 .author-label, .buttons, .eventDate-label, .location-label,
 .startDate-label, .text-label, .app-titleBar-title, .viewBar_table_head,
-.error-label, .app-editBar-typeMessage-label{
+.error-label, .app-editBar-typeMessage-label, .warning-label {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -658,3 +573,209 @@ ul li {
     cursor: context-menu !important;
 }
 /*end SelectList*/
+/*MEDIA start*/
+
+
+@media only screen and (max-width: 1250px) {
+    .EditBar {
+        overflow: auto;        
+    }
+    .app-editBar {
+        -webkit-transition-duration: 0.4s; 
+        transition-duration: 0.4s;
+        min-width: inherit;
+        margin: 0 15% 0 15%;
+        min-width: 500px;
+        overflow: auto;
+    }
+    .eventDate {
+        position: absolute;
+        margin-top: 275px;
+    }
+    .text, .author, .location, .startDate {
+        width: 100%;
+        min-width: inherit;
+    }
+    .startDate {
+        margin-top: 380px;
+    }
+    .eventDate {
+        padding-left: 0;
+    }
+    .startDate-SelectList > ul > li {
+        border: 1px solid #adadad !important;
+        box-sizing: border-box;
+        margin-right: 3% !important; 
+    }
+}
+
+@media only screen and (max-device-width: 667px) {
+    .app {
+        width: auto;
+        height: auto;
+        background: #e6e6e6;
+    }
+    .EditBar {
+        padding: 0;
+    }
+    .app-editBar {
+        min-width: inherit;
+        margin: 8vh 8vw 0vh 8vw;
+        min-width: 500px;
+        overflow: auto;
+        max-height: inherit;
+        padding: 30px;
+    }
+    .app-editBar-typeMessage {
+        font-size: 6vw;
+    }
+    .text-label, .author-label, .location-label, .eventDate-label, .startDate-label, .eventType-label {
+        font-size: 4vw;
+    }
+    .text-input, .location-input, .author-dropdownList{
+        height: 60px !important;
+        font-size: 4vw;
+        width: 100%;
+    }
+    .text-input::placeholder, .location-input::placeholder{
+        font-size: 4vw;        
+    }
+    .rw-dropdownlist > .rw-input, .rw-dropdownlist > .rw-select {
+        line-height: inherit !important; 
+        padding-top: 5px;
+    }
+    .eventDate {
+        margin-top: 410px;
+    }
+    .startDate {
+        margin-top: 550px;
+    }
+    .radio-input-div {
+        font-size: 3vw;
+        height: 8vw;
+        padding: 10px 16px 10px 16px;
+    }
+    .app-titleBar {
+        height: 100px !important;
+        font-size: 40px !important;
+    }
+    .messageBox {
+        height: 25vh !important;
+        width: 80vw !important;
+        margin: 2vw;
+        display: inline-block;
+        box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+    }
+    .messageBox1 {
+        height: 25vh !important;
+        width: 80vw !important;
+        margin: 2vw;
+        /* min-width: 400px;
+        min-height: 300px;
+        max-width: 500px;
+        max-height: 370px; */
+        display: inline-block;
+        box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+    }
+    .messageBox9 {
+        height: 25vh !important;
+        width: 80vw !important;
+        margin: 2vw !important;
+        display: inline-block;
+        box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+    }
+    .buttonCreate {
+        width: inherit !important;
+    }
+    .buttonCreate_create, .buttonAdd_add{
+        height: 10vh !important;
+        width: 45vw !important;
+        font-size: 6vw !important;
+        min-height: 70px !important;
+    }
+    .viewBar_createRecordText {
+        font-size: 6vw;
+    }
+    .viewBar_nothingToDisplay {
+        font-size: 6vw;
+        margin-top: 15vh;
+    }
+    .buttons-buttonSave, .buttons-buttonDelete, .buttons-buttonCancel {
+        height: 3vh !important;
+        width: 15vw !important;
+        font-size: 3vw !important;
+        min-height: 70px !important;
+    }
+    .calendarPicker {
+        width: 60% !important;
+        min-width: 60% !important;
+        height: 415px;
+    }
+    .calendarPicker .rw-btn {
+        -webkit-transition-duration: 0.4s; 
+        transition-duration: 0.4s;
+        height: 50px;
+        width: 60px;
+        padding: 0px !important;
+        margin: 0px !important;
+        font-size: 30px;
+        line-height: 45px !important;
+    }
+    .calendarPicker thead > tr > th {
+        width: 10px !important; 
+        height: 15px;
+        text-align: center;
+        font-size: 30px;
+        padding: 0px !important;
+    }
+    .timePicker {
+        line-height: 50px !important; 
+        padding-top: 5px;
+        height: 60px !important;
+        font-size: 4vw;
+        width: 60%;
+    }
+    .timePicker .rw-btn {
+        line-height: 0em;
+    }
+    .timePicker .rw-popup-container .rw-popup{
+        height: 415px !important;
+    }
+    .timePicker .rw-popup-container .rw-popup .rw-list {
+        max-height: inherit;
+        height: 100%;
+    }
+    .error-label, .warning-label {
+        font-size: 25px;
+    }
+}
+
+/*media end*/
+
+/*.calendarPicker {
+    margin-top: 0;
+    border-top: 0;
+    height: 270px;
+}
+.rw-calendar thead > tr > th {
+    width: 10px !important; 
+    height: 15px;
+    text-align: center;
+    font-size: 14px;
+    padding: 0px !important;
+}
+.calendarPicker .rw-btn {
+    -webkit-transition-duration: 0.4s; 
+    transition-duration: 0.4s;
+    height: 35px;
+    width: 40px;
+    padding: 0px !important;
+    margin: 0px !important;
+}
+.timePicker {
+    margin-top: 4px;
+    box-sizing: border-box;
+}
+.calendarPicker, .timePicker {
+    width: 350px;
+}*/

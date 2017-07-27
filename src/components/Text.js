@@ -14,7 +14,10 @@ export default class Text extends Component {
             DOM_input_text = ReactDOM.findDOMNode(refs.input_text),     
             DOM_input_text_warning = ReactDOM.findDOMNode(refs.input_text_warning);
 
-        DOM_input_text_warning.className = ((DOM_input_text.value.length == 50) ? 'warning-label' : 'none');
+        DOM_input_text_warning.className = ((DOM_input_text.value.length >= 50) ? 'warning-label' : 'none');
+        if(DOM_input_text.value.length > 50){
+            DOM_input_text.value = DOM_input_text.value.slice(0, 50);
+        }
     }
     changeText = (e) => {
         let text = e.target.value.trim(),
