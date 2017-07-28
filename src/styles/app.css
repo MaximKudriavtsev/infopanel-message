@@ -66,7 +66,7 @@ a:link, a:visited, a:hover, a:active {
     overflow: auto;
     padding: 30px;
     min-width: 990px;
-    margin: 10% 17% 0% 17%;
+    margin: 10vh 17vw 0vh 17vw;
 }
 .app-viewBar {
     float: left;
@@ -210,6 +210,7 @@ input {
     display: none;
 }
 .radio-input-div {
+    border: 1px #adadad solid !important;
     -webkit-transition-duration: 0.4s; 
     transition-duration: 0.4s;
     text-align: center;
@@ -223,10 +224,10 @@ input {
 .startDate-SelectList > ul > li.rw-list-option > label > input:checked + .radio-input-div {
     -webkit-transition-duration: 0.4s; 
     transition-duration: 0.4s;
-    background-color: #adadad;
+    background-color: #adadad !important;
+    border-color: black !important;
 }
 .startDate-SelectList > ul > li {
-    border: 1px solid #adadad !important;
     box-sizing: border-box;
     margin-right: 20px !important; 
 }
@@ -246,14 +247,15 @@ input {
     color: black;
     border: 1px solid #adadad !important;
 }
+.startDate-SelectList > ul > li.rw-state-disabled:hover {
+    -webkit-transition-duration: 0s; 
+    transition-duration: 0s;
+    background: white !important;
+    color: #adadad;
+}
 .startDate-SelectList > ul > li.rw-state-disabled > label > .radio-input-div {
     color: #adadad;
     cursor: not-allowed;
-}
-.startDate-SelectList > ul > li.rw-state-disabled:hover {
-    background: white !important;
-    color: #adadad;
-    border: 1px solid #adadad !important;
 }
 .startDate-SelectList > ul > .rw-state-focus {
     border-color: #adadad !important;
