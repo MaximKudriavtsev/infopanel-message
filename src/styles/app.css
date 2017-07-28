@@ -505,8 +505,8 @@ input {
     font-family: 'segoe-condensed-bold';
     cursor: pointer;
 }
-.buttonAdd_add:hover, .buttonAdd9:hover, .buttonAdd6:hover {
-    border: 2px solid #838383;
+.buttonAdd_add:hover {
+    border: 2px solid #838383; 
     color: #838383;
 }
 .buttonCreate_create:focus, .buttonAdd_add:focus {
@@ -518,8 +518,8 @@ input {
 .buttonCreate_create:active {
     background: #a44b03;
 }
-.buttonAdd_add:active, .buttonAdd9:active, .buttonAdd6:active {
-    border: 2px solid #555;
+.buttonAdd_add:active {
+    border: 2px solid #555; 
     color: #555;
 }
 /*ButtonCreate end*/
