@@ -210,6 +210,7 @@ input {
     transition-duration: 0.4s;
     text-align: center;
     padding: 5px 16px 5px 16px;
+    cursor: pointer;
 }
 .radio-input-text{
     display: inline-grid;
@@ -223,7 +224,7 @@ input {
 .startDate-SelectList > ul > li {
     border: 1px solid #adadad !important;
     box-sizing: border-box;
-    margin-right: 20px !important; 
+    margin-right: 20px !important;
 }
 .startDate-SelectList > ul > li > label, .startDate-SelectList > ul > li > label > .radio-input-div,
 .startDate-SelectList > ul > li > label > .radio-input-div > .radio-input-text {
@@ -241,7 +242,7 @@ input {
     color: black;
     border: 1px solid #adadad !important;
 }
-.startDate-SelectList > ul > li.rw-state-disabled > label > .radio-input-div > .radio-input-text {
+.startDate-SelectList > ul > li.rw-state-disabled > label > .radio-input-div {
     color: #adadad;
     cursor: not-allowed;
 }
@@ -318,13 +319,13 @@ input {
 .buttons-buttonCancel, .buttons-buttonDelete{
     float: right;
     color: #adadad;
-    border: 1px solid #adadad;
+    border: 2px solid #adadad;
     min-width: 93px;
 }
 .buttons-buttonDelete{
     float: left;
     color: #adadad;
-    border: 1px solid #adadad;
+    border: 2px solid #adadad;
     min-width: 98px;
 }
 .buttons-buttonDelete{
