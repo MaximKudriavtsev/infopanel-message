@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'segoe-condensed';
-  src: url(segoe-condensed-bold.ttf); 
+  src: url(segoe-condensed.ttf); 
 }
 @font-face {
   font-family: 'segoe-condensed-bold';
@@ -28,12 +28,14 @@ body{
     background: #e6e6e6;
 }
 .app-titleBar-title{
+    font-family: "segoe-condensed-bold" !important;    
     float: left;
     padding-top: 2vh;
     padding-left: 2vh;
     color: #fd760a;
 }
 .app-titleBar-userName-logOut {
+    font-family: "segoe-condensed-bold" !important;    
     color: #3f3f3f !important;
     float: right;
     padding-top: 2vh;
@@ -106,7 +108,7 @@ a:link, a:visited, a:hover, a:active {
     color: #adadad;
 }
 .text-input, .location-input, .author-input {
-    font: 'segoe-condensed';
+    font: 'segoe-condensed-bold';
     display: block;
     box-sizing: border-box;
     padding-left: 10px;
@@ -189,6 +191,8 @@ a:link, a:visited, a:hover, a:active {
 .rw-dropdownlist > .rw-input{
     height: 100%;
     padding: 3px 0px 0px 10px;
+    font: 'segoe-condensed-bold';
+    line-height: 33px !important;
 }
 input {
     height: 40px !important;
@@ -214,6 +218,7 @@ input {
 .radio-input-text{
     display: inline-grid;
     align-items: center;
+    font-size: 16px;
 }
 .startDate-SelectList > ul > li.rw-list-option > label > input:checked + .radio-input-div {
     -webkit-transition-duration: 0.4s; 
@@ -241,7 +246,7 @@ input {
     color: black;
     border: 1px solid #adadad !important;
 }
-.startDate-SelectList > ul > li.rw-state-disabled > label > .radio-input-div > .radio-input-text {
+.startDate-SelectList > ul > li.rw-state-disabled > label > .radio-input-div {
     color: #adadad;
     cursor: not-allowed;
 }
@@ -274,6 +279,7 @@ input {
     width: 40px;
     padding: 0px !important;
     margin: 0px !important;
+    line-height: 32px !important;
 }
 .timePicker {
     margin-top: 4px;
@@ -289,7 +295,7 @@ input {
     min-width: 70px;
 }
 .buttons-buttonSave, .buttons-buttonDelete, .buttons-buttonCancel {
-    font-family: segoe-condensed-bold;    
+    font-family: 'segoe-condensed-bold';    
     width: 17%;
     height: 45px;
     font-size: 18px;
@@ -298,7 +304,7 @@ input {
     border-radius: 7px;
     color:#fd760a;
     padding: 0px;
-    min-width: 70px;   
+    width: 170px !important; 
     font-weight: bold !important;
     cursor: pointer;
 }
@@ -504,27 +510,33 @@ input {
 
 /*messageTemplate START*/
 .messageTemplate_ {
+    font-family: 'segoe-condensed-bold';
     margin: 0 auto;
 }
 .messageTemplate1 {
+    font-family: 'segoe-condensed-bold';
     margin-top: 15vh;
     text-align: center;
 }
 .messageTemplate3 {
+    font-family: 'segoe-condensed-bold';
     margin-top: 20vh;
     text-align: center;
 }
 .messageTemplate6 {
+    font-family: 'segoe-condensed-bold';
     margin-top: 4vh;
     margin-left: 3.5vw;
     /* text-align: center; */
 }
 .messageTemplate9 {
+    font-family: 'segoe-condensed-bold';
     margin-top: 1vh;
     margin-left: 9.5vw;
     /* text-align: center; */
 }
 .messageBox {
+    font-family: 'segoe-condensed-bold';
     height: 32vh;
     width: 30vw;
     margin: 0.5vw;
@@ -533,6 +545,7 @@ input {
     vertical-align: top;
 }
 .messageBox1 {
+    font-family: 'segoe-condensed-bold';
     height: 42vh;
     width: 36vw;
     /* min-width: 400px;
@@ -545,6 +558,7 @@ input {
     vertical-align: top;
 }
 .messageBox9 {
+    font-family: 'segoe-condensed-bold';
     height: 24vh;
     width: 26vw;
     margin: 0.5vw;
