@@ -229,6 +229,7 @@ input {
     border-color: black !important;
 }
 .startDate-SelectList > ul > li {
+    border: 1px solid transparent;
     box-sizing: border-box;
     margin-right: 20px !important;
 }
@@ -251,8 +252,9 @@ input {
 .startDate-SelectList > ul > li.rw-state-disabled:hover {
     -webkit-transition-duration: 0s; 
     transition-duration: 0s;
+    border: 1px solid transparent !important;
     background: white !important;
-    color: #adadad;
+    color: #adadad !important;
 }
 .startDate-SelectList > ul > li.rw-state-disabled > label > .radio-input-div {
     color: #adadad;
