@@ -229,7 +229,7 @@ input {
     border-color: black !important;
 }
 .startDate-SelectList > ul > li {
-    border: 1px solid transparent;
+    border: 1px solid transparent !important;        
     box-sizing: border-box;
     margin-right: 20px !important;
 }
@@ -247,8 +247,8 @@ input {
     transition-duration: 0.4s;
     background: #ededed !important;
     color: black;
-    border: 1px solid #adadad !important;
 }
+
 .startDate-SelectList > ul > li.rw-state-disabled:hover {
     -webkit-transition-duration: 0s; 
     transition-duration: 0s;
@@ -262,6 +262,9 @@ input {
 }
 .startDate-SelectList > ul > .rw-state-focus {
     border-color: #adadad !important;
+}
+.startDate-SelectList > ul > li.rw-list-option {
+    border: 1px solid transparent !important;
 }
 /*END rw-selectlist*/
 /*calendarPicker */
