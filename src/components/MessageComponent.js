@@ -74,10 +74,10 @@ function MessageComponent(props) {
                     marginBottom: 1 * vh,
                     marginLeft: 0
                 }}>
-                    <div className="eventPage_white_textBlock_top_left" style={{ blockSize: 6 * vh + 'px' }}>
+                    <div className="eventPage_white_textBlock_top_left" style={{ height: 6 * vh + 'px' }}>
                         {month}
                     </div>
-                    <div className="eventPage_white_textBlock_bottom_left" style={{ blockSize: 6 * vh + 'px' }}>
+                    <div className="eventPage_white_textBlock_bottom_left" style={{ height: 6 * vh + 'px' }}>
                         начало в {hours}
                     </div>
                 </div>
@@ -88,10 +88,10 @@ function MessageComponent(props) {
                     marginBottom: 1 * vh,
                     marginLeft: 0
                 }}>
-                    <div className="eventPage_white_textBlock_top_right" style={{ blockSize: 6 * vh + 'px' }}>
+                    <div className="eventPage_white_textBlock_top_right" style={{ height: 6 * vh + 'px' }}>
                         {data.location ? 'место' : ''}
                     </div>
-                    <div className="eventPage_white_textBlock_bottom_right" style={{ blockSize: 6 * vh + 'px' }}>
+                    <div className="eventPage_white_textBlock_bottom_right" style={{ height: 6 * vh + 'px' }}>
                         {data.location}
                     </div>
                 </div>
