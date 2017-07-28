@@ -12,7 +12,7 @@ import jwt from 'jsonwebtoken';
 import recordsStore from './src/store/recordsStore';
 import usersStore from './src/store/usersStore';
 import config from './resolve.config.js';
-import { REDIRECT_HTTP, IP, APPLICATION_NAME } from './config.js';
+import { REDIRECT_HTTP, APPLICATION_NAME, REDIRECT_CALLBACK_HTTP } from './config.js';
 import commandHandler from 'resolve-command';
 import query from 'resolve-query';
 
@@ -134,7 +134,7 @@ app.get(`/infopanel-message/auth/callback`, (req, res) => {
 /*for azura auth*/
 // app.get(`/${appName}/auth`, (req, res) => {
 //   res.redirect(
-//     `${REDIRECT_HTTP}/login?redirect=http://${IP}:${port}/${appName}/auth/callback`
+//     `${REDIRECT_HTTP}/login?redirect=${REDIRECT_CALLBACK_HTTP}/${appName}/auth/callback`
 //   )
 // });
 // app.get(`/${appName}/auth/callback`, (req, res) => {
