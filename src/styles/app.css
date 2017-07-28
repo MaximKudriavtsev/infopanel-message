@@ -678,9 +678,11 @@ ul li {
         margin-top: 550px;
     }
     .radio-input-div {
-        font-size: 3vw;
         height: 8vw;
         padding: 10px 16px 10px 16px;
+    }
+    .radio-input-text {
+        font-size: 3vw !important;
     }
     .app-titleBar {
         height: 100px !important;
@@ -774,6 +776,20 @@ ul li {
     }
     .error-label, .warning-label {
         font-size: 25px;
+    }
+    .messageTemplate3 {
+        margin-top: 8vh;
+    }
+    .buttonAdd {
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+    }
+    .rw-dropdownlist .rw-popup-container {
+        height: 450px !important;
+    }
+    .rw-dropdownlist .rw-popup-container .rw-popup, .rw-dropdownlist .rw-popup-container .rw-list {
+        max-height: inherit !important;
+        height: 100% !important;
     }
 }
 
