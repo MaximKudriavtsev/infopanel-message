@@ -1,6 +1,6 @@
 @font-face {
-  font-family: segoe-condensed-bold; 
-  src: url(segoe-condensed-bold.ttf); 
+  font-family: 'segoe-condensed-bold'; 
+  src: url('/infopanel-message/static/segoe-condensed-bold.ttf');
 }
 .eventPage {
   font-family: "segoe-condensed-bold";

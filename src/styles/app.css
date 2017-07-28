@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'segoe-condensed';
-  src: url(segoe-condensed.ttf); 
+  src: url('/infopanel-message/static/segoe-condensed.ttf');
 }
 @font-face {
   font-family: 'segoe-condensed-bold';
-  src: url(segoe-condensed-bold.ttf); 
+  src: url('/infopanel-message/static/segoe-condensed-bold.ttf');
 }
 body{
     margin: 0;
