@@ -35,7 +35,6 @@ body{
     color: #fd760a;
 }
 .app-titleBar-userName-logOut {
-    font-family: "segoe-condensed-bold" !important;    
     color: #3f3f3f !important;
     float: right;
     padding-top: 2vh;
@@ -788,8 +787,7 @@ ul li {
     .messageTemplate3 {
         margin-top: 8vh;
     }
-    .buttonAdd {
-        margin-top: 5vh;
+    .buttonAdd_root {
         margin-bottom: 5vh;
     }
     .rw-dropdownlist .rw-popup-container {
@@ -798,6 +796,16 @@ ul li {
     .rw-dropdownlist .rw-popup-container .rw-popup, .rw-dropdownlist .rw-popup-container .rw-list {
         max-height: inherit !important;
         height: 100% !important;
+    }
+    .messageTemplate1, .messageTemplate3, .messageTemplate6, .messageTemplate9 {
+        font-family: 'segoe-condensed-bold';
+        margin-top: 6vh;
+        margin-left: 0;
+        text-align: center;
+    }
+    .messageTemplate_ {
+        font-family: 'segoe-condensed-bold';
+        margin: 0 auto;
     }
 }
 
