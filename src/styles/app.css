@@ -575,7 +575,12 @@ ul li {
 }
 /*end SelectList*/
 /*MEDIA start*/
-
+@media only screen and (max-width: 1450px) {
+    .app-editBar {
+      min-width: 990px;
+      margin: 4% 10% 0% 10%;
+    }
+}
 
 @media only screen and (max-width: 1250px) {
     .EditBar {
