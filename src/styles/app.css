@@ -326,7 +326,7 @@ input {
     background-color: #fd760a;
     color: white;
 }
-.buttons-buttonSave:active {
+.buttons-buttonSave:hover {
     color: #fe9847;
 }
 .buttons-buttonCancel, .buttons-buttonDelete{
@@ -344,9 +344,13 @@ input {
 .buttons-buttonDelete{
     float: left !important;
 }
-.buttons-buttonCancel:active, .buttons-buttonDelete:active{
+.buttons-buttonCancel:hover, .buttons-buttonDelete:hover{
     color: #838383;
     border: 2px solid #838383;
+}
+.buttons-buttonCancel:active, .buttons-buttonDelete:active{
+    color: #555;
+    border: 2px solid #555;
 }
 /*text end*/
 .error-label, .warning-label{
@@ -501,6 +505,10 @@ input {
     font-family: 'segoe-condensed-bold';
     cursor: pointer;
 }
+.buttonAdd_add:hover, .buttonAdd9:hover, .buttonAdd6:hover {
+    border: 2px solid #838383;
+    color: #838383;
+}
 .buttonCreate_create:focus, .buttonAdd_add:focus {
     outline: none;
 }
@@ -510,9 +518,9 @@ input {
 .buttonCreate_create:active {
     background: #a44b03;
 }
-.buttonAdd_add:active {
-    border: 2px solid #838383;
-    color: #838383;
+.buttonAdd_add:active, .buttonAdd9:active, .buttonAdd6:active {
+    border: 2px solid #555;
+    color: #555;
 }
 /*ButtonCreate end*/
 
